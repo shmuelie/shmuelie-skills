@@ -1,47 +1,88 @@
 # shmuelie-skills
 
-Custom [Copilot CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cli) skills (extensions) encoding domain knowledge from real-world projects.
-
-## Skills Catalog
-
-| Skill | Description |
-|-------|-------------|
-| **winui3-msix** | WinUI 3 binding gotchas, MSIX packaging, WinAppSDK test architecture |
-| **csharp-interop** | CsWin32, LibraryImport, ConPTY, Native AOT, runtime marshalling |
-| **dotnet-project-init** | .NET project scaffolding, Directory.Build.props, CI workflows |
-| **deploy-scripts** | Deploy.ps1 patterns for MSIX loose-file, remote, and mobile deployment |
-| **typescript-cli** | Process pools, atomic caching, rate limiting, graceful shutdown |
-| **embedded-cpp** | Buildroot cross-compilation, CMake presets, binary size optimization, Catch2 |
-| **shell-wsl** | Shell script patterns, WSL quirks, embedded device deployment, Rust/Cargo |
-| **homelab-infra** | Proxmox GPU passthrough, LXC containers, HA dashboards, Jellyfin plugins, ComfyUI nodes |
+A [GitHub Copilot CLI plugin](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-cli-plugins) packaging domain knowledge learned from real-world projects as reusable skills.
 
 ## Installation
 
 ```bash
-# From GitHub
 copilot plugin install shmuelie/shmuelie-skills
-
-# From a local clone
-copilot plugin install ./shmuelie-skills
 ```
 
-After installing, verify with:
+Verify the plugin loaded:
+
 ```bash
 copilot plugin list
 ```
 
-And in an interactive session, check skills loaded with `/skills list`.
+Check available skills inside a Copilot CLI session:
+
+```
+/skills list
+```
+
+## Skills
+
+| Skill | Description |
+|-------|-------------|
+| **winui3-msix** | WinUI 3 data binding pitfalls (`{x:Bind}` vs `{Binding}` vs `[Bindable]`), MSIX packaging (`EnableMsixTooling`, manifest requirements, loose-file registration), WinAppSDK test project architecture, and DI patterns |
+| **csharp-interop** | CsWin32 setup, `LibraryImport` marshalling, ConPTY HPCON calling convention bug, `NativeLibrary.SetDllImportResolver`, Native AOT + trimming, VT escape sequence parsing in C#, IPC message patterns, and plugin path security |
+| **dotnet-project-init** | `Directory.Build.props` centralized config, `global.json` test runner setup for .NET 10+, NuGet `ExcludeAssets` patterns, GitHub Actions CI workflows for .NET and MSIX, and `copilot-instructions.md` templates |
+| **deploy-scripts** | `Deploy.ps1` patterns — MSBuild auto-detection via `vswhere`, architecture detection, AppX loose-file layout assembly, `Add-AppxPackage -Register`, `WinAppDeployCmd` remote deployment, and ADB for Android |
+| **typescript-cli** | Process pool management, atomic cache writes (`.tmp` + rename), cache versioning with migration, adaptive rate limiting, SIGINT graceful shutdown, multi-tier file matching, Windows `MAX_PATH` handling, and `??` vs `\|\|` pitfalls |
+| **embedded-cpp** | Buildroot external tree for MIPS cross-compilation, CMake presets, binary size optimization (`-fno-rtti`, `-fno-unwind-tables`, UPX compression — 63% reduction), `FetchContent`, Catch2 testing, C++20 embedded conventions, and MQTT HA auto-discovery |
+| **shell-wsl** | Shell script bugs (`exit` vs `return`, variable quoting, `mkdir -p`), `set -euo pipefail`, WSL systemd detection, `TERM=xterm-256color` for progress indicators, APT troubleshooting, embedded device deployment (`cfgmtd`, symlink config), and Rust/Cargo clippy patterns |
+| **homelab-infra** | Proxmox NVIDIA GPU passthrough to LXC containers (driver matching, `lxc.cgroup2`, `pct push/exec`, `proxmox-boot-tool refresh`), Home Assistant dashboard YAML and Proxmox entity naming, Jellyfin plugin provider architecture, and ComfyUI custom node development |
+
+## Project Structure
+
+```
+shmuelie-skills/
+├── plugin.json                        # Plugin manifest
+├── .github/plugin/marketplace.json    # Marketplace definition
+├── skills/
+│   ├── winui3-msix/SKILL.md
+│   ├── csharp-interop/SKILL.md
+│   ├── dotnet-project-init/SKILL.md
+│   ├── deploy-scripts/SKILL.md
+│   ├── typescript-cli/SKILL.md
+│   ├── embedded-cpp/SKILL.md
+│   ├── shell-wsl/SKILL.md
+│   └── homelab-infra/SKILL.md
+└── README.md
+```
 
 ## Adding a New Skill
 
-1. Create a directory under `skills/` named after the skill
-2. Add `SKILL.md` inside it with YAML frontmatter (`name`, `description`) and markdown content
-3. Reinstall: `copilot plugin install ./shmuelie-skills`
+1. Create `skills/<skill-name>/SKILL.md` with YAML frontmatter and markdown body:
+
+   ```markdown
+   ---
+   name: my-skill
+   description: Brief description of what this skill covers
+   ---
+
+   Context instructions for when this skill is active.
+
+   # Domain Knowledge
+
+   ## Topic One
+   - Key fact or pattern
+   - Another important detail
+   ```
+
+2. Reinstall the plugin to pick up changes:
+
+   ```bash
+   copilot plugin install ./shmuelie-skills
+   ```
 
 ## Sources
 
-Learnings extracted from 84+ Copilot CLI sessions (63 Windows + 21 WSL) plus VS Code Copilot Chat sessions across 22+ repositories including:
-windows-tmux, modern-meeter, modern-proxy, matroska-full-support, windows-ha-app,
-Shmuelie.WinRTServer, Shmuelie.JsonView, Shmuelie.Jellyfin, deviantart-helpers,
-android-notification-forwarder, easy-shul-api, mfi-custom-code, mfi-env,
-SDK.UBNT.v5.3.3, WSL-Hello-sudo, ha-config, and more.
+Learnings extracted from 84+ [Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) sessions and [VS Code Copilot Chat](https://docs.github.com/en/copilot/using-github-copilot/copilot-chat/using-github-copilot-chat-in-your-ide) sessions across 22+ repositories including:
+
+- **C# / WinUI 3**: [windows-tmux](https://github.com/shmuelie/windows-tmux), [modern-meeter](https://github.com/shmuelie/modern-meeter), [modern-proxy](https://github.com/shmuelie/modern-proxy), [matroska-full-support](https://github.com/shmuelie/matroska-full-support), [Shmuelie.WinRTServer](https://github.com/shmuelie/Shmuelie.WinRTServer), [Shmuelie.JsonView](https://github.com/shmuelie/Shmuelie.JsonView), [Shmuelie.Jellyfin](https://github.com/shmuelie/Shmuelie.Jellyfin)
+- **TypeScript / Node**: [deviantart-helpers](https://github.com/shmuelie/deviantart-helpers), [easy-shul-api](https://github.com/shmuelie/easy-shul-api), [shmuelie.englard.net](https://github.com/shmuelie/shmuelie.englard.net), [user-scripts](https://github.com/shmuelie/user-scripts)
+- **Embedded / IoT**: [mfi-custom-code](https://github.com/shmuelie/mfi-custom-code), [mfi-env](https://github.com/shmuelie/mfi-env), SDK.UBNT.v5.3.3
+- **Mobile**: [android-notification-forwarder](https://github.com/shmuelie/android-notification-forwarder)
+- **Homelab**: [ha-config](https://github.com/shmuelie/ha-config), Proxmox PVE-Z8, Jellyfin, ComfyUI
+- **Other**: [WSL-Hello-sudo](https://github.com/nullpo-head/WSL-Hello-sudo), [jellyfin-youtube-metadata-plugin](https://github.com/shmuelie/jellyfin-youtube-metadata-plugin)

@@ -17,8 +17,6 @@ Custom [Copilot CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cl
 
 ## Installation
 
-### As a Plugin (recommended)
-
 ```bash
 # From GitHub
 copilot plugin install shmuelie/shmuelie-skills
@@ -34,34 +32,11 @@ copilot plugin list
 
 And in an interactive session, check skills loaded with `/skills list`.
 
-### As Extensions (legacy)
-
-Copy or symlink individual skill directories into your Copilot CLI user extensions directory:
-
-```powershell
-# Individual extension
-New-Item -ItemType SymbolicLink `
-  -Path "$env:USERPROFILE\.copilot\extensions\winui3-msix" `
-  -Target "$PWD\winui3-msix"
-
-# All extensions at once
-Get-ChildItem -Directory -Exclude '.git','.github','skills' | `
-  Where-Object { Test-Path "$($_.FullName)\extension.mjs" } | `
-  ForEach-Object {
-    New-Item -ItemType SymbolicLink `
-      -Path "$env:USERPROFILE\.copilot\extensions\$($_.Name)" `
-      -Target $_.FullName
-}
-```
-
-After installing extensions, restart Copilot CLI or run `/clear` to reload.
-
 ## Adding a New Skill
 
-1. Create a directory named after the skill
-2. Add `extension.mjs` inside it (only `.mjs` files are supported)
-3. Use `@github/copilot-sdk/extension` — it's auto-resolved, no install needed
-4. Reload with `/clear` or restart the CLI
+1. Create a directory under `skills/` named after the skill
+2. Add `SKILL.md` inside it with YAML frontmatter (`name`, `description`) and markdown content
+3. Reinstall: `copilot plugin install ./shmuelie-skills`
 
 ## Sources
 

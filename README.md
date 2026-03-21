@@ -11,6 +11,8 @@ Custom [Copilot CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cl
 | **dotnet-project-init** | .NET project scaffolding, Directory.Build.props, CI workflows |
 | **deploy-scripts** | Deploy.ps1 patterns for MSIX loose-file, remote, and mobile deployment |
 | **typescript-cli** | Process pools, atomic caching, rate limiting, graceful shutdown |
+| **embedded-cpp** | Buildroot cross-compilation, CMake presets, binary size optimization, Catch2 |
+| **shell-wsl** | Shell script patterns, WSL quirks, embedded device deployment, Rust/Cargo |
 
 ## Installation
 
@@ -41,7 +43,8 @@ After installing, restart Copilot CLI or run `/clear` to reload extensions.
 
 ## Sources
 
-Learnings extracted from 63+ sessions across 22+ repositories including:
+Learnings extracted from 84+ sessions (63 Windows + 21 WSL) across 22+ repositories including:
 windows-tmux, modern-meeter, modern-proxy, matroska-full-support, windows-ha-app,
 Shmuelie.WinRTServer, Shmuelie.JsonView, Shmuelie.Jellyfin, deviantart-helpers,
-android-notification-forwarder, easy-shul-api, mfi-custom-code, ha-config, and more.
+android-notification-forwarder, easy-shul-api, mfi-custom-code, mfi-env,
+SDK.UBNT.v5.3.3, WSL-Hello-sudo, ha-config, and more.

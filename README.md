@@ -4,17 +4,25 @@ A [GitHub Copilot CLI plugin](https://docs.github.com/en/copilot/concepts/agents
 
 ## Installation
 
+From a terminal:
+
 ```bash
 copilot plugin install shmuelie/shmuelie-skills
 ```
 
-Verify the plugin loaded:
+Or from inside a Copilot CLI session:
 
-```bash
-copilot plugin list
+```
+/plugin install shmuelie/shmuelie-skills
 ```
 
-Check available skills inside a Copilot CLI session:
+Verify the plugin loaded:
+
+```
+/plugin list
+```
+
+Check available skills:
 
 ```
 /skills list

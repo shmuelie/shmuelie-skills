@@ -17,23 +17,44 @@ Custom [Copilot CLI](https://docs.github.com/en/copilot/github-copilot-in-the-cl
 
 ## Installation
 
-Copy or symlink individual skill directories into your Copilot CLI user extensions directory, or clone this repo and symlink the entire root:
+### As a Plugin (recommended)
+
+```bash
+# From GitHub
+copilot plugin install shmuelie/shmuelie-skills
+
+# From a local clone
+copilot plugin install ./shmuelie-skills
+```
+
+After installing, verify with:
+```bash
+copilot plugin list
+```
+
+And in an interactive session, check skills loaded with `/skills list`.
+
+### As Extensions (legacy)
+
+Copy or symlink individual skill directories into your Copilot CLI user extensions directory:
 
 ```powershell
-# Individual skill
+# Individual extension
 New-Item -ItemType SymbolicLink `
   -Path "$env:USERPROFILE\.copilot\extensions\winui3-msix" `
   -Target "$PWD\winui3-msix"
 
-# All skills at once
-Get-ChildItem -Directory -Exclude '.git','.github' | ForEach-Object {
+# All extensions at once
+Get-ChildItem -Directory -Exclude '.git','.github','skills' | `
+  Where-Object { Test-Path "$($_.FullName)\extension.mjs" } | `
+  ForEach-Object {
     New-Item -ItemType SymbolicLink `
       -Path "$env:USERPROFILE\.copilot\extensions\$($_.Name)" `
       -Target $_.FullName
 }
 ```
 
-After installing, restart Copilot CLI or run `/clear` to reload extensions.
+After installing extensions, restart Copilot CLI or run `/clear` to reload.
 
 ## Adding a New Skill
 

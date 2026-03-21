@@ -1,0 +1,19 @@
+{
+  "name": "shmuelie-skills",
+  "owner": {
+    "name": "Shmueli Englard",
+    "email": "shmuelie@gmail.com"
+  },
+  "metadata": {
+    "description": "Domain knowledge skills from 84+ Copilot sessions across 22+ repositories",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "shmuelie-skills",
+      "description": "Custom skills for WinUI 3, .NET interop, embedded C++, TypeScript CLI, shell/WSL, and homelab infrastructure",
+      "version": "1.0.0",
+      "source": "."
+    }
+  ]
+}

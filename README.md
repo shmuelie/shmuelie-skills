@@ -28,6 +28,8 @@ Check available skills:
 /skills list
 ```
 
+> **Note:** Plugins are installed per-environment. If you use Copilot CLI in WSL, SSH, or remote sessions, you'll need to install the plugin in each environment separately.
+
 ## Skills
 
 | Skill | Description |

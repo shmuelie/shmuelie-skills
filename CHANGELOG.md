@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-03-22
+
+### Added
+- `.github/copilot-instructions.md` to guide periodic skill sweeps
+- "Updating Skills from New Sessions" section in README
+
 ## [1.2.0] - 2026-03-22
 
 ### Added
@@ -34,7 +40,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/shmuelie/shmuelie-skills/releases/tag/v1.0.0

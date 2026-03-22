@@ -49,7 +49,9 @@ Check available skills:
 shmuelie-skills/
 ├── plugin.json                        # Plugin manifest
 ├── CHANGELOG.md                       # Version history
-├── .github/plugin/marketplace.json    # Marketplace definition
+├── .github/
+│   ├── copilot-instructions.md        # Guides skill sweep process
+│   └── plugin/marketplace.json        # Marketplace definition
 ├── skills/
 │   ├── winui3-msix/SKILL.md
 │   ├── csharp-interop/SKILL.md
@@ -61,6 +63,18 @@ shmuelie-skills/
 │   └── homelab-infra/SKILL.md
 └── README.md
 ```
+
+## Updating Skills from New Sessions
+
+Skills are extracted from Copilot CLI and VS Code chat sessions. To sweep for new learnings periodically, open a Copilot CLI session in this repo and run:
+
+```
+Scan for new learnings from recent sessions and update skills
+```
+
+Copilot will query the session store for sessions since the last sweep, extract new patterns, update existing `SKILL.md` files or create new ones, bump the version, and update the changelog.
+
+A `.github/copilot-instructions.md` file is included to guide this process automatically.
 
 ## Adding a New Skill
 

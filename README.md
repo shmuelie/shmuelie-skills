@@ -48,6 +48,7 @@ Check available skills:
 ```
 shmuelie-skills/
 ├── plugin.json                        # Plugin manifest
+├── CHANGELOG.md                       # Version history
 ├── .github/plugin/marketplace.json    # Marketplace definition
 ├── skills/
 │   ├── winui3-msix/SKILL.md

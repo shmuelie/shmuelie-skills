@@ -1,6 +1,6 @@
 ---
 name: dotnet-project-init
-description: Directory.Build.props, CI workflows, project scaffolding, and copilot-instructions.md patterns
+description: Directory.Build.props, CI workflows, project scaffolding, copilot-instructions.md, Keep a Changelog, and Semantic Versioning
 ---
 
 When working on projects related to .net project initialization, apply this domain knowledge.
@@ -95,3 +95,48 @@ steps:
 - Always create `.github/copilot-instructions.md` in new repos.
 - Include: build/test commands, architecture overview, key conventions, gotchas.
 - Update when architecture changes significantly.
+
+## Versioning and Changelog
+
+### Semantic Versioning (SemVer)
+- All projects should follow [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PATCH`.
+- **MAJOR**: incompatible API or behavioral changes.
+- **MINOR**: new functionality that is backward-compatible.
+- **PATCH**: backward-compatible bug fixes.
+- Pre-release versions use a hyphen suffix: `1.0.0-alpha`, `1.0.0-beta.1`.
+- Start new projects at `0.1.0` (initial development) or `1.0.0` (first stable release).
+
+### Keep a Changelog
+- All projects should maintain a `CHANGELOG.md` following [Keep a Changelog](https://keepachangelog.com/).
+- Format:
+  ```markdown
+  # Changelog
+
+  All notable changes to this project will be documented in this file.
+
+  The format is based on [Keep a Changelog](https://keepachangelog.com/),
+  and this project adheres to [Semantic Versioning](https://semver.org/).
+
+  ## [Unreleased]
+
+  ### Added
+  - New feature description
+
+  ### Changed
+  - Changed behavior description
+
+  ### Fixed
+  - Bug fix description
+
+  ## [1.0.0] - 2026-03-22
+
+  ### Added
+  - Initial release
+
+  [Unreleased]: https://github.com/owner/repo/compare/v1.0.0...HEAD
+  [1.0.0]: https://github.com/owner/repo/releases/tag/v1.0.0
+  ```
+- Section types: **Added**, **Changed**, **Deprecated**, **Removed**, **Fixed**, **Security**.
+- Always keep an `[Unreleased]` section at the top for in-progress work.
+- Use comparison links at the bottom for each version.
+- When releasing, move `[Unreleased]` entries into a new versioned section with the release date.

@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.5.1] - 2026-03-22
+
+### Changed
+- Restructured copilot-instructions sweep process into 10 explicit steps
+- VS Code session scanning (steps 2-4) now clearly separated: JSONL/JSON files,
+  state.vscdb CLI sessions, and SSH remote host extraction with known hosts list
+
 ## [1.5.0] - 2026-03-22
 
 ### Added
@@ -64,7 +71,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.5.1...HEAD
+[1.5.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.3.0...v1.3.1

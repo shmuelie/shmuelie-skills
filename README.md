@@ -42,6 +42,7 @@ Check available skills:
 | **embedded-cpp** | Buildroot external tree for MIPS cross-compilation, CMake presets, binary size optimization (`-fno-rtti`, `-fno-unwind-tables`, UPX compression — 63% reduction), `FetchContent`, Catch2 testing, C++20 embedded conventions, and MQTT HA auto-discovery |
 | **shell-wsl** | Shell script bugs (`exit` vs `return`, variable quoting, `mkdir -p`), `set -euo pipefail`, WSL systemd detection, `TERM=xterm-256color` for progress indicators, APT troubleshooting, embedded device deployment (`cfgmtd`, symlink config), and Rust/Cargo clippy patterns |
 | **homelab-infra** | Proxmox NVIDIA GPU passthrough to LXC containers (driver matching, `lxc.cgroup2`, `pct push/exec`, `proxmox-boot-tool refresh`), Home Assistant dashboard YAML and Proxmox entity naming, Jellyfin plugin provider architecture, and ComfyUI custom node development |
+| **qualcomm-aic** | Qualcomm Cloud AI 100 NPU — SDK installation and upgrades, GLIBCXX RUNPATH conflict fix, ONNX→QPC compilation pipeline, SD model type detection (safetensors keys vs file size), LoRA auto-activation control, job ETA, and SD WebUI compatible API |
 
 ## Project Structure
 
@@ -60,7 +61,8 @@ shmuelie-skills/
 │   ├── typescript-cli/SKILL.md
 │   ├── embedded-cpp/SKILL.md
 │   ├── shell-wsl/SKILL.md
-│   └── homelab-infra/SKILL.md
+│   ├── homelab-infra/SKILL.md
+│   └── qualcomm-aic/SKILL.md
 └── README.md
 ```
 
@@ -110,4 +112,5 @@ Learnings extracted from 84+ [Copilot CLI](https://docs.github.com/en/copilot/co
 - **Embedded / IoT**: [mfi-custom-code](https://github.com/shmuelie/mfi-custom-code), [mfi-env](https://github.com/shmuelie/mfi-env), SDK.UBNT.v5.3.3
 - **Mobile**: [android-notification-forwarder](https://github.com/shmuelie/android-notification-forwarder)
 - **Homelab**: [ha-config](https://github.com/shmuelie/ha-config), Proxmox PVE-Z8, Jellyfin, ComfyUI
+- **AI / ML**: [aic-server](https://github.com/shmuelie/aic-server) (Qualcomm Cloud AI 100)
 - **Other**: [WSL-Hello-sudo](https://github.com/nullpo-head/WSL-Hello-sudo), [jellyfin-youtube-metadata-plugin](https://github.com/shmuelie/jellyfin-youtube-metadata-plugin)

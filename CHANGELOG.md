@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-03-22
+
+### Added
+- New **qualcomm-aic** skill: Qualcomm Cloud AI 100 NPU development — SDK management,
+  GLIBCXX RUNPATH conflict, ONNX→QPC compilation, SD model type detection via safetensors
+  keys, LoRA auto-activation control, job ETA, and SD WebUI API patterns
+- Source: 9 aic-server sessions from Qualcomm-Cloud-AI SSH host
+
 ## [1.3.1] - 2026-03-22
 
 ### Changed
@@ -45,7 +53,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.3.1...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.1.0...v1.2.0

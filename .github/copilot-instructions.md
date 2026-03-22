@@ -12,8 +12,52 @@ When asked to scan for new learnings or update skills, follow this process:
    - `search_index` for technical patterns, conventions, and bug fixes
    - `checkpoints` for detailed technical knowledge
    - `sessions` and `turns` for conversation content
-   - Also check WSL session stores at `$HOME/.copilot/session-store.db` via `wsl` commands
-   - Also check VS Code chat history at `%APPDATA%/Code/User/workspaceStorage/*/chatSessions/*.jsonl`
+   - Also check WSL session stores at `$HOME/.copilot/session-store.db` — copy to a temp file via `wsl` then query with Python/sqlite3
+   - Also check VS Code Copilot Chat sessions (see below)
+
+### VS Code Chat Session Extraction
+
+VS Code stores Copilot Chat history at `%APPDATA%/Code/User/workspaceStorage/*/chatSessions/*.jsonl`.
+
+Each `.jsonl` file uses an incremental format:
+- **Line kind=0**: Initial session state (contains `v.requests`, `v.customTitle`)
+- **Line kind=1**: Incremental updates keyed by JSON array paths (`k` field):
+  - `["customTitle"]` → session title (string `v`)
+  - `["inputState", "inputText"]` → user message (string `v`)
+- **Line kind=2**: Array splice/insert — response parts pushed to `["requests", N, "response"]`:
+  - Items with `"kind": "thinking"` contain reasoning text
+  - Items with `"kind": "textEditGroup"` are file edits
+  - Items without a `kind` but with a string `value` are markdown response text
+
+To find new sessions, check file modification times against the last sweep date. Parse with Python:
+
+```python
+import json, os
+from datetime import datetime
+
+ws_storage = os.path.expandvars(r"%APPDATA%\Code\User\workspaceStorage")
+cutoff_ts = datetime(2026, 3, 22).timestamp()  # last sweep date
+
+for ws_dir in os.listdir(ws_storage):
+    chat_dir = os.path.join(ws_storage, ws_dir, "chatSessions")
+    if not os.path.isdir(chat_dir):
+        continue
+    for fname in os.listdir(chat_dir):
+        fp = os.path.join(chat_dir, fname)
+        if os.path.getmtime(fp) <= cutoff_ts or os.path.getsize(fp) < 200:
+            continue
+        # Read workspace folder from workspace.json
+        ws_json = os.path.join(ws_storage, ws_dir, "workspace.json")
+        # Parse JSONL: extract titles, user messages, thinking, response text
+        with open(fp, "r", encoding="utf-8", errors="replace") as fh:
+            for line in fh:
+                obj = json.loads(line.strip())
+                k = obj.get("k", "")
+                v = obj.get("v")
+                # k=["customTitle"] → title
+                # k=["inputState","inputText"] → user question
+                # kind=2 with v=list → response parts
+```
 
 2. **Compare against existing skills** in the `skills/` directory to identify:
    - New patterns not yet covered by any skill

@@ -1,6 +1,6 @@
 ---
 name: homelab-infra
-description: Proxmox GPU passthrough, LXC containers, Home Assistant dashboards, Jellyfin plugins, ComfyUI nodes
+description: Proxmox GPU passthrough and administration, LXC containers, Home Assistant dashboards, Jellyfin server management, and ComfyUI node development with WebSocket integration
 ---
 
 When working on projects related to homelab infrastructure patterns, apply this domain knowledge.
@@ -108,3 +108,54 @@ Entity naming pattern for Proxmox VE integration:
   `/sdapi/v1/samplers`, `/sdapi/v1/loras`, `/sdapi/v1/progress`.
 - Images returned as base64-encoded strings in response arrays.
 - Use RemoteOptions pattern for dynamic dropdown options from API.
+
+### WebSocket Integration
+- AsyncAPI spec at `/asyncapi.yaml` describes all WS channels.
+- Key WebSocket channels:
+  - `/ws/generate` — image generation with per-image streaming progress
+  - `/ws/video` — video processing with frame-by-frame streaming
+  - `/ws/llm` — token-by-token LLM output streaming
+  - `/ws/progress` — global inference progress (0→1) + job updates
+  - `/ws/registry` — model load/unload change notifications
+  - `/ws/jobs/{job_id}` — per-job tracking
+  - `/ws/queue` — queue status changes
+- Pattern: create a WS helper module with reusable async connect/send/stream functions.
+- Relay progress to ComfyUI via `set_progress` during streaming.
+- Keep non-streaming nodes (classify, detect, depth, encode) on HTTP.
+
+## Proxmox Administration
+
+### System Update Scripts
+- Pattern: script that updates the host node, then iterates through containers:
+  - `pct exec <CTID> -- apt update && apt upgrade -y`
+  - Support skip lists for containers that shouldn't be auto-updated
+  - Support running per-container `update.sh` scripts in home directories
+- Use `pct list` to enumerate running containers.
+
+### Container Troubleshooting
+- Container failing to start: check LXC config for invalid mount entries or resource conflicts.
+- SSH session dying: check TCP keepalive and `ClientAliveInterval`/`ClientAliveCountMax` in sshd_config.
+
+### Drive Health Monitoring
+- Use `smartctl` for SMART data on physical drives.
+- Proxmox shows drive health in the web UI under Disks.
+
+### Backup Space Optimization
+- Proxmox Backup Server (PBS) supports deduplication and incremental backups.
+- Backups only store changes when using PBS (not local vzdump).
+
+### BIOS Remote Management
+- HP iLO / IPMI for remote BIOS management on server hardware.
+
+## Jellyfin Server Administration
+
+### Hardware Acceleration (Transcoding)
+- GPU passthrough to LXC container required for HW transcoding.
+- Configure in Jellyfin Dashboard → Playback → Transcoding.
+- Verify with test playback — check ffmpeg logs for hardware codec usage.
+- Common issue: container needs matching NVIDIA userspace drivers (see Proxmox GPU section).
+
+### Media Troubleshooting
+- Playback failures: check ffmpeg codec support and container format compatibility.
+- Space issues: use `du -sh` to find large directories, consider removing duplicate formats.
+- Missing metadata: check file naming conventions and library scan settings.

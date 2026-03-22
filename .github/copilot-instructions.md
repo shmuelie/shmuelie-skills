@@ -17,7 +17,10 @@ When asked to scan for new learnings or update skills, follow this process:
 
 ### VS Code Chat Session Extraction
 
-VS Code stores Copilot Chat history at `%APPDATA%/Code/User/workspaceStorage/*/chatSessions/*.jsonl`.
+VS Code stores Copilot Chat history in multiple locations and formats:
+
+#### Format 1: JSONL files (`chatSessions/*.jsonl`)
+Located at `%APPDATA%/Code/User/workspaceStorage/*/chatSessions/*.jsonl`.
 
 Each `.jsonl` file uses an incremental format:
 - **Line kind=0**: Initial session state (contains `v.requests`, `v.customTitle`)
@@ -28,6 +31,46 @@ Each `.jsonl` file uses an incremental format:
   - Items with `"kind": "thinking"` contain reasoning text
   - Items with `"kind": "textEditGroup"` are file edits
   - Items without a `kind` but with a string `value` are markdown response text
+
+#### Format 2: JSON files (`chatSessions/*.json`)
+Same directory but plain JSON (not JSONL). These are older-format sessions:
+```json
+{ "version": ..., "requests": [...], "sessionId": "..." }
+```
+Often have `"requests": []` (empty/abandoned). Parse as a single `json.load()`.
+
+#### Format 3: VS Code state.vscdb (Copilot CLI sessions via VS Code)
+Located at `%APPDATA%/Code/User/workspaceStorage/*/state.vscdb` — SQLite database with `ItemTable`.
+
+Key entries:
+- `chat.ChatSessionStore.index` → `{"entries": {sessionId: {title, lastMessageDate, ...}}}` — session index with titles
+- `GitHub.copilot-chat` → contains `github.copilot.cli.requestMap` (tool invocation metadata) and
+  `github.copilot.cli.workspaceSessionFile` (pointer to session data)
+- `agentSessions.model.cache` → list of session metadata with titles and timestamps
+
+**Important**: When `copilotcli.session.metadata.json` shows `"writtenToDisc": true` and a `workspaceFolder` path,
+the actual session content is stored on the **remote machine** at `~/.copilot/session-state/<session-id>/`.
+Read `events.jsonl`, `workspace.yaml`, and `plan.md` from the remote host via SSH.
+
+#### Format 4: Remote host session state
+For SSH-remote VS Code sessions, data lives on the remote machine:
+```
+~/.copilot/session-state/<session-id>/
+├── events.jsonl           # Full conversation event stream
+├── workspace.yaml         # Session metadata (cwd, repo, branch, summary)
+├── plan.md                # Implementation plan (if any)
+└── vscode.metadata.json   # VS Code integration metadata
+```
+Access via SSH: `ssh <host> "cat ~/.copilot/session-state/<id>/workspace.yaml"`
+The `workspace.yaml` file contains the session summary and working directory.
+The `plan.md` file often contains the richest technical learnings.
+
+#### Discovery strategy
+1. List all `workspaceStorage/*/chatSessions/` directories
+2. For each, check both `.jsonl` and `.json` files (skip <200 bytes)
+3. Check `state.vscdb` for CLI sessions run through VS Code
+4. Cross-reference `copilotcli.session.metadata.json` for remote sessions
+5. SSH to remote hosts to read `workspace.yaml` and `plan.md` from session directories
 
 To find new sessions, check file modification times against the last sweep date. Parse with Python:
 

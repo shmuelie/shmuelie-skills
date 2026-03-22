@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-03-22
+
+### Added
+- ComfyUI WebSocket integration patterns (AsyncAPI, per-channel streaming, progress relay)
+- Proxmox administration patterns (system update scripts, container troubleshooting, drive health, backup optimization)
+- Jellyfin server administration (hardware acceleration setup, media troubleshooting)
+- Expanded VS Code session discovery in copilot-instructions (4 format types, remote host extraction)
+
+### Changed
+- Updated homelab-infra skill with learnings from 8 PVE-Z8, 6 Jellyfin, and 2 ComfyUI remote sessions
+
 ## [1.4.0] - 2026-03-22
 
 ### Added
@@ -53,7 +64,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.5.0...HEAD
+[1.5.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.2.0...v1.3.0

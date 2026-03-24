@@ -43,6 +43,7 @@ Check available skills:
 | **shell-wsl** | Shell script bugs (`exit` vs `return`, variable quoting, `mkdir -p`), `set -euo pipefail`, WSL systemd detection, `TERM=xterm-256color` for progress indicators, APT troubleshooting, embedded device deployment (`cfgmtd`, symlink config), and Rust/Cargo clippy patterns |
 | **homelab-infra** | Proxmox NVIDIA GPU passthrough to LXC containers (driver matching, `lxc.cgroup2`, `pct push/exec`, `proxmox-boot-tool refresh`), Home Assistant dashboard YAML and Proxmox entity naming, Jellyfin plugin provider architecture, and ComfyUI custom node development |
 | **qualcomm-aic** | Qualcomm Cloud AI 100 NPU — SDK installation and upgrades, GLIBCXX RUNPATH conflict fix, ONNX→QPC compilation pipeline, SD model type detection (safetensors keys vs file size), LoRA auto-activation control, job ETA, and SD WebUI compatible API |
+| **roslyn-sourcegen** | Roslyn incremental source generators (`IIncrementalGenerator`), equatable pipeline models with `EquatableArray<T>`, `ForAttributeWithMetadataName`, testing with `CSharpGeneratorDriver`, analyzer diagnostic patterns, NuGet packaging layout, nested type handling, and common pitfalls |
 
 ## Project Structure
 
@@ -62,7 +63,8 @@ shmuelie-skills/
 │   ├── embedded-cpp/SKILL.md
 │   ├── shell-wsl/SKILL.md
 │   ├── homelab-infra/SKILL.md
-│   └── qualcomm-aic/SKILL.md
+│   ├── qualcomm-aic/SKILL.md
+│   └── roslyn-sourcegen/SKILL.md
 └── README.md
 ```
 

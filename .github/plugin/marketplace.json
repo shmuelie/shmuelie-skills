@@ -11,8 +11,8 @@
   "plugins": [
     {
       "name": "shmuelie-skills",
-      "description": "Custom skills for WinUI 3, .NET interop, embedded C++, TypeScript CLI, shell/WSL, and homelab infrastructure",
-      "version": "1.5.1",
+      "description": "Custom skills for WinUI 3, .NET interop, Roslyn source generators, embedded C++, TypeScript CLI, shell/WSL, and homelab infrastructure",
+      "version": "1.6.0",
       "source": "."
     }
   ]

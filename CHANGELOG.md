@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-03-24
+
+### Added
+- New **roslyn-sourcegen** skill: Roslyn incremental source generators — IIncrementalGenerator
+  pipeline design, equatable models with EquatableArray\<T\>, ForAttributeWithMetadataName,
+  testing with CSharpGeneratorDriver, analyzer diagnostic patterns, NuGet packaging layout,
+  nested type handling, and common pitfalls (parameter modifiers, async return types)
+- Source: 4 sessions covering WSDL source generator, COM interface versioning generator,
+  OneFuzz MSBuild-to-generator conversion, and telemetry event generator
+
 ## [1.5.1] - 2026-03-22
 
 ### Changed
@@ -71,8 +81,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.5.1...HEAD
-[1.5.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.5.0...v1.5.1
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.5.1...v1.6.0
+[1.5.1]:https://github.com/shmuelie/shmuelie-skills/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.3.0...v1.3.1

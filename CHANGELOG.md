@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.7.0] - 2026-03-25
+
+### Added
+- HTTP API client patterns to typescript-cli skill: DDoS-Guard bypass (`Accept: text/css`),
+  forced gzip decompression, Swagger/OpenAPI response drift, cookie-based auth,
+  and multi-key filename indexing for O(1) matching
+- Source: kemono-helpers session (11 turns)
+
 ## [1.6.0] - 2026-03-24
 
 ### Added
@@ -81,7 +89,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.0...HEAD
+[1.7.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.5.1...v1.6.0
 [1.5.1]:https://github.com/shmuelie/shmuelie-skills/compare/v1.5.0...v1.5.1
 [1.5.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.4.0...v1.5.0

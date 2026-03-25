@@ -84,3 +84,19 @@ process.on('SIGINT', async () => {
 - Build XML tag structure matching Matroska spec (Tag > Targets > Simple > Name+String).
 - For images/other media, use ExifTool with EXIF/XMP/IPTC tag groups.
 - ExifTool `-fast2` flag reads only file header — much faster for large media files.
+
+## HTTP API Client Patterns
+- **DDoS-Guard bypass**: Some APIs behind DDoS-Guard reject `Accept: application/json`.
+  Use `Accept: text/css` instead — the API still returns JSON regardless.
+- **Forced gzip**: Servers may force gzip compression even without `Accept-Encoding`.
+  Always handle gzip/deflate/brotli decompression with `zlib` as a fallback.
+- **Swagger/OpenAPI drift**: API response shapes may differ from documentation.
+  Verify actual response structure at runtime — e.g., endpoint may return a plain
+  array instead of the wrapper object the Swagger docs describe.
+- **Cookie-based auth**: Some APIs use session cookies instead of OAuth/API keys.
+  Pass via `--cookie "session=<token>"` CLI flag, set as `Cookie` header.
+- **Filename-based matching**: Index content by multiple keys per item:
+  1. Original filename (lowercased)
+  2. Hash-based path filename (CDN storage name)
+  3. Item ID as fallback (`postid:{id}`)
+  Then do a single `map.get(filename)` lookup for O(1) matching.

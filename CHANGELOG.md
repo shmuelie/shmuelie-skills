@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.7.1] - 2026-03-26
+
+### Changed
+- Added Shmuelis-MBP to known SSH hosts for session sweeps
+- Scanned 2 Mac sessions (macOS build server setup) — learnings noted but too
+  niche for a standalone skill; will consolidate if more macOS/CI sessions emerge
+
 ## [1.7.0] - 2026-03-25
 
 ### Added
@@ -89,7 +96,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.1...HEAD
+[1.7.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.5.1...v1.6.0
 [1.5.1]:https://github.com/shmuelie/shmuelie-skills/compare/v1.5.0...v1.5.1

@@ -62,7 +62,7 @@ Key files per session:
 - `plan.md` — implementation plan (often contains the richest technical learnings)
 - `events.jsonl` — full conversation event stream
 
-Known SSH hosts with Copilot sessions: Qualcomm-Cloud-AI, PVE-Z8, Jellyfin, ComfyUI, Vod2Pod, Home-Assistant.
+Known SSH hosts with Copilot sessions: Qualcomm-Cloud-AI, PVE-Z8, Jellyfin, ComfyUI, Vod2Pod, Home-Assistant, Shmuelis-MBP.
 
 ### Step 5: Compare against existing skills
 

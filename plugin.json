@@ -1,7 +1,7 @@
 {
   "name": "shmuelie-skills",
-  "description": "Custom Copilot CLI skills encoding domain knowledge from real-world projects across WinUI 3, .NET interop, embedded C++, TypeScript CLI tools, shell scripting, and homelab infrastructure",
-  "version": "1.7.1",
+  "description": "Custom Copilot CLI skills encoding domain knowledge from real-world projects across WinUI 3, .NET interop, Roslyn source generators, embedded C++, TypeScript CLI tools, shell scripting, homelab infrastructure, and Qualcomm AIC100 NPU development",
+  "version": "1.7.2",
   "author": {
     "name": "Shmueli Englard",
     "url": "https://github.com/shmuelie"
@@ -13,7 +13,8 @@
     "winui3", "msix", "csharp", "interop", "pinvoke", "dotnet",
     "cmake", "embedded", "typescript", "cli", "shell", "wsl",
     "proxmox", "homeassistant", "jellyfin", "comfyui",
-    "roslyn", "source-generator", "analyzer"
+    "roslyn", "source-generator", "analyzer",
+    "qualcomm", "aic100", "stable-diffusion"
   ],
   "skills": ["skills/"]
 }

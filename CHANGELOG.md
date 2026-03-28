@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.7.2] - 2026-03-28
+
+### Fixed
+- plugin.json description now mentions all skill areas (added Roslyn, Qualcomm AIC)
+- plugin.json keywords now include `qualcomm`, `aic100`, `stable-diffusion`
+- README sources now includes kemono-helpers repo
+
 ## [1.7.1] - 2026-03-26
 
 ### Changed
@@ -96,7 +103,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.1...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.2...HEAD
+[1.7.2]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.1...v1.7.2
 [1.7.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.6.0...v1.7.0
 [1.6.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.5.1...v1.6.0

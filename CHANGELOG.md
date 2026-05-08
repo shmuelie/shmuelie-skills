@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-05-07
+
+### Added
+- Old kernel / uClibc compatibility section to embedded-cpp skill:
+  - `statx` syscall failure on pre-4.11 kernels (`UCLIBC_USE_TIME64` fix)
+  - `std::filesystem` auto-detection causing `CLI11_HAS_FILESYSTEM` issues
+  - Relative vs absolute path pitfalls on embedded devices
+  - Carriage return corruption from Windows-edited scripts
+- MQTT topic ID deduplication patterns (connector/device/name triple-duplication fix)
+- Multi-project monorepo versioning (per-project CHANGELOGs, `project/vX.Y.Z` tag pattern)
+- Source: 14 WSL mfi-custom-code sessions, 3 cloud sessions (modern-meeter, easy-shul, tehillim)
+
 ## [1.7.2] - 2026-03-28
 
 ### Fixed
@@ -103,7 +115,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.2...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.8.0...HEAD
+[1.8.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.2...v1.8.0
 [1.7.2]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.1...v1.7.2
 [1.7.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.0...v1.7.1
 [1.7.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.6.0...v1.7.0

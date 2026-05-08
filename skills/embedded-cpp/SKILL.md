@@ -110,8 +110,36 @@ catch_discover_tests(tests)
 - Deployment script: archive → SCP → stop services → clear bin → commit → restart.
 - Symlink-based device config directories (DRY — shared files aren't duplicated).
 
+## Old Kernel / uClibc Compatibility (CRITICAL)
+- **`statx` syscall** (Linux 4.11+): uClibc-ng 1.0.50+ defaults `UCLIBC_USE_TIME64=y` on 32-bit MIPS,
+  which makes `stat()` use the `statx` syscall internally. Old kernels don't have `statx`,
+  so **every `stat()` call fails with ENOSYS** — breaking all file existence checks system-wide.
+  Fix: set `# UCLIBC_USE_TIME64 is not set` in the uClibc config to use `stat64` (syscall 4213) instead.
+- **`std::filesystem`**: Libraries like CLI11 auto-detect `<filesystem>` at compile time (GCC 14 has it)
+  and use `std::filesystem::status()` which calls `statx()`. On old kernels this always returns
+  "nonexistent". Fix: define `CLI11_HAS_FILESYSTEM=0` for cross-compiled builds to force plain `stat()`.
+- **Relative vs absolute paths**: Embedded init scripts may set `cwd` to `/` or `/tmp`, not where
+  binaries/configs live. Always pass absolute paths. If paths resolve from `/`, reads may "work"
+  accidentally while writes fail silently.
+- **Carriage returns**: Scripts edited on Windows get `\r` at line ends, corrupting paths.
+  Check with `cat -A script.sh | grep '^M'`.
+
 ## Home Assistant MQTT Auto-Discovery
 - Native libmosquitto client (not shelling out to `mosquitto_pub`).
 - Publish HA discovery payloads to `homeassistant/<type>/<device_id>/config`.
 - Change-only updates (don't flood MQTT with unchanged values).
 - Device classes: switch + sensor entities per outlet/port.
+
+### MQTT Topic ID Deduplication
+- When connector ID, device ID, and device name are all derived from hostname,
+  the full topic path gets triple-duplication: `home/host_host_host/sensor/state`.
+- Fix: sanitize connector ID with the same function as device IDs, then skip
+  appending `m_id`/`m_clean_name` when they equal the connector ID.
+- Initialization order matters: register device with connector BEFORE registering
+  child functions/sensors, otherwise `m_full_id` is empty and topics become `home//sensor/state`.
+
+## Multi-Project Versioning (Monorepo)
+- Use per-project CHANGELOGs following Keep a Changelog format.
+- Tag pattern: `<project>/<vX.Y.Z>` (e.g., `mfi-mqtt-client/v1.1.0`).
+- Each project follows SemVer independently.
+- Attach binaries to GitHub releases for deployment artifacts.

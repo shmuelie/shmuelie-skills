@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.10.0] - 2026-05-10
+
+### Added
+- New **msix-store-submission** skill: Microsoft Store submission for any MSIX app —
+  Partner Center identity alignment (Name, Publisher CN, PhoneProductId), signing config
+  (AppxPackageSigningEnabled=false, GenerateTemporaryStoreCertificate), self-contained
+  packaging with framework PackageDependency stripping MSBuild target, 4-part version
+  requirements, solution platform locking, CI/CD workflow with MSBuild, and submission checklist
+- Source: modern-meeter Store submission commits + copilot-instructions.md
+
 ## [1.9.0] - 2026-05-10
 
 ### Added
@@ -126,7 +136,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.9.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.0...HEAD
+[1.10.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.2...v1.8.0
 [1.7.2]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.1...v1.7.2

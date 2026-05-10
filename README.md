@@ -45,6 +45,7 @@ Check available skills:
 | **qualcomm-aic** | Qualcomm Cloud AI 100 NPU — SDK installation and upgrades, GLIBCXX RUNPATH conflict fix, ONNX→QPC compilation pipeline, SD model type detection (safetensors keys vs file size), LoRA auto-activation control, job ETA, and SD WebUI compatible API |
 | **roslyn-sourcegen** | Roslyn incremental source generators (`IIncrementalGenerator`), equatable pipeline models with `EquatableArray<T>`, `ForAttributeWithMetadataName`, testing with `CSharpGeneratorDriver`, analyzer diagnostic patterns, NuGet packaging layout, nested type handling, and common pitfalls |
 | **icon-assets** | Application and NuGet package icon creation — MSIX visual asset sets (sizes, naming, altform-unplated), NuGet `PackageIcon` wiring, favicons, Fluent/Material design style guidelines, and SVG-to-PNG/ICO generation approaches |
+| **msix-store-submission** | Microsoft Store submission for any MSIX app — Partner Center identity alignment, signing config, self-contained packaging with framework dependency stripping, 4-part versioning, solution platform locking, and CI/CD workflow |
 
 ## Project Structure
 
@@ -66,7 +67,8 @@ shmuelie-skills/
 │   ├── homelab-infra/SKILL.md
 │   ├── qualcomm-aic/SKILL.md
 │   ├── roslyn-sourcegen/SKILL.md
-│   └── icon-assets/SKILL.md
+│   ├── icon-assets/SKILL.md
+│   └── msix-store-submission/SKILL.md
 └── README.md
 ```
 

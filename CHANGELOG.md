@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.9.0] - 2026-05-10
+
+### Added
+- New **icon-assets** skill: application and NuGet package icon creation — MSIX visual
+  asset sets (all required sizes, targetsize/altform-unplated naming), NuGet PackageIcon
+  csproj wiring, web favicons, platform-appropriate design style guidelines (Fluent for
+  Windows, Material for Android), SVG source convention, and generation tool options
+  (ImageMagick, Inkscape CLI, icotool, design tools, AI generation)
+- Source: modern-meeter, windows-tmux, modern-proxy, matroska-full-support, WinRTServer,
+  app-routing, shmuelie.englard.net asset patterns + Microsoft design guidelines
+
 ## [1.8.0] - 2026-05-07
 
 ### Added
@@ -115,7 +126,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.8.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.9.0...HEAD
+[1.9.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.2...v1.8.0
 [1.7.2]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.1...v1.7.2
 [1.7.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.0...v1.7.1

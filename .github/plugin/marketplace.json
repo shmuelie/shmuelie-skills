@@ -12,7 +12,7 @@
     {
       "name": "shmuelie-skills",
       "description": "Custom skills for WinUI 3, .NET interop, Roslyn source generators, embedded C++, TypeScript CLI, shell/WSL, and homelab infrastructure",
-      "version": "1.8.0",
+      "version": "1.9.0",
       "source": "."
     }
   ]

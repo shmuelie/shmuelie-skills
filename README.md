@@ -44,6 +44,7 @@ Check available skills:
 | **homelab-infra** | Proxmox NVIDIA GPU passthrough to LXC containers (driver matching, `lxc.cgroup2`, `pct push/exec`, `proxmox-boot-tool refresh`), Home Assistant dashboard YAML and Proxmox entity naming, Jellyfin plugin provider architecture, and ComfyUI custom node development |
 | **qualcomm-aic** | Qualcomm Cloud AI 100 NPU — SDK installation and upgrades, GLIBCXX RUNPATH conflict fix, ONNX→QPC compilation pipeline, SD model type detection (safetensors keys vs file size), LoRA auto-activation control, job ETA, and SD WebUI compatible API |
 | **roslyn-sourcegen** | Roslyn incremental source generators (`IIncrementalGenerator`), equatable pipeline models with `EquatableArray<T>`, `ForAttributeWithMetadataName`, testing with `CSharpGeneratorDriver`, analyzer diagnostic patterns, NuGet packaging layout, nested type handling, and common pitfalls |
+| **icon-assets** | Application and NuGet package icon creation — MSIX visual asset sets (sizes, naming, altform-unplated), NuGet `PackageIcon` wiring, favicons, Fluent/Material design style guidelines, and SVG-to-PNG/ICO generation approaches |
 
 ## Project Structure
 
@@ -64,7 +65,8 @@ shmuelie-skills/
 │   ├── shell-wsl/SKILL.md
 │   ├── homelab-infra/SKILL.md
 │   ├── qualcomm-aic/SKILL.md
-│   └── roslyn-sourcegen/SKILL.md
+│   ├── roslyn-sourcegen/SKILL.md
+│   └── icon-assets/SKILL.md
 └── README.md
 ```
 

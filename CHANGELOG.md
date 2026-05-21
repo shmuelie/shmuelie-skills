@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.10.1] - 2026-05-20
+
+### Changed
+- Updated dotnet-project-init skill:
+  - Added MTP vs VSTest runner conflict warning for .NET 10+ (`xunit.runner.visualstudio`
+    is a VSTest adapter and conflicts with `global.json` MTP config)
+  - Added assembly version access pattern (`AssemblyInformationalVersionAttribute`)
+- Source: windows-tmux versioning session
+
 ## [1.10.0] - 2026-05-10
 
 ### Added
@@ -136,7 +145,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.1...HEAD
+[1.10.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.2...v1.8.0

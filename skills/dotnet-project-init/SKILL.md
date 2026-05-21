@@ -31,8 +31,21 @@ When working on projects related to .net project initialization, apply this doma
 ### Modern .NET (10+)
 - `global.json`: Include `"test": { "runner": "Microsoft.Testing.Platform" }` for .NET 10+
   test discovery with Microsoft.Testing.Platform runner.
+- **MTP vs VSTest conflict**: The `global.json` MTP runner config requires the test project
+  to use an MTP-compatible runner package. If using xUnit with `xunit.runner.visualstudio`
+  (a VSTest adapter), you must either remove the test runner config from `global.json`
+  or switch to `xunit.runner.mtp` for MTP compatibility.
 - Test SDK: Use `Microsoft.NET.Test.Sdk` + MSTest/xUnit/NUnit + MTP runner package.
 - For AOT-compatible projects: `<IsAotCompatible>true</IsAotCompatible>`.
+
+### Assembly Version Access
+Replace hardcoded version strings with runtime assembly metadata:
+```csharp
+var version = Assembly.GetExecutingAssembly()
+    .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
+    .InformationalVersion ?? "unknown";
+```
+This automatically reflects the `<Version>` set in the csproj.
 
 ### WinUI 3 Projects
 - SDK: `Microsoft.NET.Sdk` (not `Microsoft.NET.Sdk.WindowsDesktop`).

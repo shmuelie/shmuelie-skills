@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.10.2] - 2026-05-31
+
+### Fixed
+- Assembly version access pattern in dotnet-project-init: corrected to use AOT-safe
+  `typeof(T).Assembly` instead of `Assembly.GetExecutingAssembly()` (stack-frame
+  reflection is not Native AOT compatible)
+
 ## [1.10.1] - 2026-05-20
 
 ### Changed
@@ -145,7 +152,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.1...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.2...HEAD
+[1.10.2]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.1...v1.10.2
 [1.10.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.8.0...v1.9.0

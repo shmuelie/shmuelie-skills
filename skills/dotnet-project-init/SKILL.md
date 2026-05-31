@@ -41,11 +41,15 @@ When working on projects related to .net project initialization, apply this doma
 ### Assembly Version Access
 Replace hardcoded version strings with runtime assembly metadata:
 ```csharp
-var version = Assembly.GetExecutingAssembly()
+// AOT-safe: use typeof(T).Assembly instead of Assembly.GetExecutingAssembly()
+// Assembly.GetExecutingAssembly() relies on stack-frame reflection and is NOT AOT-safe
+var version = typeof(MyClass).Assembly.GetName().Version;
+var infoVersion = typeof(MyClass).Assembly
     .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?
-    .InformationalVersion ?? "unknown";
+    .InformationalVersion;
 ```
 This automatically reflects the `<Version>` set in the csproj.
+`InformationalVersion` includes the SemVer string (e.g., `1.2.3+commit-sha`).
 
 ### WinUI 3 Projects
 - SDK: `Microsoft.NET.Sdk` (not `Microsoft.NET.Sdk.WindowsDesktop`).

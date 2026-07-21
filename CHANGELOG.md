@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.11.0] - 2026-07-20
+
+### Added
+- shell-wsl skill: Cargo.lock reproducibility section — commit lockfile for binaries,
+  unpinned transitive deps break over time (cookie/time incompatibility example),
+  fixes via pin/constrain/drop-feature, Docker COPY gotcha, `cargo tree -i` diagnosis
+- msix-store-submission skill: installer parity section (file-type associations, App Paths,
+  context menus, PATH via execution aliases when migrating from Inno Setup/MSI) and
+  VM testing section (signing, -AllowUnsigned, Developer Mode, Insider CLSID)
+- Source: Vod2Pod Rust build failure session + Packaged VS Code MSIX session
+
 ## [1.10.2] - 2026-05-31
 
 ### Fixed
@@ -152,7 +163,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.2...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.11.0...HEAD
+[1.11.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.2...v1.11.0
 [1.10.2]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.1...v1.10.2
 [1.10.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.9.0...v1.10.0

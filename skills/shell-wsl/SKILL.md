@@ -147,3 +147,21 @@ ssh ubnt@device.local 'cd /var/etc/persistent && \\
   but never read directly.
 - `Some(code) if code == 0` → `Some(0)` — simplify redundant guards.
 - `bindgen` for C FFI bindings generation.
+
+### Cargo.lock Reproducibility (CRITICAL for binaries)
+- **Commit `Cargo.lock` for binaries/applications** (not for libraries). An unpinned
+  lockfile means every build re-resolves dependencies and picks the newest patch versions,
+  causing builds that "used to work" to break when a transitive dependency publishes an
+  incompatible patch.
+- Example failure: `actix-web 4.13 → cookie 0.16.2` breaks when `time >= 0.3.50` is resolved
+  (`Parsable::parse` signature changed), while `simple_logger` requires `time >= 0.3.49` —
+  only `time = 0.3.49` satisfied both. A fresh resolve picked 0.3.52 and broke the build.
+- **Fixes** (in order of preference):
+  1. Commit `Cargo.lock` pinned to a working set (`cargo generate-lockfile` +
+     `cargo update -p <crate> --precise <version>`). Remove it from `.gitignore`.
+  2. Constrain in `Cargo.toml`: `time = "=0.3.49"` (works without a committed lock).
+  3. Drop unused features pulling the problematic crate:
+     `actix-web = { default-features = false, features = [...] }` to exclude `cookies`.
+- **Docker gotcha**: ensure the Dockerfile `COPY`s the real `Cargo.lock` before
+  `cargo build`, otherwise the pin doesn't apply in-image.
+- Diagnose transitive deps with `cargo tree -i <crate>`.

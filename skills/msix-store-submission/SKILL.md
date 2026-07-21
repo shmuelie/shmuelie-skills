@@ -172,6 +172,34 @@ jobs:
 - Upload `.msix` or `.msixbundle` as artifacts for Store submission.
 - Tests can use `dotnet test` (MSBuild not required for test projects).
 
+## Installer Parity (Migrating from Inno Setup / MSI to MSIX)
+
+When converting a traditional installer (Inno Setup, MSI, NSIS) to MSIX, audit the
+old installer's `[Code]`/registry sections for behaviors MSIX must replicate declaratively:
+
+- **File-type associations**: Declare via `uap:Extension Category="windows.fileTypeAssociation"`.
+  Each file type can specify its own icon (`Logo`). Generate the manifest block from a
+  file-type→icon mapping rather than hand-authoring dozens of entries.
+- **App Paths**: The installer's `App Paths` registry key (for launching by exe name from
+  Run dialog) has no direct MSIX equivalent — the app alias comes from
+  `uap3:Extension Category="windows.appExecutionAlias"`.
+- **Context menus**: `windows.fileTypeAssociation` covers file/folder right-click; for
+  Drive or Background context menus, use a sparse package or `desktop4:` / `desktop5:`
+  context menu extensions.
+- **PATH / environment**: MSIX apps can't modify the system PATH; use execution aliases
+  instead.
+- Verify which icon files the old installer references so each file-type association
+  points at the right icon.
+
+## VM Testing MSIX Packages
+
+- MSIX must be **signed** or sideloaded with `Add-AppxPackage -AllowUnsigned` (dev only).
+- Enable Developer Mode or the sideloading policy on the test VM.
+- For unsigned test packages, either self-sign with a cert added to the VM's Trusted
+  People store, or use `-AllowUnsigned` on Windows 11+.
+- Insider/context-menu features may require `quality: "insider"` and a registered CLSID
+  in `product.json` (relevant when building forks like packaged VS Code).
+
 ## Store Submission Checklist
 1. Reserve app name in [Partner Center](https://partner.microsoft.com/dashboard)
 2. Update `Package.appxmanifest` with Partner Center identity values

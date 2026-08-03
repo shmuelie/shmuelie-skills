@@ -5,15 +5,39 @@
     "email": "shmuelie@gmail.com"
   },
   "metadata": {
-    "description": "Domain knowledge skills from 84+ Copilot sessions across 22+ repositories",
-    "version": "1.0.0"
+    "description": "Public Copilot CLI skills grouped into focused plugins",
+    "version": "2.0.0"
   },
   "plugins": [
     {
       "name": "shmuelie-skills",
-      "description": "Custom skills for WinUI 3, .NET interop, Roslyn source generators, embedded C++, TypeScript CLI, shell/WSL, and homelab infrastructure",
-      "version": "1.12.0",
+      "description": "Aggregate plugin containing all public Shmuelie skills",
+      "version": "1.13.0",
       "source": "."
+    },
+    {
+      "name": "shmuelie-copilot",
+      "description": "Copilot CLI session reporting, usage analysis, playbooks, management, and plugin authoring",
+      "version": "0.1.0",
+      "source": ".github/plugin/shmuelie-copilot"
+    },
+    {
+      "name": "shmuelie-devenv",
+      "description": "PowerShell profile engineering and local .NET MCP server development",
+      "version": "0.1.0",
+      "source": ".github/plugin/shmuelie-devenv"
+    },
+    {
+      "name": "shmuelie-authoring",
+      "description": "IETF RFC-style technical authoring and readability analysis",
+      "version": "0.1.0",
+      "source": ".github/plugin/shmuelie-authoring"
+    },
+    {
+      "name": "shmuelie-notifications",
+      "description": "Windows toast notification hooks for Copilot CLI",
+      "version": "0.1.0",
+      "source": ".github/plugin/shmuelie-notifications"
     }
   ]
 }

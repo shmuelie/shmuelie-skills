@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "_comment": "Copilot CLI hooks (camelCase events). We subscribe to ALL available events and let the renderer (Show-CopilotToast.cs) decide what is toast-worthy -- it only raises a toast for 'attention needed' states (error; permission/idle on Claude) and stays silent for working/completed/exit. Each hook forwards stdin to Invoke-CopilotToast.ps1, which fire-and-forget launches the renderer so the session is never blocked. NOTE: preToolUse is awaited by the CLI (it can carry a permission decision); our launcher returns immediately without one, so the per-tool overhead is just a quick process spawn. ${PLUGIN_ROOT} is the installed plugin directory.",
+  "hooks": {
+    "sessionStart": [
+      { "type": "command", "powershell": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "timeoutSec": 10 }
+    ],
+    "sessionEnd": [
+      { "type": "command", "powershell": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "timeoutSec": 10 }
+    ],
+    "userPromptSubmitted": [
+      { "type": "command", "powershell": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "timeoutSec": 10 }
+    ],
+    "preToolUse": [
+      { "type": "command", "powershell": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "timeoutSec": 10 }
+    ],
+    "postToolUse": [
+      { "type": "command", "powershell": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "timeoutSec": 10 }
+    ],
+    "errorOccurred": [
+      { "type": "command", "powershell": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "timeoutSec": 10 }
+    ]
+  }
+}

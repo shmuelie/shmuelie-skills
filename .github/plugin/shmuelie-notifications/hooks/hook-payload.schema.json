@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/shmuelie/shmuelie-skills/.github/plugin/shmuelie-notifications/hooks/hook-payload.schema.json",
+  "title": "Copilot CLI / Claude Code hook payload",
+  "description": "Schema for the JSON object delivered on stdin to a hook command (Invoke-CopilotToast.ps1 -> Show-CopilotToast.cs). Derived from observed payloads captured via COPILOT_TOAST_DEBUG=1. The event is identified by `hook_event_name`; its casing also identifies the engine (PascalCase => Claude Code / VS Code, camelCase => Copilot CLI). NOTE the cross-event inconsistencies: the `Notification` event uses camelCase `sessionId` and an integer epoch-millisecond `timestamp`, whereas every other event uses snake_case `session_id` and an ISO-8601 string `timestamp`.",
+  "type": "object",
+  "required": ["hook_event_name"],
+  "additionalProperties": true,
+  "properties": {
+    "hook_event_name": {
+      "type": "string",
+      "description": "The lifecycle event name. PascalCase = Claude Code / VS Code; camelCase = Copilot CLI.",
+      "enum": [
+        "SessionStart",
+        "UserPromptSubmit",
+        "PreToolUse",
+        "PostToolUse",
+        "Stop",
+        "SessionEnd",
+        "Notification",
+        "sessionStart",
+        "userPromptSubmitted",
+        "preToolUse",
+        "postToolUse",
+        "sessionEnd",
+        "errorOccurred"
+      ]
+    }
+  },
+  "$defs": {
+    "sessionId": {
+      "type": "string",
+      "description": "Session UUID. snake_case `session_id` on all events except `Notification`, which uses camelCase `sessionId`.",
+      "pattern": "^[0-9a-fA-F-]{36}$"
+    },
+    "cwd": {
+      "type": "string",
+      "description": "Absolute working directory of the session."
+    },
+    "isoTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 UTC timestamp, e.g. 2026-06-23T21:45:15.212Z."
+    },
+    "epochMillis": {
+      "type": "integer",
+      "description": "Unix epoch time in milliseconds (used only by the Notification event)."
+    },
+    "toolInput": {
+      "type": "object",
+      "description": "Arguments passed to the tool. Shape is tool-specific (free-form object).",
+      "additionalProperties": true
+    },
+    "toolResult": {
+      "type": "object",
+      "description": "Result of a completed tool call (PostToolUse only).",
+      "required": ["result_type"],
+      "additionalProperties": true,
+      "properties": {
+        "result_type": {
+          "type": "string",
+          "description": "Outcome of the tool call.",
+          "examples": ["success"]
+        },
+        "text_result_for_llm": {
+          "type": "string",
+          "description": "The textual result surfaced back to the model."
+        }
+      }
+    }
+  },
+  "oneOf": [
+    {
+      "title": "SessionStart",
+      "description": "A session has started (or resumed).",
+      "required": ["hook_event_name"],
+      "properties": {
+        "hook_event_name": { "const": "SessionStart" },
+        "session_id": { "$ref": "#/$defs/sessionId" },
+        "cwd": { "$ref": "#/$defs/cwd" },
+        "timestamp": { "$ref": "#/$defs/isoTimestamp" },
+        "source": {
+          "type": "string",
+          "description": "How the session began.",
+          "examples": ["resume", "startup"]
+        },
+        "initial_prompt": {
+          "type": "string",
+          "description": "The first user prompt, when available."
+        },
+        "message": { "type": "string" }
+      }
+    },
+    {
+      "title": "UserPromptSubmit",
+      "description": "The user submitted a prompt.",
+      "required": ["hook_event_name"],
+      "properties": {
+        "hook_event_name": { "const": "UserPromptSubmit" },
+        "session_id": { "$ref": "#/$defs/sessionId" },
+        "cwd": { "$ref": "#/$defs/cwd" },
+        "timestamp": { "$ref": "#/$defs/isoTimestamp" },
+        "prompt": {
+          "type": "string",
+          "description": "The submitted prompt text."
+        }
+      }
+    },
+    {
+      "title": "PreToolUse",
+      "description": "Fired immediately before a tool call (the agent may await this hook).",
+      "required": ["hook_event_name"],
+      "properties": {
+        "hook_event_name": { "const": "PreToolUse" },
+        "session_id": { "$ref": "#/$defs/sessionId" },
+        "cwd": { "$ref": "#/$defs/cwd" },
+        "timestamp": { "$ref": "#/$defs/isoTimestamp" },
+        "tool_name": {
+          "type": "string",
+          "description": "Name of the tool about to run."
+        },
+        "tool_input": { "$ref": "#/$defs/toolInput" },
+        "message": { "type": "string" }
+      }
+    },
+    {
+      "title": "PostToolUse",
+      "description": "Fired after a tool call completes.",
+      "required": ["hook_event_name"],
+      "properties": {
+        "hook_event_name": { "const": "PostToolUse" },
+        "session_id": { "$ref": "#/$defs/sessionId" },
+        "cwd": { "$ref": "#/$defs/cwd" },
+        "timestamp": { "$ref": "#/$defs/isoTimestamp" },
+        "tool_name": {
+          "type": "string",
+          "description": "Name of the tool that ran."
+        },
+        "tool_input": { "$ref": "#/$defs/toolInput" },
+        "tool_result": { "$ref": "#/$defs/toolResult" }
+      }
+    },
+    {
+      "title": "Stop",
+      "description": "A turn finished.",
+      "required": ["hook_event_name"],
+      "properties": {
+        "hook_event_name": { "const": "Stop" },
+        "session_id": { "$ref": "#/$defs/sessionId" },
+        "cwd": { "$ref": "#/$defs/cwd" },
+        "timestamp": { "$ref": "#/$defs/isoTimestamp" },
+        "stop_reason": {
+          "type": "string",
+          "description": "Why the turn stopped.",
+          "examples": ["end_turn"]
+        },
+        "transcript_path": {
+          "type": "string",
+          "description": "Path to the turn transcript."
+        },
+        "message": { "type": "string" }
+      }
+    },
+    {
+      "title": "SessionEnd",
+      "description": "The session is ending / tearing down.",
+      "required": ["hook_event_name"],
+      "properties": {
+        "hook_event_name": { "const": "SessionEnd" },
+        "session_id": { "$ref": "#/$defs/sessionId" },
+        "cwd": { "$ref": "#/$defs/cwd" },
+        "timestamp": { "$ref": "#/$defs/isoTimestamp" },
+        "reason": {
+          "type": "string",
+          "description": "Why the session ended.",
+          "examples": ["user_exit"]
+        },
+        "message": { "type": "string" }
+      }
+    },
+    {
+      "title": "Notification",
+      "description": "The agent needs your attention (a permission/elicitation prompt or a new inbox message). NOTE: this event uniquely uses camelCase `sessionId` and an integer epoch-millisecond `timestamp`.",
+      "required": ["hook_event_name", "message"],
+      "properties": {
+        "hook_event_name": { "const": "Notification" },
+        "sessionId": { "$ref": "#/$defs/sessionId" },
+        "timestamp": { "$ref": "#/$defs/epochMillis" },
+        "cwd": { "$ref": "#/$defs/cwd" },
+        "title": {
+          "type": "string",
+          "description": "Short notification title."
+        },
+        "message": {
+          "type": "string",
+          "description": "The notification body — the text shown to the user."
+        },
+        "notification_type": {
+          "type": "string",
+          "description": "Kind of notification.",
+          "examples": ["elicitation_dialog", "new_inbox_message"]
+        }
+      }
+    },
+    {
+      "title": "Copilot CLI event (camelCase)",
+      "description": "Copilot CLI lifecycle events use camelCase names. The only attention-worthy one hooked for toasts is `errorOccurred`. Observed Copilot payloads carry `hook_event_name`, `timestamp`, and `cwd` (plus event-specific fields: `source`/`initialPrompt` on sessionStart, `prompt` on userPromptSubmitted, `reason`/`error` on sessionEnd, `error`/`errorContext`/`recoverable` on errorOccurred). NOTE: interactive Copilot CLI events do **not** include `session_id` — the renderer keys the per-session toast off `cwd` instead.",
+      "required": ["hook_event_name"],
+      "properties": {
+        "hook_event_name": {
+          "type": "string",
+          "enum": [
+            "sessionStart",
+            "userPromptSubmitted",
+            "preToolUse",
+            "postToolUse",
+            "sessionEnd",
+            "errorOccurred"
+          ]
+        },
+        "session_id": { "$ref": "#/$defs/sessionId" },
+        "cwd": { "$ref": "#/$defs/cwd" },
+        "timestamp": { "$ref": "#/$defs/isoTimestamp" },
+        "tool_name": { "type": "string" },
+        "tool_input": { "$ref": "#/$defs/toolInput" },
+        "tool_result": { "$ref": "#/$defs/toolResult" },
+        "prompt": { "type": "string" },
+        "message": {
+          "type": "string",
+          "description": "Error/notification text (present on errorOccurred)."
+        }
+      }
+    }
+  ]
+}

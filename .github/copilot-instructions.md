@@ -88,9 +88,16 @@ Context instructions.
 
 ### Step 7: Bump the version
 
-Bump in both `plugin.json` and `.github/plugin/marketplace.json` following SemVer:
+The root `plugin.json` is the aggregate direct-install plugin. Its version must
+match the `shmuelie-skills` entry in `.github/plugin/marketplace.json`.
+
+Each focused `.github/plugin/shmuelie-*/plugin.json` is versioned independently
+and must match its own marketplace entry:
 - PATCH for minor content updates to existing skills
 - MINOR for new skills or significant content additions
+
+Only bump `marketplace.json`'s `metadata.version` when the catalog composition
+changes, such as adding or removing a focused plugin.
 
 ### Step 8: Update CHANGELOG.md
 
@@ -112,7 +119,7 @@ With a descriptive message.
 ## Conventions
 
 - Skills are markdown files at `skills/<name>/SKILL.md`
-- Version is tracked in `plugin.json` and `.github/plugin/marketplace.json` — both must stay in sync
+- Each plugin manifest version must match its marketplace entry; focused plugin versions are independent
 - Follow Semantic Versioning for all version bumps
 - Follow Keep a Changelog for CHANGELOG.md
 - Skill descriptions should be specific and actionable, not vague

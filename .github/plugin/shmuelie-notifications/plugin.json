@@ -1,0 +1,18 @@
+{
+  "name": "shmuelie-notifications",
+  "description": "Windows toast notification hooks for Copilot CLI that raise a native toast only when the agent needs attention. Must be Agency-installed for hooks to load.",
+  "readme": "./README.md",
+  "version": "0.1.0",
+  "author": {
+    "name": "Shmueli Englard",
+    "url": "https://github.com/shmuelie/shmuelie-skills"
+  },
+  "license": "MIT",
+  "keywords": [
+    "notifications",
+    "toast",
+    "hooks",
+    "copilot"
+  ],
+  "skills": []
+}

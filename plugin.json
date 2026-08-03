@@ -1,7 +1,7 @@
 {
   "name": "shmuelie-skills",
-  "description": "Custom Copilot CLI skills encoding domain knowledge from real-world projects across WinUI 3, .NET interop, Roslyn source generators, embedded C++, TypeScript CLI tools, shell scripting, PowerShell scripting, homelab infrastructure, and Qualcomm AIC100 NPU development",
-  "version": "1.12.0",
+  "description": "Custom Copilot CLI skills for software development, Copilot workflows, PowerShell profiles, plugin authoring, technical writing, Windows applications, embedded systems, and infrastructure",
+  "version": "1.13.0",
   "author": {
     "name": "Shmueli Englard",
     "url": "https://github.com/shmuelie"
@@ -14,7 +14,13 @@
     "cmake", "embedded", "typescript", "cli", "shell", "wsl", "powershell",
     "proxmox", "homeassistant", "jellyfin", "comfyui",
     "roslyn", "source-generator", "analyzer",
-    "qualcomm", "aic100", "stable-diffusion"
+    "qualcomm", "aic100", "stable-diffusion",
+    "copilot", "session", "plugin", "marketplace", "rfc", "readability"
   ],
-  "skills": ["skills/"]
+  "skills": [
+    "skills/",
+    ".github/plugin/shmuelie-copilot/skills/",
+    ".github/plugin/shmuelie-devenv/skills/",
+    ".github/plugin/shmuelie-authoring/skills/"
+  ]
 }

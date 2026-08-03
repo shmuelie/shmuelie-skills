@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.13.0] - 2026-08-03
+
+### Added
+- Focused `shmuelie-copilot`, `shmuelie-devenv`, `shmuelie-authoring`, and
+  `shmuelie-notifications` plugins.
+- Copilot session reporting, usage analysis, playbook, session-management, and
+  plugin-authoring skills.
+- PowerShell profile, local MCP server, RFC-authoring, and writing-level skills.
+- Static GitHub Pages catalog and validation workflow.
+
+### Changed
+- The root `shmuelie-skills` plugin remains the aggregate direct-install option
+  and now loads the focused plugins' skills.
+- Marketplace metadata moved to version 2.0.0 for the multi-plugin catalog.
+
 ## [1.12.0] - 2026-08-02
 
 ### Added

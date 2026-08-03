@@ -1,0 +1,5 @@
+{
+  "category": "developer-tools",
+  "platforms": ["windows", "linux", "macos"],
+  "engines": ["copilot"]
+}

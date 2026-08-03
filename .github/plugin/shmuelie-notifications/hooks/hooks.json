@@ -1,0 +1,26 @@
+{
+  "_comment": "Claude Code / VS Code hooks (PascalCase events, nested-hooks format). We subscribe to ALL available events and let the renderer (Show-CopilotToast.cs) decide what is toast-worthy -- it only raises a toast for 'attention needed' states (Notification => permission/idle; errors) and stays silent for working/completed/exit. async so the session is never blocked. ${CLAUDE_PLUGIN_ROOT} is the installed plugin directory.",
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [ { "type": "command", "command": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${CLAUDE_PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "async": true } ] }
+    ],
+    "SessionEnd": [
+      { "hooks": [ { "type": "command", "command": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${CLAUDE_PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "async": true } ] }
+    ],
+    "UserPromptSubmit": [
+      { "hooks": [ { "type": "command", "command": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${CLAUDE_PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "async": true } ] }
+    ],
+    "PreToolUse": [
+      { "hooks": [ { "type": "command", "command": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${CLAUDE_PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "async": true } ] }
+    ],
+    "PostToolUse": [
+      { "hooks": [ { "type": "command", "command": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${CLAUDE_PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "async": true } ] }
+    ],
+    "Stop": [
+      { "hooks": [ { "type": "command", "command": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${CLAUDE_PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "async": true } ] }
+    ],
+    "Notification": [
+      { "hooks": [ { "type": "command", "command": "powershell.exe -ExecutionPolicy Bypass -NoProfile -File \"${CLAUDE_PLUGIN_ROOT}/hooks/Invoke-CopilotToast.ps1\"", "async": true } ] }
+    ]
+  }
+}

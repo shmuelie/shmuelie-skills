@@ -1,0 +1,13 @@
+{
+  "name": "shmuelie-copilot",
+  "description": "Copilot CLI session reporting, usage analysis, playbook generation, session management, and plugin authoring.",
+  "readme": "./README.md",
+  "version": "0.1.0",
+  "author": {
+    "name": "Shmueli Englard",
+    "url": "https://github.com/shmuelie/shmuelie-skills"
+  },
+  "license": "MIT",
+  "keywords": ["copilot", "session", "reporting", "plugins", "marketplace"],
+  "skills": ["./skills/"]
+}

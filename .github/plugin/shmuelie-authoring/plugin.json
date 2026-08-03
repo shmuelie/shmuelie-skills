@@ -1,0 +1,13 @@
+{
+  "name": "shmuelie-authoring",
+  "description": "IETF RFC-style technical authoring and readability analysis.",
+  "readme": "./README.md",
+  "version": "0.1.0",
+  "author": {
+    "name": "Shmueli Englard",
+    "url": "https://github.com/shmuelie/shmuelie-skills"
+  },
+  "license": "MIT",
+  "keywords": ["authoring", "rfc", "readability", "flesch-kincaid"],
+  "skills": ["./skills/"]
+}

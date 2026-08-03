@@ -1,13 +1,6 @@
 name: Deploy documentation
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - docs/**
-      - README.md
-      - .github/plugin/**/README.md
-      - .github/workflows/pages.yml
   workflow_dispatch:
 
 permissions:

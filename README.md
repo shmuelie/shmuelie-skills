@@ -35,12 +35,13 @@ Check available skills:
 | Skill | Description |
 |-------|-------------|
 | **winui3-msix** | WinUI 3 data binding pitfalls (`{x:Bind}` vs `{Binding}` vs `[Bindable]`), MSIX packaging (`EnableMsixTooling`, manifest requirements, loose-file registration), WinAppSDK test project architecture, and DI patterns |
-| **csharp-interop** | CsWin32 setup, `LibraryImport` marshalling, ConPTY HPCON calling convention bug, `NativeLibrary.SetDllImportResolver`, Native AOT + trimming, VT escape sequence parsing in C#, IPC message patterns, and plugin path security |
-| **dotnet-project-init** | `Directory.Build.props` centralized config, `global.json` test runner setup for .NET 10+, NuGet `ExcludeAssets` patterns, GitHub Actions CI workflows for .NET and MSIX, `copilot-instructions.md` templates, [Keep a Changelog](https://keepachangelog.com/) format, and [Semantic Versioning](https://semver.org/) |
+| **csharp-interop** | CsWin32 setup and `[GeneratedComInterface]` COM (build-task mode, in-memory generation), COM server/class-factory (`DllGetClassObject`, `ComInterfaceMarshaller`), shell icon handlers (`CreateIconFromResourceEx`), native hosting via DNNE/nethost, `LibraryImport` marshalling, ConPTY HPCON calling convention bug, `NativeLibrary.SetDllImportResolver`, Native AOT + trimming, VT escape sequence parsing, IPC message patterns, and plugin path security |
+| **dotnet-project-init** | `Directory.Build.props` centralized config, `global.json` test runner setup for .NET 10+, `.sln`→`.slnx` migration, mixed C#/C++ toolset modernization (v143→v145, CppWinRT 3.0), NuGet `ExcludeAssets` patterns, GitHub Actions CI workflows for .NET and MSIX, `copilot-instructions.md` templates, [Keep a Changelog](https://keepachangelog.com/) format, and [Semantic Versioning](https://semver.org/) |
 | **deploy-scripts** | `Deploy.ps1` patterns — MSBuild auto-detection via `vswhere`, architecture detection, AppX loose-file layout assembly, `Add-AppxPackage -Register`, `WinAppDeployCmd` remote deployment, and ADB for Android |
 | **typescript-cli** | Process pool management, atomic cache writes (`.tmp` + rename), cache versioning with migration, adaptive rate limiting, SIGINT graceful shutdown, multi-tier file matching, Windows `MAX_PATH` handling, and `??` vs `\|\|` pitfalls |
-| **embedded-cpp** | Buildroot external tree for MIPS cross-compilation, CMake presets, binary size optimization (`-fno-rtti`, `-fno-unwind-tables`, UPX compression — 63% reduction), `FetchContent`, Catch2 testing, C++20 embedded conventions, and MQTT HA auto-discovery |
-| **shell-wsl** | Shell script bugs (`exit` vs `return`, variable quoting, `mkdir -p`), `set -euo pipefail`, WSL systemd detection, `TERM=xterm-256color` for progress indicators, APT troubleshooting, embedded device deployment (`cfgmtd`, symlink config), and Rust/Cargo clippy patterns |
+| **embedded-cpp** | Buildroot external tree for MIPS cross-compilation, CMake presets, binary size optimization (`-fno-rtti`, `-fno-unwind-tables`, UPX, libstdc++ `--enable-clocale=generic`/`--disable-libstdcxx-verbose`), C++-standard-vs-libc decoupling, long-run leak diagnosis with a host valgrind harness, `FetchContent`, Catch2 testing, C++20 conventions, and MQTT HA auto-discovery (QoS 0 retained) |
+| **shell-wsl** | Shell script bugs (`exit` vs `return`, variable quoting, `mkdir -p`), `set -euo pipefail`, WSL systemd detection, `TERM=xterm-256color` for progress indicators, APT troubleshooting, one-connection `tar`-over-SSH deployment, version-aware updaters (`--version` vs GitHub tags), output quieting (`apt-get -qq`), embedded device deployment (`cfgmtd`, symlink config), and Rust/Cargo clippy patterns |
+| **powershell-scripting** | Idiomatic PowerShell for destructive/bulk scripts — `SupportsShouldProcess` + `ConfirmImpact`, native `-WhatIf`/`-Confirm` instead of custom `-Execute`/typed-`yes` gates, per-operation `$PSCmdlet.ShouldProcess`, and preview-then-apply verification |
 | **homelab-infra** | Proxmox NVIDIA GPU passthrough to LXC containers (driver matching, `lxc.cgroup2`, `pct push/exec`, `proxmox-boot-tool refresh`), Home Assistant dashboard YAML and Proxmox entity naming, Jellyfin plugin provider architecture, and ComfyUI custom node development |
 | **qualcomm-aic** | Qualcomm Cloud AI 100 NPU — SDK installation and upgrades, GLIBCXX RUNPATH conflict fix, ONNX→QPC compilation pipeline, SD model type detection (safetensors keys vs file size), LoRA auto-activation control, job ETA, and SD WebUI compatible API |
 | **roslyn-sourcegen** | Roslyn incremental source generators (`IIncrementalGenerator`), equatable pipeline models with `EquatableArray<T>`, `ForAttributeWithMetadataName`, testing with `CSharpGeneratorDriver`, analyzer diagnostic patterns, NuGet packaging layout, nested type handling, and common pitfalls |
@@ -64,6 +65,7 @@ shmuelie-skills/
 │   ├── typescript-cli/SKILL.md
 │   ├── embedded-cpp/SKILL.md
 │   ├── shell-wsl/SKILL.md
+│   ├── powershell-scripting/SKILL.md
 │   ├── homelab-infra/SKILL.md
 │   ├── qualcomm-aic/SKILL.md
 │   ├── roslyn-sourcegen/SKILL.md

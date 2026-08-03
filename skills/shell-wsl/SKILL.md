@@ -70,6 +70,15 @@ command -v cargo >/dev/null 2>&1 && cargo install-update --all
 - Guard each section with `command -v` — silently skipped if not installed.
 - `npm update -g` needs `sudo` when global prefix is root-owned (`/usr/local`).
 
+### Quieting Verbose Output (keep errors + status lines)
+- Prefer **`apt-get -qq`** over `apt` in scripts — `apt-get` is the stable scripting
+  interface and avoids the `WARNING: apt does not have a stable CLI` message; `-qq` silences
+  progress while still printing errors to stderr.
+- `snap refresh >/dev/null` (and similar) to drop chatty stdout; **don't** redirect stderr —
+  you want failures to surface.
+- Keep the script's *own* headers/status `echo`s; only suppress the noisy stdout of the tools
+  it calls, so a run still reads as a clear progress log.
+
 ### Systemd Detection
 ```bash
 # Check for systemd (important for WSL where it may not be PID 1)
@@ -134,6 +143,33 @@ ssh ubnt@device.local 'cd /var/etc/persistent && \\
     cfgmtd -w -p /etc/ && \\
     /var/etc/persistent/rc.poststart'
 ```
+
+### One-Connection Deploy (stream tar over SSH)
+Collapse the separate `scp` + `ssh` into a **single** SSH connection by piping tar through it —
+fewer auth round-trips, no temp file on the device:
+```bash
+tar -chf - -C "./$host/" ./ | ssh "ubnt@$host.local" \
+    'tar -xf - -C /var/etc/persistent/ && \
+     pkill -9 mfi-mqtt-client; \
+     cfgmtd -w -p /etc/ && /var/etc/persistent/rc.poststart'
+```
+- `-c` = create, `-h` = **follow symlinks** (dereference the symlinked config into real files),
+  `-f -` = write archive to stdout; the remote `tar -xf -` reads it from stdin.
+- Everything after the extract runs in the *same* remote shell, so stop/clean/commit/restart
+  need no extra connection.
+
+### Version-Aware Updater (compare against GitHub, no marker file)
+- Rather than tracking installed version in a marker file, ask the installed tool
+  (`mytool --version` → `mytool 1.2.0`) and compare against the latest GitHub release tag.
+- Only download when the remote tag is newer. Handle the `<tool> <version>` output and a
+  `v`-prefixed tag with the same portable semver parse/compare.
+- A portable shell semver comparator (no `sort -V` dependency assumed):
+  ```bash
+  ver_lt() { # returns 0 if $1 < $2
+      [ "$1" = "$2" ] && return 1
+      [ "$(printf '%s\n%s\n' "$1" "$2" | sort -t. -k1,1n -k2,2n -k3,3n | head -1)" = "$1" ]
+  }
+  ```
 
 ### Startup System
 - `rc.poststart` runs all executable scripts in `rc.poststart.d/` in parallel (`&`).

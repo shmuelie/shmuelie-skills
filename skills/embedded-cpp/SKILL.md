@@ -67,6 +67,25 @@ When working on projects related to embedded c++ / cmake patterns, apply this do
   endif()
   ```
 - In-memory size doesn't shrink (UPX decompresses at load time).
+- **UPX is too slow on very constrained devices** (runtime decompression on a weak CPU adds
+  noticeable startup latency) — for those targets, make the binaries *genuinely* smaller
+  instead of compressing them.
+
+### libstdc++ Size Reduction (toolchain-level)
+- **Decouple the C++ standard from the target libc.** C++17/20 is a *compiler + libstdc++*
+  concern; it does **not** require a newer C library. You can keep C++17/20 while dynamically
+  linking the device's older uClibc — build a modern GCC that targets the old libc.
+- Two libstdc++ **configure-time** options shrink it before any app links it (orthogonal to
+  static vs dynamic — set them in the Buildroot/toolchain defconfig):
+  - `--enable-clocale=generic` — drops the heavy locale model. **ABI-affecting**, so rebuild
+    the whole toolchain + everything that links libstdc++.
+  - `--disable-libstdcxx-verbose` — removes verbose terminate/error text; helps **static**
+    builds even more (the strings would otherwise be pulled into every binary).
+- `-fno-exceptions` is off the table once dependencies (nlohmann_json, CLI11, spdlog) contain
+  `throw`/`try`/`catch` sites; `<iostream>`, `<fstream>`, and `<filesystem>` pull the heavy
+  locale/iostream/filesystem machinery, so audit includes when hunting size.
+- **GCC ICE (segfault) during a parallel toolchain build is usually flaky/OOM**, not a real
+  error from your flags — retry the failing package serially before investigating.
 
 ## CMake Dependency Management
 ### FetchContent (preferred for header-only/small libs)
@@ -129,6 +148,10 @@ catch_discover_tests(tests)
 - Publish HA discovery payloads to `homeassistant/<type>/<device_id>/config`.
 - Change-only updates (don't flood MQTT with unchanged values).
 - Device classes: switch + sensor entities per outlet/port.
+- **QoS choice**: publish ephemeral telemetry as **QoS 0, retained**. QoS 0 is cheap for
+  frequent state; `retain=true` means HA gets the last-known value immediately on reconnect
+  instead of showing "unavailable" until the next change. Parameterize QoS/retain per publish
+  rather than hardcoding, and update all `publishMessage`/`sendStatus` call sites consistently.
 
 ### MQTT Topic ID Deduplication
 - When connector ID, device ID, and device name are all derived from hostname,
@@ -143,3 +166,19 @@ catch_discover_tests(tests)
 - Tag pattern: `<project>/<vX.Y.Z>` (e.g., `mfi-mqtt-client/v1.1.0`).
 - Each project follows SemVer independently.
 - Attach binaries to GitHub releases for deployment artifacts.
+- **Release only what changed**: before tagging, verify (via the linker / `ldd` / a symbol
+  check) which executables actually link the modified library, and bump/release only those.
+  A fix in a shared lib that only one tool links → patch-bump that one tool, not the suite.
+
+## Diagnosing Long-Running Freezes on Constrained Devices
+- **A freeze that appears only after long runtime is a slow, time-proportional leak/growth**,
+  not the startup allocation spike (e.g. a prior `std::regex` + logger-clone OOM). Treat the
+  two failure modes differently.
+- You often **cannot instrument the real device** (MIPS, ~64 MB RAM, busybox disabled, no
+  valgrind). Strategy:
+  - Build a **host-based reproduction harness** and run the app under valgrind/ASan there.
+  - On the real device, only do lightweight `/proc/<pid>/status` (VmRSS) polling over SSH to
+    confirm the growth trend.
+- **No root on the build host** → don't block on installing daemons. If the broker package
+  needs root, write a **minimal dependency-free** stand-in (e.g. a tiny MQTT broker) that
+  links the client lib (`libmosquitto`) you already have, so the harness runs unprivileged.

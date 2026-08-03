@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.12.0] - 2026-08-02
+
+### Added
+- New **powershell-scripting** skill: idiomatic PowerShell for destructive/bulk scripts —
+  `SupportsShouldProcess` + `ConfirmImpact`, native `-WhatIf`/`-Confirm` instead of custom
+  `-Execute`/typed-`yes` gates, per-operation `$PSCmdlet.ShouldProcess`, anti-patterns to
+  replace, and preview-then-apply verification
+- csharp-interop: CsWin32 `[GeneratedComInterface]` support (v0.3.298+), `CsWin32RunAsBuildTask`,
+  in-memory generation (write helper against expected API and let the compiler confirm),
+  COM server/class-factory (`DllGetClassObject`, friendly `IClassFactory` `out nint`,
+  `ComInterfaceMarshaller`), shell icon handlers (`CreateIconFromResourceEx`, ICONDIR, MSIX
+  multi-PNG best-fit), and a Native Hosting (DNNE / nethost) section (nethost from
+  `Microsoft.NETCore.App.Host.win-<rid>`, `DNNE_API_OVERRIDE=`, `dnne_abort` via
+  `/alternatename`, `%(ResolvedAppHostPack.PackageDirectory)`)
+- dotnet-project-init: `.sln`→`.slnx` migration (`dotnet sln migrate`) and mixed C#/C++
+  toolset modernization (PlatformToolset v143→v145, CppWinRT 3.0 proxy winmd verification)
+- embedded-cpp: C++-standard-vs-libc decoupling, libstdc++ size flags
+  (`--enable-clocale=generic`, `--disable-libstdcxx-verbose`), flaky GCC ICE under parallel
+  builds, UPX-too-slow caveat, long-running-freeze leak diagnosis via host valgrind harness
+  + `/proc` polling, release-only-what-links discipline, and MQTT QoS 0 retained for telemetry
+- shell-wsl: one-connection `tar`-over-SSH deployment (`-ch`/symlink follow), version-aware
+  updater (`--version` vs GitHub tag + portable semver comparator), and output quieting
+  (`apt-get -qq` over `apt`, keep stderr/status lines)
+- Source: Shmuelie.WinRTServer v3 redesign, mfi-custom-code Buildroot/MIPS/deploy sessions,
+  reusable .NET COM/DNNE interop techniques, and a PowerShell worktree-migration script
+
 ## [1.11.0] - 2026-07-20
 
 ### Added
@@ -163,7 +189,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.11.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.12.0...HEAD
+[1.12.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.2...v1.11.0
 [1.10.2]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.1...v1.10.2
 [1.10.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.0...v1.10.1

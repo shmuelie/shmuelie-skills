@@ -57,6 +57,21 @@ This automatically reflects the `<Version>` set in the csproj.
 - `<UseWinUI>true</UseWinUI>` enables WinUI 3 support.
 - `<EnableMsixTooling>true</EnableMsixTooling>` for MSIX packaging.
 
+### Solution Format Migration (.sln → .slnx)
+- `dotnet sln migrate` converts a classic `.sln` to the newer XML `.slnx` format.
+- The generated `.slnx` preserves solution folders, build dependencies, platform/config
+  mappings, project deploy flags, and solution items.
+- Validate it builds via MSBuild (which must accept `.slnx`) before deleting the old `.sln`.
+- **Update CI workflows** that reference the `.sln` by name — the file name changes.
+
+### Toolset Modernization (mixed C#/C++ solutions)
+- Bumping to .NET 10 SDK often exposes stale native toolsets: a C++/WinRT project pinned to
+  `PlatformToolset` **v143** can fail the full build until moved to **v145**.
+- CppWinRT 3.0 changes proxy `.winmd` output — verify the metadata project still emits the
+  expected proxy winmd after upgrading, since downstream WPF/UWP consumers depend on it.
+- Investigate what's actually installed (`dotnet --list-sdks`, VS version, C++ toolset)
+  before choosing "latest" — the environment dictates the achievable target.
+
 ### Windows Service Projects
 - SDK: `Microsoft.NET.Sdk.Web` for ASP.NET-based services.
 - Add `Microsoft.Extensions.Hosting.WindowsServices` for Windows service hosting.

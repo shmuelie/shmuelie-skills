@@ -13,6 +13,32 @@ When working on projects related to c# native interop patterns, apply this domai
 - Create `NativeMethods.txt` at project root listing needed Win32 functions/types, one per line.
 - Generates safe, AOT-compatible wrappers with SafeHandle and proper marshalling.
 - Works with `PublishAot=true` and `DisableRuntimeMarshalling=true`.
+- **COM interfaces**: v0.3.298+ can emit `[GeneratedComInterface]` (source-generated COM,
+  AOT-friendly) instead of legacy `[ComImport]`. Pairs with `DisableRuntimeMarshalling`.
+- **Run as an MSBuild build task** with `<CsWin32RunAsBuildTask>true</CsWin32RunAsBuildTask>`
+  when other build steps need the generated types materialized on disk.
+- **Generated output is in-memory** by default — the `obj` folder has no emitted `Generated`
+  directory. Don't hunt for the file: write your helper against the *expected* Win32/COM
+  signatures (e.g. `CoInitializeSecurity`, `CoImpersonateClient`, `CoRevertToSelf`) and let
+  the compiler confirm the generated signatures, iterating on errors.
+
+## COM Server / Class Factory (source-generated)
+- `DllGetClassObject` returns a friendly `IClassFactory` whose `CreateInstance` uses the
+  `out nint` shape; marshal the managed object with `ComInterfaceMarshaller<T>` /
+  `StrategyBasedComWrappers` rather than hand-rolled `Marshal.GetComInterfaceForObject`.
+- COM *callback* interfaces (device→managed) must also be `[GeneratedComInterface]` so the
+  runtime can wrap the managed implementation.
+- Testing pointer-based COM methods (`GetIconInfo(nint, ...)`) requires
+  `<AllowUnsafeBlocks>true</AllowUnsafeBlocks>` in the **test** project too.
+
+## Shell Icon Handler (IExtractIconW / custom file types)
+- A shell icon handler is a COM in-proc server registered for a file extension; it needs a
+  desktop/COM surface (packaged desktop extension or classic registration).
+- `CreateIconFromResourceEx` turns **raw PNG bytes** into a valid `HICON` — reuse the native
+  path instead of decoding yourself. For `.ico` input, parse the ICONDIR header to pick a
+  frame.
+- Prefer MSIX-style multi-PNG assets (one per target size) with best-fit selection over a
+  single fixed-size icon, so the shell gets a crisp match at any DPI.
 
 ## LibraryImport (modern P/Invoke)
 - Use `[LibraryImport]` instead of `[DllImport]` for new code — it's source-generated,
@@ -52,6 +78,22 @@ When working on projects related to c# native interop patterns, apply this domai
 - WinUI 3 apps: the WindowsAppSDK auto-initializer conflicts with AOT — may need
   `<Compile Remove="**\\*AutoInitializer*.cs" />` in certain contexts.
 - COM hosting: `<EnableComHosting>true</EnableComHosting>` for COM servers.
+
+## Native Hosting (DNNE / nethost) — hosting CoreCLR in-proc from native
+Used to call managed code from a native DLL (e.g. a C++ proxy that loads a .NET plugin
+in-process). DNNE (Direct Native to .NET Exports) generates the host glue.
+- **`nethost` is NOT in the DNNE NuGet package.** Get `nethost.lib` + `nethost.h` from the
+  `Microsoft.NETCore.App.Host.win-<rid>` packs instead of vendoring binaries into git.
+- **Don't vendor `platform.c`/`dnne.h`** — compile them straight from the restored DNNE
+  package; point the `.vcxproj`/`.filters` at the package path.
+- Discover the AppHost pack path with the MSBuild item
+  `%(ResolvedAppHostPack.PackageDirectory)` — no hardcoded SDK version.
+- **Prevent leaking exports**: set `DNNE_API_OVERRIDE=` on `platform.c` so DNNE's
+  `__declspec(dllexport)` is stripped and the DLL exports only your real entry point.
+- Provide a custom abort via `dnne_abort` and wire it with the linker's `/alternatename`
+  (on x86/Win32 the cdecl decoration is `_dnne_abort`, sensitive to signature changes).
+- Because you compile all of `platform.c`, some of its public functions come along unused —
+  that's expected; don't cherry-pick unless size matters.
 
 ## VT Escape Sequence Parsing in C#
 - C# string `"\\x1bE"` is actually character U+01BE (single char), NOT ESC followed by 'E'.

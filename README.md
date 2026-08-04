@@ -1,144 +1,221 @@
 # shmuelie-skills
 
-A [GitHub Copilot CLI plugin](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-cli-plugins) packaging domain knowledge learned from real-world projects as reusable skills.
+Reusable [GitHub Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-cli-plugins)
+skills distilled from real software, infrastructure, automation, and authoring
+projects.
 
-## Installation
+The repository supports two installation styles:
 
-From a terminal:
+- **Aggregate plugin** — install every skill with one command.
+- **Focused marketplace plugins** — install only the subject areas you use.
 
-```bash
+All skills are public-facing and live in independently versioned, self-contained
+plugins under `.github/plugin/`.
+
+## Quick start
+
+Install the aggregate plugin directly:
+
+```text
 copilot plugin install shmuelie/shmuelie-skills
 ```
 
-Or from inside a Copilot CLI session:
+Verify it:
 
-```
-/plugin install shmuelie/shmuelie-skills
-```
-
-Verify the plugin loaded:
-
-```
-/plugin list
+```text
+copilot plugin list
 ```
 
-Check available skills:
+Inside an interactive Copilot CLI session:
 
-```
+```text
 /skills list
 ```
 
-## Focused plugins
+Plugins are installed per environment. Repeat installation inside WSL, SSH
+hosts, containers, or other remote environments where Copilot CLI runs.
 
-The repository is also a Copilot CLI marketplace. Install only the areas you need:
+## Install focused plugins
 
-| Plugin | Description |
-|---|---|
-| `shmuelie-copilot` | Copilot CLI sessions, reports, playbooks, and plugin authoring |
-| `shmuelie-devenv` | PowerShell, shell, deployment, profile, and local MCP server engineering |
-| `shmuelie-authoring` | RFC-style documents and readability analysis |
-| `shmuelie-dotnet` | .NET, C# interop, Roslyn, WinUI 3, MSIX, and application assets |
-| `shmuelie-systems` | Embedded C++, homelab infrastructure, and Qualcomm AI accelerators |
-| `shmuelie-typescript` | TypeScript CLI architecture and runtime patterns |
+Register this repository as a marketplace once:
 
 ```text
 copilot plugin marketplace add shmuelie/shmuelie-skills
+copilot plugin marketplace browse shmuelie-skills
+```
+
+Install one or more focused plugins:
+
+```text
 copilot plugin install shmuelie-copilot@shmuelie-skills
+copilot plugin install shmuelie-dotnet@shmuelie-skills
 ```
 
-> **Note:** Plugins are installed per-environment. If you use Copilot CLI in WSL, SSH, or remote sessions, you'll need to install the plugin in each environment separately.
+### Plugin catalog
 
-## Skills
+| Plugin | Skills | Best for |
+|---|---:|---|
+| [`shmuelie-copilot`](.github/plugin/shmuelie-copilot/README.md) | 5 | Copilot sessions, reports, playbooks, and plugin authoring |
+| [`shmuelie-devenv`](.github/plugin/shmuelie-devenv/README.md) | 5 | PowerShell, shell, deployment, profiles, and local MCP servers |
+| [`shmuelie-authoring`](.github/plugin/shmuelie-authoring/README.md) | 2 | RFC-style specifications and readability analysis |
+| [`shmuelie-dotnet`](.github/plugin/shmuelie-dotnet/README.md) | 6 | .NET, C# interop, Roslyn, WinUI 3, MSIX, and application assets |
+| [`shmuelie-systems`](.github/plugin/shmuelie-systems/README.md) | 3 | Embedded C++, homelab infrastructure, and AI accelerators |
+| [`shmuelie-typescript`](.github/plugin/shmuelie-typescript/README.md) | 1 | Reliable TypeScript and Node.js command-line applications |
 
-| Skill | Description |
-|-------|-------------|
-| **winui3-msix** | WinUI 3 data binding pitfalls (`{x:Bind}` vs `{Binding}` vs `[Bindable]`), MSIX packaging (`EnableMsixTooling`, manifest requirements, loose-file registration), WinAppSDK test project architecture, and DI patterns |
-| **csharp-interop** | CsWin32 setup and `[GeneratedComInterface]` COM (build-task mode, in-memory generation), COM server/class-factory (`DllGetClassObject`, `ComInterfaceMarshaller`), shell icon handlers (`CreateIconFromResourceEx`), native hosting via DNNE/nethost, `LibraryImport` marshalling, ConPTY HPCON calling convention bug, `NativeLibrary.SetDllImportResolver`, Native AOT + trimming, VT escape sequence parsing, IPC message patterns, and plugin path security |
-| **dotnet-project-init** | `Directory.Build.props` centralized config, `global.json` test runner setup for .NET 10+, `.sln`→`.slnx` migration, mixed C#/C++ toolset modernization (v143→v145, CppWinRT 3.0), NuGet `ExcludeAssets` patterns, GitHub Actions CI workflows for .NET and MSIX, `copilot-instructions.md` templates, [Keep a Changelog](https://keepachangelog.com/) format, and [Semantic Versioning](https://semver.org/) |
-| **deploy-scripts** | `Deploy.ps1` patterns — MSBuild auto-detection via `vswhere`, architecture detection, AppX loose-file layout assembly, `Add-AppxPackage -Register`, `WinAppDeployCmd` remote deployment, and ADB for Android |
-| **typescript-cli** | Process pool management, atomic cache writes (`.tmp` + rename), cache versioning with migration, adaptive rate limiting, SIGINT graceful shutdown, multi-tier file matching, Windows `MAX_PATH` handling, and `??` vs `\|\|` pitfalls |
-| **embedded-cpp** | Buildroot external tree for MIPS cross-compilation, CMake presets, binary size optimization (`-fno-rtti`, `-fno-unwind-tables`, UPX, libstdc++ `--enable-clocale=generic`/`--disable-libstdcxx-verbose`), C++-standard-vs-libc decoupling, long-run leak diagnosis with a host valgrind harness, `FetchContent`, Catch2 testing, C++20 conventions, and MQTT HA auto-discovery (QoS 0 retained) |
-| **shell-wsl** | Shell script bugs (`exit` vs `return`, variable quoting, `mkdir -p`), `set -euo pipefail`, WSL systemd detection, `TERM=xterm-256color` for progress indicators, APT troubleshooting, one-connection `tar`-over-SSH deployment, version-aware updaters (`--version` vs GitHub tags), output quieting (`apt-get -qq`), embedded device deployment (`cfgmtd`, symlink config), and Rust/Cargo clippy patterns |
-| **powershell-scripting** | Idiomatic PowerShell for destructive/bulk scripts — `SupportsShouldProcess` + `ConfirmImpact`, native `-WhatIf`/`-Confirm` instead of custom `-Execute`/typed-`yes` gates, per-operation `$PSCmdlet.ShouldProcess`, and preview-then-apply verification |
-| **homelab-infra** | Proxmox NVIDIA GPU passthrough to LXC containers (driver matching, `lxc.cgroup2`, `pct push/exec`, `proxmox-boot-tool refresh`), Home Assistant dashboard YAML and Proxmox entity naming, Jellyfin plugin provider architecture, and ComfyUI custom node development |
-| **qualcomm-aic** | Qualcomm Cloud AI 100 NPU — SDK installation and upgrades, GLIBCXX RUNPATH conflict fix, ONNX→QPC compilation pipeline, SD model type detection (safetensors keys vs file size), LoRA auto-activation control, job ETA, and SD WebUI compatible API |
-| **roslyn-sourcegen** | Roslyn incremental source generators (`IIncrementalGenerator`), equatable pipeline models with `EquatableArray<T>`, `ForAttributeWithMetadataName`, testing with `CSharpGeneratorDriver`, analyzer diagnostic patterns, NuGet packaging layout, nested type handling, and common pitfalls |
-| **icon-assets** | Application and NuGet package icon creation — MSIX visual asset sets (sizes, naming, altform-unplated), NuGet `PackageIcon` wiring, favicons, Fluent/Material design style guidelines, and SVG-to-PNG/ICO generation approaches |
-| **msix-store-submission** | Microsoft Store submission for any MSIX app — Partner Center identity alignment, signing config, self-contained packaging with framework dependency stripping, 4-part versioning, solution platform locking, and CI/CD workflow |
-| **copilot-playbook** | Generate a teaching guide for effective Copilot CLI workflows from real session history |
-| **copilot-session-management** | Diagnose, repair, merge, and manage Copilot CLI sessions and plugins |
-| **copilot-session-report** | Generate a detailed report for a Copilot CLI session |
-| **copilot-usage-report** | Analyze prompting and usage patterns across Copilot CLI sessions |
-| **plugin-authoring** | Author Copilot CLI plugins and marketplaces |
-| **powershell-profile** | PowerShell profile, PSReadLine, prompt, and worktree-prediction engineering |
-| **local-mcp-server-development** | Build local .NET MCP servers for desktop application automation |
-| **ietf-rfc-authoring** | Produce RFC-style specifications with kramdown-rfc |
-| **writing-level-analysis** | Measure Flesch-Kincaid and related readability metrics for user-provided or locally authored text |
+The aggregate `shmuelie-skills` plugin references all six focused skill
+directories. Each skill still has exactly one focused owning plugin.
 
-## Project Structure
+## Manage installations
 
+```text
+copilot plugin list
+copilot plugin update plugin-name
+copilot plugin update --all
+copilot plugin uninstall plugin-name
+
+copilot plugin marketplace list
+copilot plugin marketplace update shmuelie-skills
+copilot plugin marketplace remove shmuelie-skills
 ```
+
+After changing a locally cloned plugin, reinstall it before testing so Copilot
+CLI acquires the updated files.
+
+## Skill catalog
+
+### shmuelie-copilot
+
+| Skill | What it covers |
+|---|---|
+| [`copilot-playbook`](.github/plugin/shmuelie-copilot/skills/copilot-playbook/SKILL.md) | Generate a teaching guide from real Copilot usage patterns and prompts |
+| [`copilot-session-management`](.github/plugin/shmuelie-copilot/skills/copilot-session-management/SKILL.md) | Diagnose and safely repair sessions; manage plugins, marketplaces, and MCP configuration |
+| [`copilot-session-report`](.github/plugin/shmuelie-copilot/skills/copilot-session-report/SKILL.md) | Produce a detailed narrative and tool report for one session |
+| [`copilot-usage-report`](.github/plugin/shmuelie-copilot/skills/copilot-usage-report/SKILL.md) | Analyze prompting style, session shape, timing, and technical patterns |
+| [`plugin-authoring`](.github/plugin/shmuelie-copilot/skills/plugin-authoring/SKILL.md) | Author single plugins and independently versioned multi-plugin marketplaces |
+
+### shmuelie-devenv
+
+| Skill | What it covers |
+|---|---|
+| [`deploy-scripts`](.github/plugin/shmuelie-devenv/skills/deploy-scripts/SKILL.md) | Build discovery, architecture selection, AppX deployment, remote Windows deployment, and ADB |
+| [`local-mcp-server-development`](.github/plugin/shmuelie-devenv/skills/local-mcp-server-development/SKILL.md) | Local .NET MCP servers that automate desktop applications through COM and WinRT |
+| [`powershell-profile`](.github/plugin/shmuelie-devenv/skills/powershell-profile/SKILL.md) | Profile structure, PSReadLine, prompts, worktree prediction, and terminal recovery |
+| [`powershell-scripting`](.github/plugin/shmuelie-devenv/skills/powershell-scripting/SKILL.md) | Safe destructive and bulk scripts with `ShouldProcess`, `-WhatIf`, and pipeline-friendly output |
+| [`shell-wsl`](.github/plugin/shmuelie-devenv/skills/shell-wsl/SKILL.md) | Reliable shell scripts, WSL behavior, SSH deployment, package management, and Cargo workflows |
+
+### shmuelie-authoring
+
+| Skill | What it covers |
+|---|---|
+| [`ietf-rfc-authoring`](.github/plugin/shmuelie-authoring/skills/ietf-rfc-authoring/SKILL.md) | RFC-style structure, BCP 14 terminology, ABNF, kramdown-rfc, and xml2rfc |
+| [`writing-level-analysis`](.github/plugin/shmuelie-authoring/skills/writing-level-analysis/SKILL.md) | Flesch-Kincaid and related readability metrics for user-provided or local text |
+
+### shmuelie-dotnet
+
+| Skill | What it covers |
+|---|---|
+| [`csharp-interop`](.github/plugin/shmuelie-dotnet/skills/csharp-interop/SKILL.md) | COM, CsWin32, P/Invoke, Native AOT, native hosting, shell integration, and IPC |
+| [`dotnet-project-init`](.github/plugin/shmuelie-dotnet/skills/dotnet-project-init/SKILL.md) | Repository setup, centralized build properties, solutions, test runners, CI, and packaging |
+| [`icon-assets`](.github/plugin/shmuelie-dotnet/skills/icon-assets/SKILL.md) | Application, MSIX, NuGet, favicon, SVG, PNG, and ICO asset generation |
+| [`msix-store-submission`](.github/plugin/shmuelie-dotnet/skills/msix-store-submission/SKILL.md) | Partner Center identity, signing, self-contained packaging, versions, and CI |
+| [`roslyn-sourcegen`](.github/plugin/shmuelie-dotnet/skills/roslyn-sourcegen/SKILL.md) | Incremental generators, analyzer diagnostics, pipeline models, tests, and NuGet layout |
+| [`winui3-msix`](.github/plugin/shmuelie-dotnet/skills/winui3-msix/SKILL.md) | WinUI 3 binding, packaging, loose registration, testing, and dependency injection |
+
+### shmuelie-systems
+
+| Skill | What it covers |
+|---|---|
+| [`embedded-cpp`](.github/plugin/shmuelie-systems/skills/embedded-cpp/SKILL.md) | Buildroot, cross-compilation, CMake, binary size, compatibility, testing, and MQTT |
+| [`homelab-infra`](.github/plugin/shmuelie-systems/skills/homelab-infra/SKILL.md) | Proxmox, GPU passthrough, Home Assistant, Jellyfin, and ComfyUI |
+| [`qualcomm-aic`](.github/plugin/shmuelie-systems/skills/qualcomm-aic/SKILL.md) | Qualcomm Cloud AI 100 SDK, QPC compilation, model detection, and inference APIs |
+
+### shmuelie-typescript
+
+| Skill | What it covers |
+|---|---|
+| [`typescript-cli`](.github/plugin/shmuelie-typescript/skills/typescript-cli/SKILL.md) | Process pools, atomic caches, rate limiting, graceful shutdown, file matching, and Windows paths |
+
+## How skills activate
+
+Copilot CLI uses each skill's frontmatter `description` as its discovery surface.
+Descriptions include capability terms and trigger phrases so the relevant skill
+is loaded automatically when a request matches.
+
+You can also name a skill explicitly:
+
+```text
+Use the powershell-scripting skill to review this deployment script.
+```
+
+A skill supplies domain context and workflow guidance. It does not install the
+external tools it documents; prerequisites remain the responsibility of the
+project or environment using the skill.
+
+## Repository structure
+
+```text
 shmuelie-skills/
-├── plugin.json                        # Plugin manifest
-├── CHANGELOG.md                       # Version history
-├── .github/
-│   ├── copilot-instructions.md        # Guides skill sweep process
-│   └── plugin/
-│       ├── marketplace.json            # Multi-plugin marketplace definition
-│       └── shmuelie-*/
-│           ├── plugin.json              # Independently versioned plugin manifest
-│           ├── README.md                # Plugin-specific catalog
-│           └── skills/<name>/SKILL.md   # Skills owned by this plugin
-└── README.md
+├── plugin.json
+├── CHANGELOG.md
+├── README.md
+├── docs/
+│   ├── index.html
+│   ├── installation.html
+│   ├── plugins.html
+│   ├── contributing.html
+│   └── styles.css
+├── scripts/
+│   └── Test-Marketplace.ps1
+└── .github/
+    ├── copilot-instructions.md
+    ├── workflows/
+    └── plugin/
+        ├── marketplace.json
+        └── shmuelie-*/
+            ├── plugin.json
+            ├── README.md
+            └── skills/<skill>/SKILL.md
 ```
 
-## Updating Skills from New Sessions
+## Versioning
 
-Skills are extracted from Copilot CLI and VS Code chat sessions. To sweep for new learnings periodically, open a Copilot CLI session in this repo and run:
+- Each focused plugin follows semantic versioning independently.
+- A focused plugin's `plugin.json` version matches its marketplace entry.
+- The root aggregate plugin is versioned independently from focused plugins.
+- Marketplace `metadata.version` changes only when catalog composition or
+  marketplace behavior changes.
+- All notable changes are recorded in [`CHANGELOG.md`](CHANGELOG.md).
 
-```
-Scan for new learnings from recent sessions and update skills
-```
+## Contributing a skill
 
-Copilot will query the session store for sessions since the last sweep, extract new patterns, update existing `SKILL.md` files or create new ones, bump the version, and update the changelog.
+1. Choose the focused plugin that owns the topic.
+2. Create `.github/plugin/<plugin>/skills/<skill-name>/SKILL.md`.
+3. Add valid YAML frontmatter with a kebab-case name and specific description.
+4. Add implementation patterns, examples, failure modes, and error messages.
+5. Update the owning plugin README and this catalog.
+6. Bump the owning plugin manifest and matching marketplace version.
+7. Bump the aggregate plugin when its installed skill content changes.
+8. Update the changelog.
+9. Run:
 
-A `.github/copilot-instructions.md` file is included to guide this process automatically.
-
-## Adding a New Skill
-
-1. Choose the focused plugin that owns the topic, then create
-   `.github/plugin/<plugin>/skills/<skill-name>/SKILL.md` with YAML frontmatter
-   and markdown body:
-
-   ```markdown
-   ---
-   name: my-skill
-   description: Brief description of what this skill covers
-   ---
-
-   Context instructions for when this skill is active.
-
-   # Domain Knowledge
-
-   ## Topic One
-   - Key fact or pattern
-   - Another important detail
+   ```powershell
+   .\scripts\Test-Marketplace.ps1
    ```
 
-2. Reinstall the plugin to pick up changes:
+Create a new focused plugin when no existing plugin is a coherent fit. Root-level
+skill ownership is intentionally not supported.
 
-   ```bash
-   copilot plugin install ./shmuelie-skills
-   ```
+## Documentation site
 
-## Sources
+The static site source is under [`docs/`](docs/). Its Pages workflow remains
+manual while the repository is private and can be enabled when the repository is
+ready for public release.
 
-Learnings extracted from 84+ [Copilot CLI](https://docs.github.com/en/copilot/concepts/agents/about-copilot-cli) sessions and [VS Code Copilot Chat](https://docs.github.com/en/copilot/using-github-copilot/copilot-chat/using-github-copilot-chat-in-your-ide) sessions across 22+ repositories including:
+## Source and scope
 
-- **C# / WinUI 3**: [windows-tmux](https://github.com/shmuelie/windows-tmux), [modern-meeter](https://github.com/shmuelie/modern-meeter), [modern-proxy](https://github.com/shmuelie/modern-proxy), [matroska-full-support](https://github.com/shmuelie/matroska-full-support), [Shmuelie.WinRTServer](https://github.com/shmuelie/Shmuelie.WinRTServer), [Shmuelie.JsonView](https://github.com/shmuelie/Shmuelie.JsonView), [Shmuelie.Jellyfin](https://github.com/shmuelie/Shmuelie.Jellyfin)
-- **TypeScript / Node**: [deviantart-helpers](https://github.com/shmuelie/deviantart-helpers), [kemono-helpers](https://github.com/shmuelie/kemono-helpers), [easy-shul-api](https://github.com/shmuelie/easy-shul-api), [shmuelie.englard.net](https://github.com/shmuelie/shmuelie.englard.net), [user-scripts](https://github.com/shmuelie/user-scripts)
-- **Embedded / IoT**: [mfi-custom-code](https://github.com/shmuelie/mfi-custom-code), [mfi-env](https://github.com/shmuelie/mfi-env), SDK.UBNT.v5.3.3
-- **Mobile**: [android-notification-forwarder](https://github.com/shmuelie/android-notification-forwarder)
-- **Homelab**: [ha-config](https://github.com/shmuelie/ha-config), Proxmox PVE-Z8, Jellyfin, ComfyUI
-- **AI / ML**: [aic-server](https://github.com/shmuelie/aic-server) (Qualcomm Cloud AI 100)
-- **Other**: [WSL-Hello-sudo](https://github.com/nullpo-head/WSL-Hello-sudo), [jellyfin-youtube-metadata-plugin](https://github.com/shmuelie/jellyfin-youtube-metadata-plugin)
+The skills come from repeated patterns encountered in personal and open-source
+projects across .NET, Windows applications, TypeScript, embedded systems,
+homelab infrastructure, and developer tooling.
+
+Public skills must not include credentials, private URLs, organization-specific
+systems, or dependencies unavailable to public Copilot CLI users.

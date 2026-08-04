@@ -1,19 +1,62 @@
 # shmuelie-copilot
 
-Copilot CLI session reporting, usage analysis, playbook generation, session
-management, and plugin authoring.
+Copilot CLI workflow skills for understanding sessions, measuring usage,
+documenting work, teaching effective prompting patterns, and publishing plugins.
+
+**Version:** 0.2.1
+
+**Catalog:** [`shmuelie-skills`](../../../README.md)
+
+**Changelog:** [`CHANGELOG.md`](../../../CHANGELOG.md)
+
+## Install
 
 ```text
 copilot plugin marketplace add shmuelie/shmuelie-skills
 copilot plugin install shmuelie-copilot@shmuelie-skills
 ```
 
+Update or remove:
+
+```text
+copilot plugin update shmuelie-copilot
+copilot plugin uninstall shmuelie-copilot
+```
+
+## When to install
+
+Install this plugin when you regularly use Copilot CLI and want repeatable
+workflows around session recovery, reporting, self-analysis, or plugin
+distribution. It is useful to both plugin consumers and marketplace authors.
+
 ## Skills
 
-| Skill | Purpose |
+| Skill | Use it for |
 |---|---|
-| `copilot-playbook` | Generate a teaching guide from real session history |
-| `copilot-session-management` | Diagnose, repair, merge, and manage Copilot sessions and plugins |
-| `copilot-session-report` | Produce a detailed report for one session |
-| `copilot-usage-report` | Analyze prompting and usage patterns across sessions |
-| `plugin-authoring` | Build Copilot CLI plugins and marketplaces |
+| [`copilot-playbook`](skills/copilot-playbook/SKILL.md) | Turn real sessions into a teaching guide with reusable prompting patterns |
+| [`copilot-session-management`](skills/copilot-session-management/SKILL.md) | Diagnose resume failures, repair local session files, and manage public plugins and MCP configuration |
+| [`copilot-session-report`](skills/copilot-session-report/SKILL.md) | Produce a structured report covering intent, tools, files, testing, learnings, and pending work |
+| [`copilot-usage-report`](skills/copilot-usage-report/SKILL.md) | Measure session shape, timing, prompting style, models, and technical patterns |
+| [`plugin-authoring`](skills/plugin-authoring/SKILL.md) | Create single plugins or independently versioned public marketplaces |
+
+## Example requests
+
+```text
+Generate a report for this Copilot session.
+Analyze how I have been using Copilot CLI over the last month.
+Create a playbook that teaches my prompting style.
+Diagnose why this session no longer resumes.
+Package these skills as a Copilot CLI marketplace.
+```
+
+## Data and privacy
+
+Reporting skills analyze only session history and files available in the current
+environment. Review generated reports before sharing them because session text
+may contain repository paths, prompts, or project-specific details.
+
+## Requirements
+
+- GitHub Copilot CLI
+- Session history for reporting and playbook generation
+- Optional local MCP configuration for tool inventory

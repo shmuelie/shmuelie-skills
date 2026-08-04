@@ -23,6 +23,16 @@ foreach ($entry in $marketplace.plugins) {
             throw "Missing skills path '$skillsPath' for $($entry.name)."
         }
     }
+    if ($entry.source -ne '.') {
+        $readmePath = Join-Path $pluginRoot 'README.md'
+        $readme = Get-Content $readmePath -Raw
+        if ($readme -notmatch '\*\*Version:\*\*\s+([0-9]+\.[0-9]+\.[0-9]+)') {
+            throw "Missing README version for $($entry.name)."
+        }
+        if ($Matches[1] -ne $manifest.version) {
+            throw "README version mismatch for $($entry.name): README $($Matches[1]), manifest $($manifest.version)."
+        }
+    }
 }
 
 foreach ($skill in Get-ChildItem $repoRoot -Recurse -Filter 'SKILL.md' -File) {
@@ -47,4 +57,34 @@ $focusedSkills = Get-ChildItem (Join-Path $repoRoot '.github\plugin') -Directory
 $duplicates = $focusedSkills | Group-Object Name | Where-Object Count -gt 1
 if ($duplicates) {
     throw "Skills must have one focused owner. Duplicates: $($duplicates.Name -join ', ')"
+}
+
+foreach ($page in @('index.html', 'installation.html', 'plugins.html', 'contributing.html', 'styles.css')) {
+    if (-not (Test-Path (Join-Path $repoRoot "docs\$page"))) {
+        throw "Missing documentation site file: docs/$page"
+    }
+}
+
+foreach ($html in Get-ChildItem (Join-Path $repoRoot 'docs') -Filter '*.html') {
+    $content = Get-Content $html.FullName -Raw
+    foreach ($match in [regex]::Matches($content, 'href="([^"]+)"')) {
+        $target = $match.Groups[1].Value
+        if ($target -match '^(?:https?:|mailto:|#)') { continue }
+        $localPath = ($target -split '#', 2)[0]
+        if ($localPath -and -not (Test-Path (Join-Path $html.DirectoryName $localPath))) {
+            throw "Broken local link in $($html.Name): $target"
+        }
+    }
+
+    foreach ($markdown in @((Get-Item (Join-Path $repoRoot 'README.md'))) + @(Get-ChildItem (Join-Path $repoRoot '.github\plugin') -Recurse -Filter 'README.md')) {
+        $content = Get-Content $markdown.FullName -Raw
+        foreach ($match in [regex]::Matches($content, '\[[^\]]+\]\(([^)]+)\)')) {
+            $target = $match.Groups[1].Value
+            if ($target -match '^(?:https?:|mailto:|#)') { continue }
+            $localPath = ($target -split '#', 2)[0]
+            if ($localPath -and -not (Test-Path (Join-Path $markdown.DirectoryName $localPath))) {
+                throw "Broken local link in $($markdown.FullName): $target"
+            }
+        }
+    }
 }

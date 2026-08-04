@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.15.1] - 2026-08-03
+
+### Changed
+- Expanded the root README into a complete installation, plugin-selection,
+  skill-catalog, maintenance, versioning, and contribution guide.
+- Expanded every focused plugin README with requirements, example requests,
+  lifecycle commands, and linked skill documentation.
+- Expanded the static documentation site into installation, plugin catalog,
+  and contribution pages with responsive navigation and styling.
+- Bumped focused plugin patch versions for their shipped documentation updates.
+
 ## [1.15.0] - 2026-08-03
 
 ### Added
@@ -234,7 +245,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.15.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.15.1...HEAD
+[1.15.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.15.0...v1.15.1
 [1.15.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.14.0...v1.15.0
 [1.14.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.13.0...v1.14.0
 [1.13.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.12.0...v1.13.0

@@ -3,22 +3,108 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Public GitHub Copilot CLI skills for software development, infrastructure, automation, and authoring.">
   <title>Shmuelie Copilot Skills</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="index.html">shmuelie-skills</a>
+      <div class="nav-links">
+        <a href="installation.html">Installation</a>
+        <a href="plugins.html">Plugins</a>
+        <a href="contributing.html">Contributing</a>
+        <a href="https://github.com/shmuelie/shmuelie-skills">GitHub</a>
+      </div>
+    </nav>
+  </header>
+
   <main>
-    <h1>Shmuelie Copilot Skills</h1>
-    <p>Reusable GitHub Copilot CLI skills grouped into focused plugins.</p>
-    <section class="grid">
-      <article><h2>shmuelie-copilot</h2><p>Session reports, usage analysis, playbooks, session management, and plugin authoring.</p></article>
-      <article><h2>shmuelie-devenv</h2><p>PowerShell, shell, deployment, profile, and local MCP server engineering.</p></article>
-      <article><h2>shmuelie-authoring</h2><p>RFC-style specifications and readability analysis.</p></article>
-      <article><h2>shmuelie-dotnet</h2><p>.NET, C# interop, Roslyn, WinUI 3, MSIX, and application assets.</p></article>
-      <article><h2>shmuelie-systems</h2><p>Embedded C++, homelab infrastructure, and Qualcomm AI accelerators.</p></article>
-      <article><h2>shmuelie-typescript</h2><p>TypeScript CLI architecture and runtime patterns.</p></article>
+    <section class="hero container">
+      <p class="eyebrow">GitHub Copilot CLI marketplace</p>
+      <h1>Reusable expertise, packaged as focused skills.</h1>
+      <p class="lead">Public skills distilled from real projects across Copilot workflows, developer environments, technical writing, .NET, TypeScript, embedded systems, and infrastructure.</p>
+      <div class="actions">
+        <a class="button primary" href="installation.html">Install skills</a>
+        <a class="button" href="plugins.html">Browse plugins</a>
+      </div>
+      <pre><code>copilot plugin install shmuelie/shmuelie-skills</code></pre>
     </section>
-    <p><a href="https://github.com/shmuelie/shmuelie-skills">Install, source, and full skill catalog</a></p>
+
+    <section class="stats container" aria-label="Marketplace summary">
+      <div><strong>6</strong><span>focused plugins</span></div>
+      <div><strong>22</strong><span>public skills</span></div>
+      <div><strong>1</strong><span>aggregate install</span></div>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading">
+        <p class="eyebrow">Choose your toolbox</p>
+        <h2>Focused plugins</h2>
+        <p>Install the complete aggregate plugin or select only the subject areas relevant to your work.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3><a href="plugins.html#copilot">shmuelie-copilot</a></h3>
+          <p>Session management, reports, usage analysis, playbooks, and plugin authoring.</p>
+          <span class="pill">5 skills</span>
+        </article>
+        <article class="card">
+          <h3><a href="plugins.html#devenv">shmuelie-devenv</a></h3>
+          <p>PowerShell, shell, deployment, profiles, and local MCP server engineering.</p>
+          <span class="pill">5 skills</span>
+        </article>
+        <article class="card">
+          <h3><a href="plugins.html#authoring">shmuelie-authoring</a></h3>
+          <p>RFC-style specifications and evidence-based readability analysis.</p>
+          <span class="pill">2 skills</span>
+        </article>
+        <article class="card">
+          <h3><a href="plugins.html#dotnet">shmuelie-dotnet</a></h3>
+          <p>.NET, C# interop, Roslyn, WinUI 3, MSIX, and application assets.</p>
+          <span class="pill">6 skills</span>
+        </article>
+        <article class="card">
+          <h3><a href="plugins.html#systems">shmuelie-systems</a></h3>
+          <p>Embedded C++, homelab infrastructure, and Qualcomm AI accelerators.</p>
+          <span class="pill">3 skills</span>
+        </article>
+        <article class="card">
+          <h3><a href="plugins.html#typescript">shmuelie-typescript</a></h3>
+          <p>Reliable TypeScript CLI architecture and runtime patterns.</p>
+          <span class="pill">1 skill</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section muted">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">Designed for discovery</p>
+          <h2>Skills activate when the work matches.</h2>
+          <p>Each skill describes its capabilities and trigger phrases in YAML frontmatter. Copilot loads the relevant domain knowledge automatically, or you can request a skill by name.</p>
+        </div>
+        <pre><code>Use the powershell-scripting skill
+to review this cleanup command.</code></pre>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-heading">
+        <p class="eyebrow">Public by design</p>
+        <h2>Portable guidance without private dependencies.</h2>
+      </div>
+      <p>The marketplace excludes credentials, private endpoints, organization-only systems, and tooling unavailable to public Copilot CLI users. Every skill has one focused owner and every plugin can be installed independently.</p>
+      <div class="actions">
+        <a class="button" href="contributing.html">Contribution guide</a>
+        <a class="button" href="https://github.com/shmuelie/shmuelie-skills/blob/main/CHANGELOG.md">Changelog</a>
+      </div>
+    </section>
   </main>
+
+  <footer>
+    <div class="container">Maintained by <a href="https://github.com/shmuelie">Shmueli Englard</a>.</div>
+  </footer>
 </body>
 </html>

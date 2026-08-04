@@ -20,6 +20,9 @@ remains at 1.12.0 and the focused plugins at 0.1.0 until a release is cut.
   history and required by marketplace validation.
 - A Markdown documentation site under `docs/` with a Jekyll build, plus a
   public-only marketplace validation script.
+- A content/PII scan in `scripts/Test-Marketplace.ps1` that blocks internal
+  Microsoft tooling, corporate email, and personal-infrastructure host names in
+  public content.
 
 ### Changed
 - Restructured into a multi-plugin marketplace: every skill now lives in a
@@ -35,6 +38,8 @@ remains at 1.12.0 and the focused plugins at 0.1.0 until a release is cut.
 ### Removed
 - Removed the notification plugin, whose plugin-level hook injection depended on
   tooling unavailable to public Copilot CLI users.
+- Removed personal-infrastructure host names from `copilot-instructions.md` and
+  the historical changelog provenance notes.
 
 ## [1.12.0] - 2026-08-02
 
@@ -71,7 +76,7 @@ remains at 1.12.0 and the focused plugins at 0.1.0 until a release is cut.
 - msix-store-submission skill: installer parity section (file-type associations, App Paths,
   context menus, PATH via execution aliases when migrating from Inno Setup/MSI) and
   VM testing section (signing, -AllowUnsigned, Developer Mode, Insider CLSID)
-- Source: Vod2Pod Rust build failure session + Packaged VS Code MSIX session
+- Source: a Rust build-failure session and a packaged VS Code MSIX session
 
 ## [1.10.2] - 2026-05-31
 
@@ -132,7 +137,7 @@ remains at 1.12.0 and the focused plugins at 0.1.0 until a release is cut.
 ## [1.7.1] - 2026-03-26
 
 ### Changed
-- Added Shmuelis-MBP to known SSH hosts for session sweeps
+- Expanded the known SSH hosts used for session sweeps
 - Scanned 2 Mac sessions (macOS build server setup) — learnings noted but too
   niche for a standalone skill; will consolidate if more macOS/CI sessions emerge
 
@@ -170,7 +175,7 @@ remains at 1.12.0 and the focused plugins at 0.1.0 until a release is cut.
 - Expanded VS Code session discovery in copilot-instructions (4 format types, remote host extraction)
 
 ### Changed
-- Updated homelab-infra skill with learnings from 8 PVE-Z8, 6 Jellyfin, and 2 ComfyUI remote sessions
+- Updated homelab-infra skill with learnings from Proxmox, Jellyfin, and ComfyUI remote sessions
 
 ## [1.4.0] - 2026-03-22
 
@@ -178,7 +183,7 @@ remains at 1.12.0 and the focused plugins at 0.1.0 until a release is cut.
 - New **qualcomm-aic** skill: Qualcomm Cloud AI 100 NPU development — SDK management,
   GLIBCXX RUNPATH conflict, ONNX→QPC compilation, SD model type detection via safetensors
   keys, LoRA auto-activation control, job ETA, and SD WebUI API patterns
-- Source: 9 aic-server sessions from Qualcomm-Cloud-AI SSH host
+- Source: Qualcomm Cloud AI 100 development sessions
 
 ## [1.3.1] - 2026-03-22
 

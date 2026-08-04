@@ -19,10 +19,7 @@ remains at 1.12.0 and the focused plugins at 0.1.0 until a release is cut.
 - Per-skill `CHANGELOG.md` in every skill directory, seeded from repository
   history and required by marketplace validation.
 - A Markdown documentation site under `docs/` with a Jekyll build, plus a
-  public-only marketplace validation script.
-- A content/PII scan in `scripts/Test-Marketplace.ps1` that blocks internal
-  Microsoft tooling, corporate email, and personal-infrastructure host names in
-  public content.
+  marketplace validation script.
 
 ### Changed
 - Restructured into a multi-plugin marketplace: every skill now lives in a
@@ -223,23 +220,3 @@ remains at 1.12.0 and the focused plugins at 0.1.0 until a release is cut.
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.12.0...HEAD
-[1.12.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.11.0...v1.12.0
-[1.11.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.2...v1.11.0
-[1.10.2]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.1...v1.10.2
-[1.10.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.0...v1.10.1
-[1.10.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.9.0...v1.10.0
-[1.9.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.8.0...v1.9.0
-[1.8.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.2...v1.8.0
-[1.7.2]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.1...v1.7.2
-[1.7.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.7.0...v1.7.1
-[1.7.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.6.0...v1.7.0
-[1.6.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.5.1...v1.6.0
-[1.5.1]:https://github.com/shmuelie/shmuelie-skills/compare/v1.5.0...v1.5.1
-[1.5.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.4.0...v1.5.0
-[1.4.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.3.1...v1.4.0
-[1.3.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.3.0...v1.3.1
-[1.3.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.2.0...v1.3.0
-[1.2.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.1.0...v1.2.0
-[1.1.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/shmuelie/shmuelie-skills/releases/tag/v1.0.0

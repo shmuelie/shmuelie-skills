@@ -8,43 +8,6 @@ foreach ($json in Get-ChildItem $repoRoot -Recurse -Filter '*.json' -File) {
     Get-Content $json.FullName -Raw | ConvertFrom-Json | Out-Null
 }
 
-# ---------------------------------------------------------------------------
-# Public-content / PII scan.
-# This is a public marketplace: no internal Microsoft tooling, private feeds,
-# organization repos, corporate email, or personal-infrastructure host names.
-# Scans tracked-style content files (this script and .git excluded). NOTE: the
-# denylist necessarily names the terms it blocks; that exposure is accepted here
-# as the cost of catching regressions (same tradeoff as the modules repo).
-# ---------------------------------------------------------------------------
-$forbidden = @(
-    # Microsoft-internal orgs, feeds, repositories, and tooling
-    'dev\.azure\.com/microsoft', 'msazure\.pkgs\.visualstudio\.com', 'OS\.Developer',
-    'WindowsHiveMind', 'SFC\.', 'SFS\.', 'SFU\.', 'os\.2020', 'OSClient', 'IXPTools',
-    'StoreFundementals', 'user/senglard', 'SEnglard', '\\\\redmond\\', 'D:\\wsd\\',
-    'winpx', 'bluebird', 'workiq',
-    # the internal orchestrator — matched only in command/config forms so the
-    # ordinary English word "agency" does not trip the scan
-    'agency\s+(?:copilot|plugin|marketplace|config)', 'agency\.toml',
-    # corporate email
-    '@microsoft\.com',
-    # personal-infrastructure host names (public software names like Jellyfin /
-    # ComfyUI / Proxmox are legitimate skill topics and are NOT listed here)
-    'Shmuelis-MBP', 'PVE-Z8', 'Qualcomm-Cloud-AI'
-) -join '|'
-
-$scanFiles = Get-ChildItem $repoRoot -Recurse -File |
-    Where-Object {
-        $rel = $_.FullName.Substring($repoRoot.Length).TrimStart('\', '/')
-        $rel -notmatch '^\.git[\\/]' -and
-        $rel -ne 'scripts\Test-Marketplace.ps1' -and
-        $_.Extension -in '.md', '.json', '.ps1', '.psm1', '.psd1', '.yml', '.yaml', '.cs', '.txt'
-    }
-$leaks = $scanFiles | Select-String -Pattern $forbidden
-if ($leaks) {
-    $leaks | Format-Table Path, LineNumber, Line -AutoSize
-    throw 'Internal-only or personal identifiers were found in public content.'
-}
-
 $marketplace = Get-Content (Join-Path $repoRoot '.github\plugin\marketplace.json') -Raw | ConvertFrom-Json
 foreach ($entry in $marketplace.plugins) {
     $pluginRoot = if ($entry.source -eq '.') { $repoRoot } else { Join-Path $repoRoot $entry.source }

@@ -1,13 +1,13 @@
 {
   "name": "shmuelie-devenv",
-  "description": "PowerShell profile engineering and local .NET MCP server development.",
+  "description": "PowerShell, shell, deployment, profile, and local .NET MCP server engineering.",
   "readme": "./README.md",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "Shmueli Englard",
     "url": "https://github.com/shmuelie/shmuelie-skills"
   },
   "license": "MIT",
-  "keywords": ["powershell", "profile", "psreadline", "mcp", "dotnet"],
+  "keywords": ["powershell", "shell", "wsl", "deployment", "profile", "psreadline", "mcp"],
   "skills": ["./skills/"]
 }

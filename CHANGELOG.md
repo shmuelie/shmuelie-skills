@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.15.0] - 2026-08-03
+
+### Added
+- New `shmuelie-dotnet`, `shmuelie-systems`, and `shmuelie-typescript` focused plugins.
+
+### Changed
+- Moved every formerly root-owned skill into a self-contained focused plugin.
+- Expanded `shmuelie-devenv` with deployment, PowerShell scripting, and shell/WSL skills.
+- Updated the aggregate plugin to load only focused plugin skill directories.
+- Updated focused-plugin documentation and marketplace metadata to 2.2.0.
+
+### Removed
+- Removed the root `skills/` ownership model.
+
 ## [1.14.0] - 2026-08-03
 
 ### Changed
@@ -220,7 +234,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.12.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.15.0...HEAD
+[1.15.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.14.0...v1.15.0
+[1.14.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.13.0...v1.14.0
+[1.13.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.12.0...v1.13.0
 [1.12.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.2...v1.11.0
 [1.10.2]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.1...v1.10.2

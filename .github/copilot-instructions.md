@@ -2,7 +2,9 @@
 
 ## Project Overview
 
-This is a Copilot CLI plugin that packages domain knowledge as reusable skills in `skills/*/SKILL.md` files. The plugin is installed via `copilot plugin install shmuelie/shmuelie-skills`.
+This is a Copilot CLI multi-plugin marketplace. Skills live only under
+`.github/plugin/<plugin>/skills/<skill>/SKILL.md`. The root plugin aggregates all
+focused plugin skill directories for `copilot plugin install shmuelie/shmuelie-skills`.
 
 ## Scanning for New Learnings
 
@@ -66,12 +68,16 @@ Known SSH hosts with Copilot sessions: Qualcomm-Cloud-AI, PVE-Z8, Jellyfin, Comf
 
 ### Step 5: Compare against existing skills
 
-Review the `skills/` directory to identify:
+Review `.github/plugin/*/skills/` to identify:
 - New patterns not yet covered by any skill
 - Updates or corrections to existing skill content
 - Entirely new topic areas that warrant a new skill
 
 ### Step 6: Update or create SKILL.md files
+
+Choose the focused plugin that owns the topic. Create a new focused plugin when
+no existing plugin is a coherent fit; do not put skills in a root `skills/`
+directory.
 
 Each SKILL.md has:
 ```markdown
@@ -109,7 +115,8 @@ Following Keep a Changelog format:
 ### Step 9: Update README.md if needed
 
 Update if:
-- A new skill was added (update the Skills table and Project Structure)
+- A new skill or plugin was added (update the Skills table, focused plugin table,
+  owning plugin README, and Project Structure)
 - Source repos changed
 
 ### Step 10: Commit and push
@@ -118,7 +125,9 @@ With a descriptive message.
 
 ## Conventions
 
-- Skills are markdown files at `skills/<name>/SKILL.md`
+- Skills are markdown files at `.github/plugin/<plugin>/skills/<name>/SKILL.md`
+- Every skill has exactly one focused owning plugin
+- The root aggregate plugin references focused skill directories; it owns no skills directly
 - Each plugin manifest version must match its marketplace entry; focused plugin versions are independent
 - Follow Semantic Versioning for all version bumps
 - Follow Keep a Changelog for CHANGELOG.md

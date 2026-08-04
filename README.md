@@ -35,8 +35,11 @@ The repository is also a Copilot CLI marketplace. Install only the areas you nee
 | Plugin | Description |
 |---|---|
 | `shmuelie-copilot` | Copilot CLI sessions, reports, playbooks, and plugin authoring |
-| `shmuelie-devenv` | PowerShell profile and local MCP server engineering |
+| `shmuelie-devenv` | PowerShell, shell, deployment, profile, and local MCP server engineering |
 | `shmuelie-authoring` | RFC-style documents and readability analysis |
+| `shmuelie-dotnet` | .NET, C# interop, Roslyn, WinUI 3, MSIX, and application assets |
+| `shmuelie-systems` | Embedded C++, homelab infrastructure, and Qualcomm AI accelerators |
+| `shmuelie-typescript` | TypeScript CLI architecture and runtime patterns |
 
 ```text
 copilot plugin marketplace add shmuelie/shmuelie-skills
@@ -82,21 +85,10 @@ shmuelie-skills/
 │   ├── copilot-instructions.md        # Guides skill sweep process
 │   └── plugin/
 │       ├── marketplace.json            # Multi-plugin marketplace definition
-│       └── shmuelie-*/                 # Focused self-contained Copilot plugins
-├── skills/
-│   ├── winui3-msix/SKILL.md
-│   ├── csharp-interop/SKILL.md
-│   ├── dotnet-project-init/SKILL.md
-│   ├── deploy-scripts/SKILL.md
-│   ├── typescript-cli/SKILL.md
-│   ├── embedded-cpp/SKILL.md
-│   ├── shell-wsl/SKILL.md
-│   ├── powershell-scripting/SKILL.md
-│   ├── homelab-infra/SKILL.md
-│   ├── qualcomm-aic/SKILL.md
-│   ├── roslyn-sourcegen/SKILL.md
-│   ├── icon-assets/SKILL.md
-│   └── msix-store-submission/SKILL.md
+│       └── shmuelie-*/
+│           ├── plugin.json              # Independently versioned plugin manifest
+│           ├── README.md                # Plugin-specific catalog
+│           └── skills/<name>/SKILL.md   # Skills owned by this plugin
 └── README.md
 ```
 
@@ -114,7 +106,9 @@ A `.github/copilot-instructions.md` file is included to guide this process autom
 
 ## Adding a New Skill
 
-1. Create `skills/<skill-name>/SKILL.md` with YAML frontmatter and markdown body:
+1. Choose the focused plugin that owns the topic, then create
+   `.github/plugin/<plugin>/skills/<skill-name>/SKILL.md` with YAML frontmatter
+   and markdown body:
 
    ```markdown
    ---

@@ -1,0 +1,13 @@
+{
+  "name": "shmuelie-dotnet",
+  "description": ".NET, C# interop, Roslyn source generation, WinUI 3, MSIX packaging, and application assets.",
+  "readme": "./README.md",
+  "version": "0.1.0",
+  "author": {
+    "name": "Shmueli Englard",
+    "url": "https://github.com/shmuelie/shmuelie-skills"
+  },
+  "license": "MIT",
+  "keywords": ["dotnet", "csharp", "interop", "roslyn", "winui", "msix"],
+  "skills": ["./skills/"]
+}

@@ -28,11 +28,14 @@ Scan my recent Copilot sessions and PowerShell history for new patterns, gotchas
    - Architecture decisions and rationale
    - Recurring command sequences that should be documented
 
-4. **Compare against existing skills** — read each `skills/*/SKILL.md` to check if the learning is already captured. Skip duplicates.
+4. **Compare against existing skills** — read
+   `.github/plugin/*/skills/*/SKILL.md` to check if the learning is already
+   captured. Skip duplicates and identify the focused owning plugin.
 
 5. **Update or create skills** — for each new learning:
    - If it fits an existing skill, add a new section or bullet points
-   - If it's a new domain, create a new `skills/<name>/SKILL.md` with YAML frontmatter
+   - If it's a new domain, choose or create a focused plugin, then create
+     `.github/plugin/<plugin>/skills/<name>/SKILL.md` with YAML frontmatter
    - Include code examples, gotchas, and specific error messages
 
 6. **Bump versions**:

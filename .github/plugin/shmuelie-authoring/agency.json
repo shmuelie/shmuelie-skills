@@ -1,5 +1,0 @@
-{
-  "category": "authoring",
-  "platforms": ["windows", "linux", "macos"],
-  "engines": ["copilot"]
-}

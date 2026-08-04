@@ -30,17 +30,17 @@ Check available skills:
 
 ## Focused plugins
 
-The repository is also an Agency marketplace. Install only the areas you need:
+The repository is also a Copilot CLI marketplace. Install only the areas you need:
 
 | Plugin | Description |
 |---|---|
 | `shmuelie-copilot` | Copilot CLI sessions, reports, playbooks, and plugin authoring |
 | `shmuelie-devenv` | PowerShell profile and local MCP server engineering |
 | `shmuelie-authoring` | RFC-style documents and readability analysis |
-| `shmuelie-notifications` | Windows attention-notification hooks |
 
 ```text
-agency plugin install "market:shmuelie-copilot@https://github.com/shmuelie/shmuelie-skills" --engine copilot
+copilot plugin marketplace add shmuelie/shmuelie-skills
+copilot plugin install shmuelie-copilot@shmuelie-skills
 ```
 
 > **Note:** Plugins are installed per-environment. If you use Copilot CLI in WSL, SSH, or remote sessions, you'll need to install the plugin in each environment separately.
@@ -66,11 +66,11 @@ agency plugin install "market:shmuelie-copilot@https://github.com/shmuelie/shmue
 | **copilot-session-management** | Diagnose, repair, merge, and manage Copilot CLI sessions and plugins |
 | **copilot-session-report** | Generate a detailed report for a Copilot CLI session |
 | **copilot-usage-report** | Analyze prompting and usage patterns across Copilot CLI sessions |
-| **plugin-authoring** | Author Copilot CLI and Agency plugins and marketplaces |
+| **plugin-authoring** | Author Copilot CLI plugins and marketplaces |
 | **powershell-profile** | PowerShell profile, PSReadLine, prompt, and worktree-prediction engineering |
 | **local-mcp-server-development** | Build local .NET MCP servers for desktop application automation |
 | **ietf-rfc-authoring** | Produce RFC-style specifications with kramdown-rfc |
-| **writing-level-analysis** | Measure Flesch-Kincaid and related readability metrics |
+| **writing-level-analysis** | Measure Flesch-Kincaid and related readability metrics for user-provided or locally authored text |
 
 ## Project Structure
 
@@ -82,7 +82,7 @@ shmuelie-skills/
 │   ├── copilot-instructions.md        # Guides skill sweep process
 │   └── plugin/
 │       ├── marketplace.json            # Multi-plugin marketplace definition
-│       └── shmuelie-*/                 # Focused self-contained plugins
+│       └── shmuelie-*/                 # Focused self-contained Copilot plugins
 ├── skills/
 │   ├── winui3-msix/SKILL.md
 │   ├── csharp-interop/SKILL.md

@@ -39,7 +39,7 @@ AND length(COALESCE(user_message, '')) > 5
 ORDER BY turn_index
 ```
 
-### 3. Built-in Tool Call Counts
+### 3. Tool Call Counts
 
 ```sql
 SELECT tool_start_name as tool, COUNT(*) as calls
@@ -63,22 +63,7 @@ AND user_message ILIKE '%skill-context%'
 ORDER BY turn_index
 ```
 
-### 5. MCP Server Tool Calls
-
-MCP tools are prefixed with the server name (e.g., `bluebird-search_code`, `ado-repo_pull_request_read`):
-
-```sql
-SELECT tool_start_name as tool, COUNT(*) as calls
-FROM events
-WHERE session_id = '<session_id>'
-AND type = 'tool.execution_complete'
-AND tool_start_name ILIKE '%-%'
-AND tool_start_name NOT IN ('read_powershell', 'stop_powershell', 'read_agent', 'list_agents', 'write_agent', 'ask_user', 'exit_plan_mode', 'report_intent', 'tool_search_tool_regex', 'web_search', 'web_fetch', 'fetch_copilot_cli_documentation', 'session_store_sql')
-GROUP BY tool_start_name
-ORDER BY calls DESC
-```
-
-### 6. Subagent Invocations
+### 5. Subagent Invocations
 
 ```sql
 SELECT tool_start_name, substr(COALESCE(tool_complete_result_content, ''), 1, 500) as result
@@ -89,7 +74,7 @@ AND tool_start_name = 'task'
 LIMIT 10
 ```
 
-### 7. Files Created/Edited
+### 6. Files Created/Edited
 
 ```sql
 SELECT file_path, tool_name, turn_index
@@ -98,7 +83,7 @@ WHERE session_id = '<session_id>'
 ORDER BY turn_index
 ```
 
-### 8. PR/Commit/Work Item References
+### 7. PR/Commit/Work Item References
 
 ```sql
 SELECT ref_type, ref_value, turn_index
@@ -107,7 +92,7 @@ WHERE session_id = '<session_id>'
 ORDER BY turn_index
 ```
 
-### 9. Models Used
+### 8. Models Used
 
 ```sql
 SELECT usage_model as model, COUNT(*) as turns
@@ -118,7 +103,7 @@ GROUP BY usage_model
 ORDER BY turns DESC
 ```
 
-### 10. Session Duration
+### 9. Session Duration
 
 ```sql
 SELECT
@@ -224,9 +209,9 @@ Evaluate tools that were considered, used, or deliberately not used.
 **Recommendation**: <When this tool is/isn't appropriate for this type of work>
 
 Use this section for:
-- Hyperloop feasibility for the test scenario
+- UI automation feasibility for the test scenario
 - VM vs local testing tradeoffs
-- PowerShell Direct vs Hyperloop for remote execution
+- Local vs remote execution tradeoffs
 - Any tool that was expected to be used but wasn't
 
 ## Pending

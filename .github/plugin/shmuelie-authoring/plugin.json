@@ -2,7 +2,7 @@
   "name": "shmuelie-authoring",
   "description": "IETF RFC-style technical authoring and readability analysis.",
   "readme": "./README.md",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Shmueli Englard",
     "url": "https://github.com/shmuelie/shmuelie-skills"

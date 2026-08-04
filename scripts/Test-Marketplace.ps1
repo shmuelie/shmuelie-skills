@@ -32,13 +32,3 @@ foreach ($skill in Get-ChildItem $repoRoot -Recurse -Filter 'SKILL.md' -File) {
         throw "Missing skill description: $($skill.FullName)"
     }
 }
-
-$focusedRoots = Get-ChildItem (Join-Path $repoRoot '.github\plugin') -Directory -Filter 'shmuelie-*'
-$forbidden = 'dev\.azure\.com/microsoft|msazure\.pkgs\.visualstudio\.com|OS\.Developer|WindowsHiveMind|SFC\.|SFS\.|SFU\.|os\.2020|OSClient|IXPTools|StoreFundementals|user/senglard|SEnglard'
-$matches = $focusedRoots |
-    Get-ChildItem -Recurse -File |
-    Select-String -Pattern $forbidden
-if ($matches) {
-    $matches | Format-Table Path, LineNumber, Line -AutoSize
-    throw 'Internal-only markers were found in focused public plugins.'
-}

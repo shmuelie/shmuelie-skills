@@ -65,29 +65,25 @@ A playbook should show *what the agent is equipped with* and *which of it actual
 
 **Installed (the equipped set):**
 ```powershell
-agency plugin list                    # all Agency plugins available to sessions
-Get-AgencyProfile                     # profiles that group plugins per work type (core/development/data)
-Get-CopilotPlugin                     # direct Copilot CLI plugins (profile function; needs the profile loaded)
-(Get-Content Configuration\copilot-cli-mcp.json -Raw | ConvertFrom-Json).mcpServers.PSObject.Properties.Name  # CLI MCP servers
+copilot plugin list
+copilot plugin marketplace list
+$mcpPath = Join-Path $HOME '.copilot\mcp-config.json'
+if (Test-Path $mcpPath) {
+    (Get-Content $mcpPath -Raw | ConvertFrom-Json).mcpServers.PSObject.Properties.Name
+}
 ```
-**List the plugins, grouped by profile** — don't just count them. The profile→plugin
-mapping is the source of truth in `Configuration/agency-profiles.toml`
-(`[[profiles.<name>.plugins.default]]` → `plugin = "market:<name>@…"`); parse it (or
-use `Get-AgencyProfile`) to enumerate each profile's plugins. Call out the **shared
-baseline** (the plugins that appear in *every* profile — e.g. essentials, planning,
-memory, development, shmuelie-copilot, shmuelie-devenv, shmuelie-notifications) separately from each profile's work-specific additions,
-so the reader sees the "always on" set vs. the per-task set. (Agency also injects
-built-in MCPs — `bluebird`, `ado`, `kusto`, `workiq`, `m365`, … — on top of the CLI
-config.)
+List installed plugins and registered marketplaces by name, not just as a count.
+Separate always-installed plugins from repository-local plugins loaded for a
+specific task.
 
 **Used (what actually gets invoked)** — from `session_store_sql`'s `tool_requests`:
 ```sql
--- Top tools; MCP tools are prefixed (bluebird-, Playwright-, ado-/AzureDevops-, github-mcp-server-, kusto-, enghub-, NuGet-, ...)
+-- Top tools; MCP tools are prefixed (github-mcp-server-, Playwright-, NuGet-, ...)
 SELECT name, COUNT(*) c FROM tool_requests
 WHERE session_id IN (SELECT id FROM sessions WHERE updated_at > now() - INTERVAL '30 days')
 GROUP BY name ORDER BY c DESC LIMIT 40
 ```
-**Bucket the top-N by MCP prefix in-memory** — the `CASE`-by-prefix aggregate over the session subquery **times out**; pull the top list and sum the prefixes yourself (`bluebird-*` → bluebird, `Playwright-*` → Playwright, `ado-*`/`AzureDevops-*` → Azure DevOps, etc.). The `skill` tool count is your skill-invocation total. Report the handful that dominate, not an exhaustive list.
+**Bucket the top-N by MCP prefix in-memory** — a wide `CASE`-by-prefix aggregate can time out; pull the top list and sum prefixes such as `github-mcp-server-*`, `Playwright-*`, and `NuGet-*` yourself. The `skill` tool count is your skill-invocation total. Report the handful that dominate, not an exhaustive list.
 
 ## Report Structure
 
@@ -104,7 +100,10 @@ Mirror `Reports/2026-06-10-copilot-playbook.md`:
 
 Order the lessons by prominence for *this* user (from the usage report), but the durable core set is: Plan→Review→Implement, commit granularity, investigate-before-direct, terse corrections, short prompts, own-the-PR-lifecycle, skills+memory, **equip-the-agent (plugins/MCPs)**, verify-don't-trust.
 
-The **Equip the Agent** lesson is where the plugins/MCPs data lands: teach keeping a curated, work-typed set of plugins (profiles) and MCP servers equipped so the agent reaches for the right tool automatically. **List the actual plugins grouped by profile** (with the shared baseline called out), not just the MCPs — the plugin set *is* the equipped toolbox. Cite the *used* MCPs (e.g. a code-search MCP, a browser-automation MCP, an ADO MCP) as evidence of which tools earn their keep, and the profiles as the mechanism for scoping them per task.
+The **Equip the Agent** lesson is where plugins and MCP data lands: teach keeping
+a curated plugin set and enabling repository-specific tools only when needed.
+List the actual plugins and cite used MCP categories such as code search or
+browser automation as evidence of which tools earn their keep.
 
 ## Writing Guidance
 

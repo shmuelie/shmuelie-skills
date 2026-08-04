@@ -3,7 +3,8 @@
 Technical-authoring skills for RFC-style specifications and readability analysis.
 
 ```text
-agency plugin install "market:shmuelie-authoring@https://github.com/shmuelie/shmuelie-skills" --engine copilot
+copilot plugin marketplace add shmuelie/shmuelie-skills
+copilot plugin install shmuelie-authoring@shmuelie-skills
 ```
 
 ## Skills

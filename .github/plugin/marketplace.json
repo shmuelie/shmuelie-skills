@@ -6,38 +6,32 @@
   },
   "metadata": {
     "description": "Public Copilot CLI skills grouped into focused plugins",
-    "version": "2.0.0"
+    "version": "2.1.0"
   },
   "plugins": [
     {
       "name": "shmuelie-skills",
       "description": "Aggregate plugin containing all public Shmuelie skills",
-      "version": "1.13.0",
+      "version": "1.14.0",
       "source": "."
     },
     {
       "name": "shmuelie-copilot",
       "description": "Copilot CLI session reporting, usage analysis, playbooks, management, and plugin authoring",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": ".github/plugin/shmuelie-copilot"
     },
     {
       "name": "shmuelie-devenv",
       "description": "PowerShell profile engineering and local .NET MCP server development",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": ".github/plugin/shmuelie-devenv"
     },
     {
       "name": "shmuelie-authoring",
       "description": "IETF RFC-style technical authoring and readability analysis",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "source": ".github/plugin/shmuelie-authoring"
-    },
-    {
-      "name": "shmuelie-notifications",
-      "description": "Windows toast notification hooks for Copilot CLI",
-      "version": "0.1.0",
-      "source": ".github/plugin/shmuelie-notifications"
     }
   ]
 }

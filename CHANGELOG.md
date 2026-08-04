@@ -7,20 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [1.14.0] - 2026-08-03
+
+### Changed
+- Removed all references to private orchestration tooling from public skills,
+  manifests, and installation instructions.
+- Rewrote plugin authoring and session management around native Copilot CLI
+  commands and public marketplace workflows.
+- Reworked writing-level analysis to operate only on user-provided or locally
+  authored text.
+- Updated focused plugins to version 0.2.0 and marketplace metadata to 2.1.0.
+
+### Removed
+- Removed the notification plugin because its plugin-level hook injection
+  depended on tooling unavailable to public Copilot CLI users.
+
 ## [1.13.0] - 2026-08-03
 
 ### Added
-- Focused `shmuelie-copilot`, `shmuelie-devenv`, `shmuelie-authoring`, and
-  `shmuelie-notifications` plugins.
+- Focused `shmuelie-copilot`, `shmuelie-devenv`, and `shmuelie-authoring` plugins.
 - Copilot session reporting, usage analysis, playbook, session-management, and
   plugin-authoring skills.
 - PowerShell profile, local MCP server, RFC-authoring, and writing-level skills.
 - Static GitHub Pages catalog and validation workflow.
+- Public-only plugin guidance using native Copilot CLI marketplace commands.
 
 ### Changed
 - The root `shmuelie-skills` plugin remains the aggregate direct-install option
   and now loads the focused plugins' skills.
 - Marketplace metadata moved to version 2.0.0 for the multi-plugin catalog.
+- Removed internal-only tooling and dependencies from the public marketplace.
 
 ## [1.12.0] - 2026-08-02
 

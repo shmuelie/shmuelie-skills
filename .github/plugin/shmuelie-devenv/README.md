@@ -3,7 +3,8 @@
 Developer-environment skills for PowerShell profiles and local .NET MCP servers.
 
 ```text
-agency plugin install "market:shmuelie-devenv@https://github.com/shmuelie/shmuelie-skills" --engine copilot
+copilot plugin marketplace add shmuelie/shmuelie-skills
+copilot plugin install shmuelie-devenv@shmuelie-skills
 ```
 
 ## Skills

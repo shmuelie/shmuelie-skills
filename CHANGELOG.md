@@ -19,7 +19,9 @@ remains at 1.12.0 and the focused plugins at 0.1.0 until a release is cut.
 - Per-skill `CHANGELOG.md` in every skill directory, seeded from repository
   history and required by marketplace validation.
 - A Markdown documentation site under `docs/` with a Jekyll build, plus a
-  marketplace validation script.
+  marketplace validation script that also verifies every on-disk plugin has a
+  marketplace entry and that the aggregate plugin's skills equal the union of the
+  focused plugins' skills.
 
 ### Changed
 - Restructured into a multi-plugin marketplace: every skill now lives in a

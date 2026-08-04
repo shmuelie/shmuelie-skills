@@ -63,6 +63,38 @@ if ($duplicates) {
     throw "Skills must have one focused owner. Duplicates: $($duplicates.Name -join ', ')"
 }
 
+# Reverse check 1: every plugin directory on disk must have a marketplace entry.
+$marketplaceNames = @($marketplace.plugins.name)
+Get-ChildItem (Join-Path $repoRoot '.github\plugin') -Directory |
+    Where-Object { Test-Path (Join-Path $_.FullName 'plugin.json') } |
+    ForEach-Object {
+        $diskManifest = Get-Content (Join-Path $_.FullName 'plugin.json') -Raw | ConvertFrom-Json
+        if ($diskManifest.name -notin $marketplaceNames) {
+            throw "Plugin directory '$($_.Name)' has a plugin.json but no marketplace entry."
+        }
+    }
+
+# Reverse check 2: the aggregate plugin's skills must equal the union of the
+# focused plugins' skills directories, so adding/removing a focused plugin can
+# never leave the aggregate out of sync.
+$aggregateEntry = @($marketplace.plugins | Where-Object { $_.source -eq '.' })
+if ($aggregateEntry.Count -ne 1) {
+    throw "Expected exactly one aggregate plugin (source '.') in the marketplace; found $($aggregateEntry.Count)."
+}
+$aggregateManifest = Get-Content (Join-Path $repoRoot 'plugin.json') -Raw | ConvertFrom-Json
+$aggregateSkillPaths = @($aggregateManifest.skills | ForEach-Object { $_.TrimEnd('/').Replace('\', '/') })
+$focusedSkillPaths = @(
+    $marketplace.plugins |
+        Where-Object { $_.source -ne '.' } |
+        ForEach-Object { "$($_.source)/skills".Replace('\', '/') }
+)
+$missingFromAggregate = @($focusedSkillPaths | Where-Object { $_ -notin $aggregateSkillPaths })
+$extraInAggregate = @($aggregateSkillPaths | Where-Object { $_ -notin $focusedSkillPaths })
+if ($missingFromAggregate -or $extraInAggregate) {
+    throw ("Aggregate plugin skills must equal the union of focused plugin skills. " +
+        "Missing: $($missingFromAggregate -join ', '); Unexpected: $($extraInAggregate -join ', ').")
+}
+
 foreach ($docFile in @('index.md', 'installation.md', 'plugins.md', 'contributing.md', '_config.yml')) {
     if (-not (Test-Path (Join-Path $repoRoot "docs\$docFile"))) {
         throw "Missing documentation site file: docs/$docFile"

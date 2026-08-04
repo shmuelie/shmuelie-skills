@@ -46,6 +46,10 @@ foreach ($skill in Get-ChildItem $repoRoot -Recurse -Filter 'SKILL.md' -File) {
     if ($content -notmatch '(?m)^description:\s*.+$') {
         throw "Missing skill description: $($skill.FullName)"
     }
+    $skillChangelog = Join-Path $skill.DirectoryName 'CHANGELOG.md'
+    if (-not (Test-Path $skillChangelog)) {
+        throw "Each skill must have its own CHANGELOG.md: missing $skillChangelog"
+    }
 }
 
 if (Test-Path (Join-Path $repoRoot 'skills')) {
@@ -72,6 +76,7 @@ if (Get-ChildItem (Join-Path $repoRoot 'docs') -Filter '*.html' -File -ErrorActi
 $markdownFiles = @()
 $markdownFiles += Get-Item (Join-Path $repoRoot 'README.md')
 $markdownFiles += Get-ChildItem (Join-Path $repoRoot '.github\plugin') -Recurse -Filter 'README.md' -File
+$markdownFiles += Get-ChildItem (Join-Path $repoRoot '.github\plugin') -Recurse -Filter 'CHANGELOG.md' -File
 $markdownFiles += Get-ChildItem (Join-Path $repoRoot 'docs') -Filter '*.md' -File
 foreach ($markdown in $markdownFiles) {
     $content = Get-Content $markdown.FullName -Raw

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- Per-skill `CHANGELOG.md` in every skill directory, seeded from repository
+  history. Marketplace validation now requires one per skill.
+
 ### Changed
 - Rewrote the documentation site in Markdown (`docs/*.md` + `_config.yml`) and
   switched the Pages workflow to a Jekyll build.

@@ -105,12 +105,13 @@ and must match its own marketplace entry:
 Only bump `marketplace.json`'s `metadata.version` when the catalog composition
 changes, such as adding or removing a focused plugin.
 
-### Step 8: Update CHANGELOG.md
+### Step 8: Update changelogs
 
 Following Keep a Changelog format:
-- Add entries under `[Unreleased]` or a new version section
-- Move `[Unreleased]` entries to the new version on release
-- Update comparison links at the bottom
+- Add an entry to the changed **skill's own** `CHANGELOG.md`
+  (`.github/plugin/<plugin>/skills/<name>/CHANGELOG.md`).
+- Add a catalog-level entry to the **repository** `CHANGELOG.md` under
+  `[Unreleased]` or a new version section, and update the comparison links.
 
 ### Step 9: Update README.md if needed
 
@@ -126,10 +127,11 @@ With a descriptive message.
 ## Conventions
 
 - Skills are markdown files at `.github/plugin/<plugin>/skills/<name>/SKILL.md`
+- Every skill directory also has its own `CHANGELOG.md`
 - Every skill has exactly one focused owning plugin
 - The root aggregate plugin references focused skill directories; it owns no skills directly
 - Each plugin manifest version must match its marketplace entry; focused plugin versions are independent
 - Follow Semantic Versioning for all version bumps
-- Follow Keep a Changelog for CHANGELOG.md
+- Follow Keep a Changelog for every CHANGELOG.md (per-skill and repository)
 - Skill descriptions should be specific and actionable, not vague
 - Include code examples, gotchas, and bug patterns — not just general advice

@@ -18,7 +18,10 @@ the topic fits coherently; create a new plugin only for a distinct subject area.
 
 ```text
 .github/plugin/<plugin>/skills/<skill-name>/SKILL.md
+.github/plugin/<plugin>/skills/<skill-name>/CHANGELOG.md
 ```
+
+Each skill directory contains its own `SKILL.md` and `CHANGELOG.md`.
 
 Required frontmatter:
 
@@ -39,11 +42,12 @@ description: "Specific capability and trigger phrases. Use when asked to..."
 
 ## Update release surfaces
 
-1. Update the owning plugin README.
-2. Bump the owning plugin's semantic version.
-3. Match the version in `marketplace.json`.
-4. Bump the aggregate plugin when installed skill content changes.
-5. Update the root README, documentation site, and changelog.
+1. Add an entry to the skill's own `CHANGELOG.md` (each skill directory has one).
+2. Update the owning plugin README.
+3. Bump the owning plugin's semantic version.
+4. Match the version in `marketplace.json`.
+5. Bump the aggregate plugin when installed skill content changes.
+6. Update the root README, documentation site, and repository changelog.
 
 ## Validate
 

@@ -92,18 +92,14 @@ Context instructions.
 ...
 ```
 
-### Step 7: Bump the version
+### Step 7: Do not bump versions for content changes
 
-The root `plugin.json` is the aggregate direct-install plugin. Its version must
-match the `shmuelie-skills` entry in `.github/plugin/marketplace.json`.
-
-Each focused `.github/plugin/shmuelie-*/plugin.json` is versioned independently
-and must match its own marketplace entry:
-- PATCH for minor content updates to existing skills
-- MINOR for new skills or significant content additions
-
-Only bump `marketplace.json`'s `metadata.version` when the catalog composition
-changes, such as adding or removing a focused plugin.
+Plugin versions (`plugin.json` and their `marketplace.json` entries) and the
+catalog `metadata.version` change **only when a release is cut**, not for skill
+edits. Between releases, leave every version unchanged and record the change
+under `[Unreleased]` (Step 8). Cutting a release is a separate, deliberate step:
+bump the released plugins' versions, move the `[Unreleased]` notes into a dated
+section, update the comparison links, and tag it.
 
 ### Step 8: Update changelogs
 
@@ -111,7 +107,7 @@ Following Keep a Changelog format:
 - Add an entry to the changed **skill's own** `CHANGELOG.md`
   (`.github/plugin/<plugin>/skills/<name>/CHANGELOG.md`).
 - Add a catalog-level entry to the **repository** `CHANGELOG.md` under
-  `[Unreleased]` or a new version section, and update the comparison links.
+  `[Unreleased]` (not a new version section — that happens only at release time).
 
 ### Step 9: Update README.md if needed
 
@@ -131,7 +127,8 @@ With a descriptive message.
 - Every skill has exactly one focused owning plugin
 - The root aggregate plugin references focused skill directories; it owns no skills directly
 - Each plugin manifest version must match its marketplace entry; focused plugin versions are independent
-- Follow Semantic Versioning for all version bumps
+- Versions change only when a release is cut, never for a content change; between releases, changes go under `[Unreleased]`
+- Follow Semantic Versioning for release version bumps
 - Follow Keep a Changelog for every CHANGELOG.md (per-skill and repository)
 - Skill descriptions should be specific and actionable, not vague
 - Include code examples, gotchas, and bug patterns — not just general advice

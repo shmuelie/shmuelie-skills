@@ -4,7 +4,7 @@ Developer-environment engineering: safe PowerShell automation, reliable shell
 and WSL workflows, deployment scripts, interactive profiles, and local .NET MCP
 servers.
 
-**Version:** 0.3.1
+**Version:** 0.1.0
 
 ## Install
 

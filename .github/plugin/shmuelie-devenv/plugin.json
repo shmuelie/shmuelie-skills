@@ -2,7 +2,7 @@
   "name": "shmuelie-devenv",
   "description": "PowerShell, shell, deployment, profile, and local .NET MCP server engineering.",
   "readme": "./README.md",
-  "version": "0.3.1",
+  "version": "0.1.0",
   "author": {
     "name": "Shmueli Englard",
     "url": "https://github.com/shmuelie/shmuelie-skills"

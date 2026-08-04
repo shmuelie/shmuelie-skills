@@ -3,7 +3,7 @@
 Technical authoring: rigorous RFC-style specifications and evidence-based
 readability analysis.
 
-**Version:** 0.2.1
+**Version:** 0.1.0
 
 ## Install
 

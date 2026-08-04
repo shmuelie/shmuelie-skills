@@ -89,3 +89,15 @@ foreach ($markdown in $markdownFiles) {
         }
     }
 }
+
+# Every changelog (repository, per-skill) must carry an [Unreleased] section, so
+# content changes land there instead of forcing a version bump between releases.
+$changelogs = @()
+$changelogs += Get-Item (Join-Path $repoRoot 'CHANGELOG.md')
+$changelogs += Get-ChildItem (Join-Path $repoRoot '.github\plugin') -Recurse -Filter 'CHANGELOG.md' -File
+foreach ($changelog in $changelogs) {
+    if ((Get-Content $changelog.FullName -Raw) -notmatch '(?m)^##\s*\[Unreleased\]') {
+        throw "Changelog is missing an [Unreleased] section: $($changelog.FullName)"
+    }
+}
+

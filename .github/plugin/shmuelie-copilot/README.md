@@ -4,7 +4,7 @@ Copilot CLI meta-tooling: understand and operate the agent itself — analyze
 sessions, generate reports and playbooks, repair session state, and publish your
 own plugins.
 
-**Version:** 0.2.1
+**Version:** 0.1.0
 
 ## Install
 

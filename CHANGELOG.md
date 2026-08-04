@@ -7,72 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-### Added
-- Per-skill `CHANGELOG.md` in every skill directory, seeded from repository
-  history. Marketplace validation now requires one per skill.
-
-### Changed
-- Rewrote the documentation site in Markdown (`docs/*.md` + `_config.yml`) and
-  switched the Pages workflow to a Jekyll build.
-- Simplified the root README to point at the documentation site; each focused
-  plugin README now documents its own skills and features in full.
-- Updated marketplace validation to require Markdown docs and reject HTML.
-
-## [1.15.1] - 2026-08-03
-
-### Changed
-- Expanded the root README into a complete installation, plugin-selection,
-  skill-catalog, maintenance, versioning, and contribution guide.
-- Expanded every focused plugin README with requirements, example requests,
-  lifecycle commands, and linked skill documentation.
-- Expanded the static documentation site into installation, plugin catalog,
-  and contribution pages with responsive navigation and styling.
-- Bumped focused plugin patch versions for their shipped documentation updates.
-
-## [1.15.0] - 2026-08-03
+These changes are not yet released. The aggregate `shmuelie-skills` plugin
+remains at 1.12.0 and the focused plugins at 0.1.0 until a release is cut.
 
 ### Added
-- New `shmuelie-dotnet`, `shmuelie-systems`, and `shmuelie-typescript` focused plugins.
-
-### Changed
-- Moved every formerly root-owned skill into a self-contained focused plugin.
-- Expanded `shmuelie-devenv` with deployment, PowerShell scripting, and shell/WSL skills.
-- Updated the aggregate plugin to load only focused plugin skill directories.
-- Updated focused-plugin documentation and marketplace metadata to 2.2.0.
-
-### Removed
-- Removed the root `skills/` ownership model.
-
-## [1.14.0] - 2026-08-03
-
-### Changed
-- Removed all references to private orchestration tooling from public skills,
-  manifests, and installation instructions.
-- Rewrote plugin authoring and session management around native Copilot CLI
-  commands and public marketplace workflows.
-- Reworked writing-level analysis to operate only on user-provided or locally
-  authored text.
-- Updated focused plugins to version 0.2.0 and marketplace metadata to 2.1.0.
-
-### Removed
-- Removed the notification plugin because its plugin-level hook injection
-  depended on tooling unavailable to public Copilot CLI users.
-
-## [1.13.0] - 2026-08-03
-
-### Added
-- Focused `shmuelie-copilot`, `shmuelie-devenv`, and `shmuelie-authoring` plugins.
+- New `shmuelie-copilot`, `shmuelie-devenv`, `shmuelie-authoring`,
+  `shmuelie-dotnet`, `shmuelie-systems`, and `shmuelie-typescript` focused plugins.
 - Copilot session reporting, usage analysis, playbook, session-management, and
-  plugin-authoring skills.
-- PowerShell profile, local MCP server, RFC-authoring, and writing-level skills.
-- Static GitHub Pages catalog and validation workflow.
-- Public-only plugin guidance using native Copilot CLI marketplace commands.
+  plugin-authoring skills; PowerShell profile, local MCP server, RFC-authoring,
+  and writing-level skills.
+- Per-skill `CHANGELOG.md` in every skill directory, seeded from repository
+  history and required by marketplace validation.
+- A Markdown documentation site under `docs/` with a Jekyll build, plus a
+  public-only marketplace validation script.
 
 ### Changed
-- The root `shmuelie-skills` plugin remains the aggregate direct-install option
-  and now loads the focused plugins' skills.
-- Marketplace metadata moved to version 2.0.0 for the multi-plugin catalog.
-- Removed internal-only tooling and dependencies from the public marketplace.
+- Restructured into a multi-plugin marketplace: every skill now lives in a
+  self-contained focused plugin, and the aggregate plugin loads only focused
+  skill directories (no root `skills/`).
+- Removed all references to private orchestration tooling; plugin authoring and
+  session management use native Copilot CLI marketplace commands, and
+  writing-level analysis operates only on user-provided or local text.
+- Each focused plugin README documents its own skills and features in full; the
+  root README is a concise index.
+- Documentation authored in Markdown; the Pages workflow builds with Jekyll.
+
+### Removed
+- Removed the notification plugin, whose plugin-level hook injection depended on
+  tooling unavailable to public Copilot CLI users.
 
 ## [1.12.0] - 2026-08-02
 
@@ -256,11 +218,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.15.1...HEAD
-[1.15.1]: https://github.com/shmuelie/shmuelie-skills/compare/v1.15.0...v1.15.1
-[1.15.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.14.0...v1.15.0
-[1.14.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.13.0...v1.14.0
-[1.13.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.12.0...v1.13.0
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v1.12.0...HEAD
 [1.12.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.2...v1.11.0
 [1.10.2]: https://github.com/shmuelie/shmuelie-skills/compare/v1.10.1...v1.10.2

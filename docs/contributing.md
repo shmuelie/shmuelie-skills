@@ -44,10 +44,26 @@ description: "Specific capability and trigger phrases. Use when asked to..."
 
 1. Add an entry to the skill's own `CHANGELOG.md` (each skill directory has one).
 2. Update the owning plugin README.
-3. Bump the owning plugin's semantic version.
-4. Match the version in `marketplace.json`.
-5. Bump the aggregate plugin when installed skill content changes.
-6. Update the root README, documentation site, and repository changelog.
+3. Record the change under `## [Unreleased]` in the repository `CHANGELOG.md`.
+4. Update the root README and documentation site if the catalog changed.
+
+**Do not bump any version for a content change.** Plugin versions
+(`plugin.json` and their `marketplace.json` entries) and the catalog
+`metadata.version` change only when a release is cut — see
+[Releasing](#releasing). Between releases, versions stay fixed and changes
+accumulate under `[Unreleased]`.
+
+## Releasing
+
+A release is the only time versions change:
+
+1. Choose the plugins included in the release and their new semantic versions.
+2. Update each released plugin's `plugin.json` and its `marketplace.json` entry;
+   update `metadata.version` only if the catalog composition changed.
+3. Move the relevant `[Unreleased]` notes into a dated version section in the
+   repository `CHANGELOG.md` and update the comparison links.
+4. Update the `**Version:**` header in each released plugin README.
+5. Commit, tag the release, and publish.
 
 ## Validate
 

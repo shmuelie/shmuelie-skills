@@ -14,7 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ### Changed
 - Rewrote the documentation site in Markdown (`docs/*.md` + `_config.yml`) and
   switched the Pages workflow to a Jekyll build.
-- Simplified the root and per-plugin READMEs to point at the documentation site.
+- Simplified the root README to point at the documentation site; each focused
+  plugin README now documents its own skills and features in full.
 - Updated marketplace validation to require Markdown docs and reject HTML.
 
 ## [1.15.1] - 2026-08-03

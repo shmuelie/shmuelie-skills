@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+- Rewrote the documentation site in Markdown (`docs/*.md` + `_config.yml`) and
+  switched the Pages workflow to a Jekyll build.
+- Updated marketplace validation to require Markdown docs and reject HTML.
+
 ## [1.15.1] - 2026-08-03
 
 ### Changed

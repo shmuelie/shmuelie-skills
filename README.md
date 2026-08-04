@@ -159,11 +159,11 @@ shmuelie-skills/
 ├── CHANGELOG.md
 ├── README.md
 ├── docs/
-│   ├── index.html
-│   ├── installation.html
-│   ├── plugins.html
-│   ├── contributing.html
-│   └── styles.css
+│   ├── _config.yml
+│   ├── index.md
+│   ├── installation.md
+│   ├── plugins.md
+│   └── contributing.md
 ├── scripts/
 │   └── Test-Marketplace.ps1
 └── .github/

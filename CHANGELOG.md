@@ -7,8 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-These changes are not yet released. The aggregate `shmuelie-skills` plugin
-remains at 1.12.0 and the focused plugins at 0.1.0 until a release is cut.
+## [2.0.0] - 2026-08-05
+
+First public release and multi-plugin restructure. The aggregate
+`shmuelie-skills` plugin moves to 2.0.0 (the notification plugin was removed)
+and the six focused plugins debut at 1.0.0.
 
 ### Added
 - New `shmuelie-copilot`, `shmuelie-devenv`, `shmuelie-authoring`,

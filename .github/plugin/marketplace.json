@@ -6,49 +6,49 @@
   },
   "metadata": {
     "description": "Public Copilot CLI skills grouped into focused plugins",
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "plugins": [
     {
       "name": "shmuelie-skills",
       "description": "Aggregate plugin containing all public Shmuelie skills",
-      "version": "1.12.0",
+      "version": "2.0.0",
       "source": "."
     },
     {
       "name": "shmuelie-copilot",
       "description": "Copilot CLI session reporting, usage analysis, playbooks, management, and plugin authoring",
-      "version": "0.1.0",
+      "version": "1.0.0",
       "source": ".github/plugin/shmuelie-copilot"
     },
     {
       "name": "shmuelie-devenv",
       "description": "PowerShell, shell, deployment, profile, and local .NET MCP server engineering",
-      "version": "0.1.0",
+      "version": "1.0.0",
       "source": ".github/plugin/shmuelie-devenv"
     },
     {
       "name": "shmuelie-authoring",
       "description": "IETF RFC-style technical authoring and readability analysis",
-      "version": "0.1.0",
+      "version": "1.0.0",
       "source": ".github/plugin/shmuelie-authoring"
     },
     {
       "name": "shmuelie-dotnet",
       "description": ".NET, C# interop, Roslyn, WinUI 3, MSIX, and application assets",
-      "version": "0.1.0",
+      "version": "1.0.0",
       "source": ".github/plugin/shmuelie-dotnet"
     },
     {
       "name": "shmuelie-systems",
       "description": "Embedded C++, homelab infrastructure, and Qualcomm Cloud AI 100 development",
-      "version": "0.1.0",
+      "version": "1.0.0",
       "source": ".github/plugin/shmuelie-systems"
     },
     {
       "name": "shmuelie-typescript",
       "description": "Reliable TypeScript CLI architecture and runtime patterns",
-      "version": "0.1.0",
+      "version": "1.0.0",
       "source": ".github/plugin/shmuelie-typescript"
     }
   ]

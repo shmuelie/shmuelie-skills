@@ -2,7 +2,7 @@
   "name": "shmuelie-systems",
   "description": "Embedded C++, homelab infrastructure, and Qualcomm Cloud AI 100 development.",
   "readme": "./README.md",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": {
     "name": "Shmueli Englard",
     "url": "https://github.com/shmuelie/shmuelie-skills"

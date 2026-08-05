@@ -3,7 +3,7 @@
 Systems development: embedded Linux and C++, self-hosted infrastructure, media
 and automation services, and Qualcomm Cloud AI 100 accelerators.
 
-**Version:** 0.1.0
+**Version:** 1.0.0
 
 ## Install
 

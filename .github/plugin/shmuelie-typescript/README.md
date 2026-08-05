@@ -3,7 +3,7 @@
 TypeScript and Node.js command-line application engineering focused on runtime
 correctness under concurrency, failure, and filesystem scale.
 
-**Version:** 0.1.0
+**Version:** 1.0.0
 
 ## Install
 

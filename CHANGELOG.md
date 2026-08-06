@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- **shmuelie-devenv:** new `powershell-gallery-publishing` skill — tag-triggered
+  GitHub Actions publishing to the PowerShell Gallery (`<Module>-vX.Y.Z` tags with a
+  tag-vs-manifest version check, glob-scoped API keys behind a named environment),
+  cutting a release, the "GitHub fires no tag workflows when more than three tags are
+  pushed at once" gotcha, and first-come module-name reservation.
+
 ## [2.0.0] - 2026-08-05
 
 First public release and multi-plugin restructure. The aggregate

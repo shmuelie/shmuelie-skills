@@ -48,6 +48,14 @@ Idiomatic PowerShell for destructive and bulk scripts: `SupportsShouldProcess` +
 typed-`yes` gates, per-operation `$PSCmdlet.ShouldProcess`, anti-patterns to
 replace, and preview-then-apply verification.
 
+### powershell-gallery-publishing
+
+Publish PowerShell modules to the PowerShell Gallery from a tag-triggered GitHub
+Actions workflow: `<Module>-vX.Y.Z` release tags with a tag-vs-manifest version
+check, glob-scoped API keys behind a named environment, cutting a release, the
+"no tag workflows when more than three tags are pushed at once" gotcha, and
+first-come module-name reservation.
+
 ### shell-wsl
 
 Reliable shell scripting and WSL: `exit` vs `return`, quoting, `mkdir -p`,
@@ -63,6 +71,7 @@ Why does my PSReadLine predictor freeze typing?
 Create a deployment script that discovers MSBuild automatically.
 Fix this shell script so set -e does not terminate the caller.
 Build a local MCP server for a Windows desktop application.
+Set up a GitHub Actions workflow to publish my module to the PowerShell Gallery.
 ```
 
 ## Platform notes

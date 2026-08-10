@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-08-09
+
 ### Added
 - Windows desktop notification diagnostics: the built-in native toast under
   AUMID `GitHub.Copilot.CLI`, focus-gated (DECSET 1004) firing, and a checklist

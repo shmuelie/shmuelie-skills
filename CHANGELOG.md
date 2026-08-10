@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-08-09
+
 ### Added
 - copilot-session-management: Windows desktop notification diagnostics (native
   toast AUMID `GitHub.Copilot.CLI`, focus-gated firing, unregistered-AUMID silent

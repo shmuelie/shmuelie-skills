@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+- Windows desktop notification diagnostics: the built-in native toast under
+  AUMID `GitHub.Copilot.CLI`, focus-gated (DECSET 1004) firing, and a checklist
+  for missing toasts (unregistered AUMID silently drops banners, global/app
+  toggles, `COPILOT_DISABLE_DESKTOP_NOTIFICATIONS`, testing via Windows
+  PowerShell 5.1).
+
 ## 2026-08-03
 
 ### Added

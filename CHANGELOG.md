@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- copilot-session-management: Windows desktop notification diagnostics (native
+  toast AUMID `GitHub.Copilot.CLI`, focus-gated firing, unregistered-AUMID silent
+  drop, missing-toast checklist).
+- plugin-authoring: Hooks (lifecycle plugins) section — plugin loader drops
+  `plugin.json` `hooks`; `copilot-hooks.json` loads only via Agency `--plugin-dir`
+  or in-repo `.github/hooks/`; Copilot CLI has no completion event.
+
 ## [2.0.0] - 2026-08-05
 
 First public release and multi-plugin restructure. The aggregate

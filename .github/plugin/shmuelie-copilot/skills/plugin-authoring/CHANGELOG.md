@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+- Hooks (lifecycle plugins) section: the plugin loader drops `plugin.json`
+  `hooks`; file-based `copilot-hooks.json` loads only via Agency `--plugin-dir`
+  or in-repo `.github/hooks/`; `${PLUGIN_ROOT}`; Copilot CLI has no completion
+  event (only `errorOccurred`); fire-and-forget launcher rules.
+
 ## 2026-08-03
 
 ### Added

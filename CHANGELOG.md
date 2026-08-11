@@ -7,12 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [Unreleased]
+
 ### Added
 - **shmuelie-devenv:** new `powershell-gallery-publishing` skill — tag-triggered
   GitHub Actions publishing to the PowerShell Gallery (`<Module>-vX.Y.Z` tags with a
   tag-vs-manifest version check, glob-scoped API keys behind a named environment),
   cutting a release, the "GitHub fires no tag workflows when more than three tags are
   pushed at once" gotcha, and first-come module-name reservation.
+
+## [2.1.0] - 2026-08-09
+
+### Added
+- copilot-session-management: Windows desktop notification diagnostics (native
+  toast AUMID `GitHub.Copilot.CLI`, focus-gated firing, unregistered-AUMID silent
+  drop, missing-toast checklist).
+- plugin-authoring: Hooks (lifecycle plugins) section — plugin loader drops
+  `plugin.json` `hooks`; `copilot-hooks.json` loads only via Agency `--plugin-dir`
+  or in-repo `.github/hooks/`; Copilot CLI has no completion event.
 
 ## [2.0.0] - 2026-08-05
 

@@ -7,8 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-## [Unreleased]
-
 ### Added
 - **shmuelie-devenv:** new `powershell-gallery-publishing` skill — tag-triggered
   GitHub Actions publishing to the PowerShell Gallery (`<Module>-vX.Y.Z` tags with a

@@ -46,8 +46,9 @@ Diagnose and safely repair Copilot CLI sessions and manage local state:
 
 Produce a detailed per-session report covering the problem statement, solution
 approach, tools and skills used, files modified with line counts, testing
-results, key learnings, a tool assessment, and pending work — suitable for PR
-descriptions and knowledge sharing.
+results, key learnings, a tool assessment, and pending work — useful for knowledge
+sharing and as source material for a separately drafted, final-state PR
+description that retains relevant risks and limitations.
 
 ### copilot-usage-report
 

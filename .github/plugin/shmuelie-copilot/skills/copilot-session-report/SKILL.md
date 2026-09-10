@@ -51,15 +51,11 @@ When deriving a PR description from a session report:
 
 ```markdown
 This change lets the importer resume interrupted runs from persisted
-checkpoints instead of restarting from the beginning. It also narrows
-diagnostics to run-level recovery points so logs stay readable while still
-showing where execution restarts.
+checkpoints instead of restarting from the beginning.
 
 ## Completed changes
-- Persist resume checkpoints so interrupted runs can continue from the last
-  completed batch.
-- Restore the saved checkpoint on rerun and surface the restart position in
-  diagnostics.
+- Persist resume checkpoints across process restarts.
+- Continue from the saved checkpoint on rerun.
 
 ## Remaining problems
 - Stored checkpoints are only compatible with the current schema version.
@@ -73,9 +69,10 @@ showing where execution restarts.
 - Add CSV input support in a follow-up change if that format becomes required.
 ```
 
-The abandoned in-memory approach and the removed verbose logging still belong
-in the session report, but they do not belong in the PR description because
-they are not part of the final change.
+In this example, the abandoned in-memory approach and removed verbose logging
+remain in the session report but add no material context to the PR description.
+Do not infer additional delivered behavior from discarded experiments. Retain
+historical context when it materially explains a final design choice or risk.
 
 ## When to Generate
 

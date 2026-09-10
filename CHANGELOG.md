@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   pushed at once" gotcha, and first-come module-name reservation.
 
 ### Fixed
+- **shmuelie-copilot:** distinguished chronological session reports from derived
+  final-state PR descriptions, with a synthetic example preserving delivered
+  behavior, relevant evidence, risks, limitations, and future work.
 - **shmuelie-copilot:** aligned the scan-learnings prompt with release-based
   versioning, preserving existing versions during content scans and requiring
   per-skill and repository `[Unreleased]` notes, owning-plugin README updates,

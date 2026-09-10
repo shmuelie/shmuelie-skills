@@ -10,7 +10,7 @@ Create a detailed session report following the `copilot-session-report` skill te
 
 1. **Identify the session** — use the current session ID, or ask the user which session to report on
 2. **Run all 9 queries** from the skill against `session_store_sql`
-3. **Reconstruct the narrative** from user messages — what was asked, in what order
+3. **Reconstruct the narrative for the report** from user messages — what was asked, in what order
 4. **Fill in the template** sections:
    - Header with session ID, dates, work item/PR links, model
    - Tools and skills breakdown with purpose annotations
@@ -23,3 +23,10 @@ Create a detailed session report following the `copilot-session-report` skill te
    - Pending work items
 5. **Save** to `~/.copilot/session-state/<id>/files/session-report.md`
 6. **Open** in VS Code for review
+
+If the user also asks for a PR description, draft it as a separate final-state
+artifact instead of reusing the report verbatim. Summarize completed changes
+and rationale, preserve unresolved limitations, compatibility implications,
+material risks, and relevant validation evidence, and separate future work from
+remaining problems. Do not dump the chronological session narrative into the
+PR description.

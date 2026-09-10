@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Fixed
+- Aligned the scan-learnings prompt with release-based versioning: content scans
+  preserve existing plugin and catalog versions, record per-skill and repository
+  changes under `[Unreleased]`, update the owning plugin README, and run
+  marketplace validation without adding skill-level version frontmatter.
+
 ## 2026-08-09
 
 ### Added

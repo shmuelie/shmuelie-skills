@@ -38,6 +38,9 @@ Diagnose and safely repair Copilot CLI sessions and manage local state:
 - A back-up-first repair workflow and resume-failure troubleshooting.
 - Plugin, marketplace, and MCP management with native `copilot plugin ...` and
   `copilot plugin marketplace ...` commands.
+- A [scan-learnings prompt](skills/copilot-session-management/scan-learnings.prompt.md)
+  for capturing reusable guidance, updating changelogs under `[Unreleased]`, and
+  validating the marketplace while reserving version bumps for releases.
 
 ### copilot-session-report
 

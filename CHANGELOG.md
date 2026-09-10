@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   cutting a release, the "GitHub fires no tag workflows when more than three tags are
   pushed at once" gotcha, and first-come module-name reservation.
 
+### Fixed
+- **shmuelie-copilot:** aligned the scan-learnings prompt with release-based
+  versioning, preserving existing versions during content scans and requiring
+  per-skill and repository `[Unreleased]` notes, owning-plugin README updates,
+  and marketplace validation.
+
 ## [2.1.0] - 2026-08-09
 
 ### Added
@@ -241,4 +247,3 @@ and the six focused plugins debut at 1.0.0.
   - **homelab-infra** — Proxmox GPU passthrough, HA dashboards, Jellyfin plugins, ComfyUI nodes
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
-

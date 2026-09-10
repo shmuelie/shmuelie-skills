@@ -8,6 +8,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Changed
+- Added reusable guidance for teaching delegated-work supervision in playbooks:
+  bound the objective and scope up front, ask for milestone updates with
+  blockers and next steps, rely on supported notifications instead of tight
+  polling, and show safe responses to success, drift, blockers, and missing
+  live progress.
+
 ## 2026-08-03
 
 ### Added

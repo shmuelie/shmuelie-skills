@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **shmuelie-copilot:** added bounded, notification-aware delegated-work
+  supervision to playbook guidance, including milestone expectations and safe
+  responses to blockers, drift, and unavailable live progress.
 - **shmuelie-devenv:** new `powershell-gallery-publishing` skill — tag-triggered
   GitHub Actions publishing to the PowerShell Gallery (`<Module>-vX.Y.Z` tags with a
   tag-vs-manifest version check, glob-scoped API keys behind a named environment),

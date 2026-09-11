@@ -47,7 +47,7 @@ Produce rigorous specifications and measure prose readability. **2 skills.**
 
 ## shmuelie-dotnet
 
-Develop, package, and distribute modern .NET and Windows applications. **6 skills.**
+Develop, package, and distribute modern .NET and Windows applications. **7 skills.**
 
 | Skill | Use it for |
 |---|---|
@@ -55,6 +55,7 @@ Develop, package, and distribute modern .NET and Windows applications. **6 skill
 | [dotnet-project-init](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/dotnet-project-init/SKILL.md) | Repository, solution, test, packaging, and CI setup |
 | [icon-assets](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/icon-assets/SKILL.md) | Application, MSIX, NuGet, and web icon assets |
 | [msix-store-submission](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/msix-store-submission/SKILL.md) | MSIX packaging and Microsoft Store submission |
+| [msix-servicing](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/msix-servicing/SKILL.md) | Deployment hooks, full-trust servicing, migrations, and update probes |
 | [roslyn-sourcegen](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/roslyn-sourcegen/SKILL.md) | Incremental generators and analyzers |
 | [winui3-msix](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/winui3-msix/SKILL.md) | WinUI 3 binding, packaging, testing, and DI |
 

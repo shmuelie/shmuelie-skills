@@ -24,11 +24,12 @@ Operate and understand Copilot CLI itself. **5 skills.**
 ## shmuelie-devenv
 
 Build reliable developer shells, profiles, deployment scripts, and local
-integrations. **6 skills.**
+integrations. **7 skills.**
 
 | Skill | Use it for |
 |---|---|
 | [deploy-scripts](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/deploy-scripts/SKILL.md) | Build discovery and multi-platform deployment |
+| [azure-pipelines-powershell](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/azure-pipelines-powershell/SKILL.md) | Pipeline expression timing, PowerShell value binding, versioning, and publication gates |
 | [local-mcp-server-development](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/local-mcp-server-development/SKILL.md) | Local .NET MCP servers for desktop automation |
 | [powershell-gallery-publishing](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/powershell-gallery-publishing/SKILL.md) | Tag-triggered PowerShell Gallery publishing and module releases |
 | [powershell-profile](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/powershell-profile/SKILL.md) | Profiles, PSReadLine, prompts, and terminal recovery |

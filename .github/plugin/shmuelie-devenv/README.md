@@ -22,6 +22,12 @@ copilot plugin uninstall shmuelie-devenv
 
 ## Skills
 
+### azure-pipelines-powershell
+
+Azure Pipelines expression phases, safe PowerShell value binding, explicit
+publication gates, and project-owned package versions, with pure no-network
+transformation examples.
+
 ### deploy-scripts
 
 `Deploy.ps1` patterns: MSBuild auto-detection via `vswhere`, architecture

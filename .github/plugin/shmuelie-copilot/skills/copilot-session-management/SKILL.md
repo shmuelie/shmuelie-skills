@@ -7,18 +7,12 @@ description: "Manage and diagnose GitHub Copilot CLI sessions, plugins, marketpl
 
 ## Session state
 
-Public Copilot CLI release notes document a few stable facts that are safe to
-rely on during diagnosis:
-
-- Sessions moved to `~/.copilot/session-state` in the public 0.0.342 logging
-  overhaul.
-- Session usage metrics are persisted to `events.jsonl` after session end in a
-  later public changelog entry.
-
-The exact event payloads, checkpoint contents, rewind snapshot schema, and any
+Record the installed CLI version before diagnosis. Storage details can change:
+the exact event payloads, checkpoint contents, rewind snapshot schema, and
 tool-specific reference fields are **not** treated here as a stable published
-contract. Repair guidance must stop at the boundary of what the current CLI
-version clearly supports.
+contract. The paths below are discovery hints, not permission to rewrite an
+unrecognized format. Repair guidance stops at what the current version clearly
+supports.
 
 Interactive sessions are stored under:
 
@@ -82,10 +76,16 @@ If the current event schema exposes explicit request/result linkage, verify it
 before **and** after an authorized repair:
 
 - Every surviving result must still point to a surviving request.
-- Every surviving request must either keep its real result or remain explicitly
-  incomplete because the session actually ended mid-flight.
-- If a malformed tail removed the only result record, preserve the fact that the
-  request was interrupted; do not fabricate success.
+- Preserve genuine results and the linkage/cardinality rules of the supported
+  schema; do not synthesize a counterpart merely to make a pair look complete.
+- A request with no recorded result has an **unknown outcome**, unless
+  authoritative evidence establishes otherwise. The operation may have
+  completed its side effects before the result was persisted.
+- Do not infer success, failure, or interruption from a missing result, and do
+  not automatically repeat a state-changing operation. Reconcile its actual
+  state using an authorized, authoritative source before considering a retry.
+- If the supported format cannot retain an unresolved request safely, recover
+  from a verified backup or start a new session rather than inventing an event.
 - If the schema for pairing is unknown in this CLI version, stop instead of
   guessing which records belong together.
 
@@ -133,7 +133,7 @@ imports only safe artifacts such as `plan.md`.
 
 ## Synthetic repair fixtures
 
-The examples in `synthetic-repair-fixtures.md` are **fictional diagnostic
+The examples in [synthetic-repair-fixtures.md](synthetic-repair-fixtures.md) are **fictional diagnostic
 models**, not authoritative Copilot CLI event schemas. Use them to reason about
 safe dispositions:
 
@@ -153,7 +153,8 @@ When a session cannot be resumed:
 - Check whether the repository or worktree moved.
 - Inspect the final lines of `events.jsonl` for truncated JSON.
 - If a tool request appears to be missing its result, determine whether the
-  session really ended mid-flight before removing anything.
+  outcome can be established from authoritative evidence before editing or
+  retrying anything; otherwise keep it explicitly unknown.
 - Try an explicit session ID instead of an inferred current-directory match.
 - Start a new session and attach the old `plan.md` when repair would be riskier
   than recovery.

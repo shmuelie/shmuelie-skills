@@ -20,16 +20,20 @@ session folders.
 **Expected diagnostic:** trailing JSON is truncated, and the final visible
 request/result pair is incomplete.
 
-**Safe disposition:** back up first, then repair or remove only the truncated
-tail line if the file is otherwise valid. Keep `req-7` as an interrupted
-request unless you have the real result from a verified backup. Never invent a
-successful `toolResult`.
+**Safe disposition:** back up first. A syntactically valid prefix is not enough
+to authorize deletion: repair or remove the tail only when the supported
+version's pairing and reference rules permit it. Keep the outcome of `req-7`
+unknown unless verified evidence establishes it; the tool may have completed
+before its result was recorded. Restore a genuine result from a verified backup
+if available, but never fabricate success, failure, or interruption. Do not
+automatically rerun a state-changing request. If unresolved requests cannot be
+represented safely, recover from a known-good backup or start a fresh session.
 
 ## Fixture 2 - Equal timestamps must keep original order
 
 ```json
 {"line":11,"sessionId":"S-002","eventId":"evt-10","kind":"toolRequest","requestId":"req-9","timestamp":"2026-08-01T10:05:00.000Z","tool":"rg","pattern":"TODO"}
-{"line":12,"sessionId":"S-002","eventId":"evt-11","kind":"toolResult","requestId":"req-9","timestamp":"2026-08-01T10:05:00.000Z","exitCode":0}
+{"line":12,"sessionId":"S-002","eventId":"evt-11","kind":"toolResult","requestId":"req-9","timestamp":"2026-08-01T10:05:00.000Z","exitCode":1}
 {"line":13,"sessionId":"S-002","eventId":"evt-12","kind":"assistant","timestamp":"2026-08-01T10:05:00.000Z","text":"No matches found"}
 ```
 
@@ -48,12 +52,15 @@ reserialize the file just to make timestamps "look ordered."
 {"line":23,"sessionId":"S-200","eventId":"evt-89","kind":"assistant","timestamp":"2026-08-01T11:00:01Z","text":"Reviewing pull request"}
 ```
 
-**Expected diagnostic:** the file contains cross-session interleaving, so a
-global timestamp sort cannot safely recover either conversation.
+**Expected diagnostic:** the records belong to different sessions. This is an
+ownership inconsistency if the file is supposed to contain one session, but may
+be valid in an explicitly supported multi-session export. Timestamps do not
+establish the ownership rules.
 
-**Safe disposition:** do not merge or reorder the sessions into one synthetic
-stream. Split or restore from backup by session identity, or abandon manual
-repair if the version-specific ownership rules are unclear.
+**Safe disposition:** preserve each source session's record order and identity.
+Use only a supported merge, split, or restore operation with known reference
+rules; a global timestamp sort is not a repair. Stop if version-specific
+ownership rules are unclear rather than inventing a replacement stream.
 
 ## Fixture 4 - Dangling reference after removal or compaction
 

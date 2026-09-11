@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **shmuelie-devenv:** added control-safe filesystem directory reporting and
+  origin-scoped popup exclusion from shared status/cache access without stale
+  parent-state restoration.
 - **shmuelie-devenv:** added lifetime-qualified cache identity and atomic
   snapshot guidance with a disposable, coordinated multi-process lab and
   explicit failure, abandonment, and delivery-acknowledgment boundaries.

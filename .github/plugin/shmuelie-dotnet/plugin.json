@@ -2,7 +2,7 @@
   "name": "shmuelie-dotnet",
   "description": ".NET, C# interop, Roslyn source generation, WinUI 3, MSIX packaging, and application assets.",
   "readme": "./README.md",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": {
     "name": "Shmueli Englard",
     "url": "https://github.com/shmuelie/shmuelie-skills"

@@ -7,6 +7,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-11
+
 ### Added
 - Read-only model serialization/namespace inspection, diagram-scoped
   relationships, unknown triage state and integrity reporting, with an

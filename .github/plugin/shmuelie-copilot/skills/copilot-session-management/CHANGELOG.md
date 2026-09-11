@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+- Expanded safe session repair guidance with request/result pairing, session-
+  relative event ordering, minimal in-place edits, cross-reference validation,
+  and fictional repair fixtures for truncated results, equal timestamps,
+  interleaved sessions, and dangling references.
+
 ### Fixed
 - Aligned the scan-learnings prompt with release-based versioning: content scans
   preserve existing plugin and catalog versions, record per-skill and repository

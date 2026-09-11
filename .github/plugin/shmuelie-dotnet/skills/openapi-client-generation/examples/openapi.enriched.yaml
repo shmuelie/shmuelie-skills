@@ -1,0 +1,36 @@
+openapi: 3.0.3
+info:
+  title: Fictional Widget API
+  version: 1.0.0
+servers:
+  - url: https://spec.example.test/v1
+paths:
+  /widgets/{widgetId}:
+    get:
+      operationId: getWidget
+      description: Gets one fictional widget by identifier.
+      parameters:
+        - name: widgetId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A widget
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Widget'
+components:
+  schemas:
+    Widget:
+      type: object
+      required:
+        - id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          nullable: true

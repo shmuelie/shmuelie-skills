@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **shmuelie-dotnet:** new `openapi-client-generation` skill with pinned
+  generation inputs, specification enrichment, fake-transport endpoint tests
+  and runtime-qualified trimming/AOT guidance.
 - **shmuelie-dotnet:** new `event-contracts` skill for typed diagnostic dimensions,
   missing values, activity/retry relationships, partial results, and decoded
   event inspection, with a synthetic EventSource contract example.

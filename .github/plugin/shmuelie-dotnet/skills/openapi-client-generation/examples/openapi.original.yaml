@@ -1,0 +1,29 @@
+openapi: 3.0.3
+info:
+  title: Fictional Widget API
+  version: 1.0.0
+paths:
+  /widgets/{widgetId}:
+    get:
+      parameters:
+        - name: widgetId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A widget
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Widget'
+components:
+  schemas:
+    Widget:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string

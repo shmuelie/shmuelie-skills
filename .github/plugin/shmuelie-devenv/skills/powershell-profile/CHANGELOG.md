@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ## [Unreleased]
 
 ### Added
+- Validated Windows Terminal directory reporting and origin-scoped popup
+  suppression before shared cache/status reads or writes, with control-safe
+  payload fixtures and lifetime-qualified owner identities.
 - Lifetime-qualified shared cache identities, lock-scoped read/compare/write,
   and atomic snapshot publication guidance, with a disposable lab covering
   restart, PID reuse, concurrent writers, timeout, abandonment, and cleanup.

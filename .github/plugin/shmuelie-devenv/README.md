@@ -48,6 +48,8 @@ Managed-configuration guidance preserves link ownership and backups, isolates
 writer probes, and stops for explicit review of configuration drift.
 Shared-cache guidance separates freshness, owner lifetime, atomic snapshot
 publication, and acknowledged delivery, with a disposable coordination lab.
+Terminal reporting rejects unsafe payloads and distinguishes popup descendants
+from ordinary owners before any shared cache or status access.
 
 ### powershell-scripting
 

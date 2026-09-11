@@ -38,6 +38,8 @@ Diagnose and safely repair Copilot CLI sessions and manage local state:
 - Session layout under `~/.copilot/session-state/<id>/` (`workspace.yaml`,
   `events.jsonl`, `plan.md`, checkpoints, rewind snapshots).
 - A back-up-first repair workflow and resume-failure troubleshooting.
+- Request/result pairing, session-relative ordering, and rewind/reference
+  integrity, with explicitly fictional fixtures and unknown-schema stop rules.
 - Plugin, marketplace, and MCP management with native `copilot plugin ...` and
   `copilot plugin marketplace ...` commands.
 - A [scan-learnings prompt](skills/copilot-session-management/scan-learnings.prompt.md)

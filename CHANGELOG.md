@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **shmuelie-copilot:** expanded session-repair guidance with request/result
+  pairing, session-relative ordering, cross-reference integrity, and fictional
+  fixtures for truncated or inconsistent history.
 - **shmuelie-copilot:** added bounded, notification-aware delegated-work
   supervision to playbook guidance, including milestone expectations and safe
   responses to blockers, drift, and unavailable live progress.

@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-10
+
 ### Changed
 - Clarified that the session report remains a chronological factual narrative,
   while any derived PR description should focus on final delivered behavior,

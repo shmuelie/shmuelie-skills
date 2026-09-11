@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-10
+
 ### Changed
 - Added reusable guidance for teaching delegated-work supervision in playbooks:
   bound the objective and scope up front, ask for milestone updates with

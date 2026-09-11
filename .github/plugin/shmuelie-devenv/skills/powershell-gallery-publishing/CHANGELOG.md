@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-10
+
 ### Added
 - Initial skill: publishing PowerShell modules to the PowerShell Gallery from a
   tag-triggered GitHub Actions workflow — `<Module>-vX.Y.Z` release tags, verifying the

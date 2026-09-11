@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-11
+
 ### Added
 
 - Initial LINQPad and DuckDB.NET workflow for synthetic Parquet/Delta analysis,

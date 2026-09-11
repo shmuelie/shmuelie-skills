@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **shmuelie-authoring:** new `project-proposal` workflow for classified,
+  non-overwriting offline proposal packages with compact/split layouts,
+  configurable field counting, and local structural/link validation.
 - **shmuelie-authoring:** new `project-header-artwork` guidance for approved
   visual briefs, inspected banner output, preserved sources, safe links, and
   explicit generation, prompt-only, blocked, and unchanged states.

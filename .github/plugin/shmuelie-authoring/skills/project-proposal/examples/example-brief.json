@@ -1,0 +1,59 @@
+{
+  "projectId": "signal-garden",
+  "title": "Signal Garden",
+  "summary": "A fictional tabletop experience that proposes turning local environmental readings into collaborative garden stories.",
+  "problem": "Community workshop participants need an approachable way to discuss environmental observations without requiring a deployed sensor network.",
+  "audience": [
+    "Community workshop facilitators",
+    "Participants exploring local environmental data"
+  ],
+  "verifiedCapabilities": [
+    "The proposal can use facilitator-provided fictional readings in an offline exercise."
+  ],
+  "proposals": [
+    "Participants would arrange fictional readings into a shared seasonal narrative.",
+    "A facilitator would export a text recap after the exercise."
+  ],
+  "assumptions": [
+    "A 45-minute workshop is sufficient for one round."
+  ],
+  "openQuestions": [
+    "Which accessibility accommodations should the exercise prioritize?"
+  ],
+  "completedWork": [
+    "A fictional brief was authored for proposal drafting."
+  ],
+  "decisions": [
+    {
+      "decision": "Keep the proposed experience offline.",
+      "rationale": "The brief does not establish cloud access or a deployed service."
+    }
+  ],
+  "milestones": [
+    {
+      "name": "Concept review",
+      "outcome": "Reviewers can trace each proposed behavior to the problem and audience."
+    },
+    {
+      "name": "Exercise validation",
+      "outcome": "A future paper walkthrough records timing and accessibility findings."
+    }
+  ],
+  "risks": [
+    {
+      "risk": "Fictional readings may be mistaken for measured data.",
+      "mitigation": "Label every sample as fictional and avoid real-world conclusions."
+    }
+  ],
+  "submission": {
+    "body": "Signal Garden proposes an offline tabletop workshop in which participants turn explicitly fictional environmental readings into a shared seasonal story. The concept is intended for discussion and validation; no prototype, service, repository, or event submission is claimed.",
+    "shortFields": [
+      {
+        "name": "Tagline",
+        "value": "Grow a story from fictional signals",
+        "maxUnits": 60,
+        "counting": "Graphemes"
+      }
+    ]
+  }
+}

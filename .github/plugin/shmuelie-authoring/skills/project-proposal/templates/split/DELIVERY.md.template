@@ -1,0 +1,16 @@
+# {{TITLE}} Delivery Plan
+
+## Delivery Milestones
+
+Milestones describe reviewable future outcomes. They are not claims of
+completed implementation.
+
+{{MILESTONES}}
+
+## Completed Work
+
+{{COMPLETED_WORK}}
+
+## Open Questions Affecting Delivery
+
+{{OPEN_QUESTIONS}}

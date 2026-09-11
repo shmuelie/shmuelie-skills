@@ -1,7 +1,7 @@
 # shmuelie-authoring
 
 Technical authoring: rigorous RFC-style specifications and evidence-based
-readability analysis, plus capability-aware project artwork.
+readability analysis, offline project proposals, and capability-aware artwork.
 
 **Version:** 1.0.0
 
@@ -44,6 +44,12 @@ record separators, scorer versions and sample-size limits.
 Provider-neutral project banners with an approved minimal brief, inspected
 image bytes and dimensions, preserved raster sources, safe project links, and
 explicit Generated, PromptOnly, Blocked, or Unchanged outcomes.
+
+### project-proposal
+
+Offline proposal packages with compact or split specifications, explicit fact
+classification, non-overwriting preview/scaffolding, configurable field counts,
+local link validation, and cross-document refinement.
 
 ## Example requests
 ```text

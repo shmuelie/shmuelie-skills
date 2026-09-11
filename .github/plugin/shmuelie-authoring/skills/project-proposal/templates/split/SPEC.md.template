@@ -1,0 +1,47 @@
+# {{TITLE}} Specification
+
+## Problem and Audience
+
+{{PROBLEM}}
+
+### Audience
+
+{{AUDIENCE}}
+
+## Capability Classification
+
+### Verified Capabilities
+
+{{VERIFIED_CAPABILITIES}}
+
+### Proposals
+
+{{PROPOSALS}}
+
+### Assumptions
+
+{{ASSUMPTIONS}}
+
+### Open Questions
+
+{{OPEN_QUESTIONS}}
+
+### Completed Work
+
+{{COMPLETED_WORK}}
+
+## Proposed Behavior
+
+These behaviors are proposals, not evidence of a working implementation.
+
+{{PROPOSALS}}
+
+## Decisions
+
+{{DECISIONS}}
+
+## Non-goals
+
+- Creating an application, repository, deployment, portal entry, invitation,
+  or submission.
+- Treating structural readiness as proof of feasibility or implementation.

@@ -39,13 +39,14 @@ integrations. **8 skills.**
 
 ## shmuelie-authoring
 
-Produce rigorous specifications, measure prose readability, and create project artwork. **3 skills.**
+Produce specifications and proposals, measure readability, and create project artwork. **4 skills.**
 
 | Skill | Use it for |
 |---|---|
 | [ietf-rfc-authoring](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-authoring/skills/ietf-rfc-authoring/SKILL.md) | RFC-style specifications with kramdown-rfc |
 | [writing-level-analysis](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-authoring/skills/writing-level-analysis/SKILL.md) | Readability metrics for user-provided text |
 | [project-header-artwork](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-authoring/skills/project-header-artwork/SKILL.md) | Provider-neutral banners, source preservation, and honest fallback states |
+| [project-proposal](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-authoring/skills/project-proposal/SKILL.md) | Safe offline compact/split proposal packages with structural validation |
 
 ## shmuelie-dotnet
 

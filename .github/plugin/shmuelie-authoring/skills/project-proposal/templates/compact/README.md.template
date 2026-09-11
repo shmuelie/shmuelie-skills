@@ -1,0 +1,12 @@
+# {{TITLE}}
+
+{{SUMMARY}}
+
+> Local proposal package only. No prototype, repository, event entry, portal record, or submission is claimed. Structural readiness does not establish feasibility or implementation.
+
+## Package
+
+- [Proposal and specification](PROPOSAL.md)
+- [Local submission copy](SUBMISSION.md)
+
+Project identity: `{{PROJECT_ID}}`.

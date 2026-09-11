@@ -1,0 +1,56 @@
+# {{TITLE}} Proposal
+
+## Problem and Audience
+
+{{PROBLEM}}
+
+### Audience
+
+{{AUDIENCE}}
+
+## Capability Classification
+
+### Verified Capabilities
+
+{{VERIFIED_CAPABILITIES}}
+
+### Proposals
+
+{{PROPOSALS}}
+
+### Assumptions
+
+{{ASSUMPTIONS}}
+
+### Open Questions
+
+{{OPEN_QUESTIONS}}
+
+### Completed Work
+
+{{COMPLETED_WORK}}
+
+## Specification
+
+The proposed experience is defined by the unimplemented behaviors below. These
+are proposal requirements, not evidence of a working system.
+
+{{PROPOSALS}}
+
+## Decisions
+
+{{DECISIONS}}
+
+## Delivery Milestones
+
+{{MILESTONES}}
+
+## Risks
+
+{{RISKS}}
+
+## Non-goals
+
+- This package does not create an application, repository, deployment, portal
+  entry, invitation, or submission.
+- This package does not establish technical feasibility or event eligibility.

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- **shmuelie-devenv:** documented executable, shell-shim, launcher, and child
+  environment boundaries, including fresh toolchain shells and scoped tmux
+  environment forwarding.
+
 ### Fixed
 - **shmuelie-devenv:** replaced per-startup completion-cache version probes with
   no-spawn application discovery and metadata-based freshness checks, including

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- **shmuelie-authoring:** new `project-header-artwork` guidance for approved
+  visual briefs, inspected banner output, preserved sources, safe links, and
+  explicit generation, prompt-only, blocked, and unchanged states.
+
 ### Fixed
 - **shmuelie-authoring:** preserved authored punctuation in readability corpora,
   with explicit separators, scorer context, sample sizes and a synthetic

@@ -1,0 +1,53 @@
+{
+  "fictionalProject": "Lantern offline reading-list organizer",
+  "cases": [
+    {
+      "case": "inspected-final-image",
+      "condition": "Approved generation succeeds and final bytes, format, dimensions, composition, and requested overlay are verified.",
+      "expectedState": "Generated",
+      "finalImageLinked": true
+    },
+    {
+      "case": "no-approved-generator",
+      "condition": "No approved generation capability is available, but an approved non-sensitive prompt is saved.",
+      "expectedState": "PromptOnly",
+      "finalImageLinked": false
+    },
+    {
+      "case": "wrong-format-response",
+      "condition": "A response named header.png decodes as HTML or does not decode as an image.",
+      "expectedState": "Blocked",
+      "finalImageLinked": false
+    },
+    {
+      "case": "inspection-unavailable",
+      "condition": "Returned raster bytes cannot be decoded and visually inspected locally.",
+      "expectedState": "Blocked",
+      "finalImageLinked": false
+    },
+    {
+      "case": "resizing-unavailable",
+      "condition": "A valid source does not match required dimensions and no approved crop, resize, and encode capability exists.",
+      "expectedState": "Blocked",
+      "finalImageLinked": false
+    },
+    {
+      "case": "existing-approved-asset",
+      "condition": "Approved final artwork and its working documentation image reference exist; explicit replacement permission was not provided.",
+      "expectedState": "Unchanged",
+      "finalImageLinked": true
+    },
+    {
+      "case": "stale-brief",
+      "condition": "The saved brief conflicts with the current project description; existing approved artwork and its working documentation image reference are retained pending explicit review.",
+      "expectedState": "Unchanged",
+      "finalImageLinked": true
+    },
+    {
+      "case": "prompt-only-link-prevention",
+      "condition": "Only the prompt exists, so documentation is left without a final-image reference.",
+      "expectedState": "PromptOnly",
+      "finalImageLinked": false
+    }
+  ]
+}

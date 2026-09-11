@@ -1,7 +1,7 @@
 # shmuelie-authoring
 
 Technical authoring: rigorous RFC-style specifications and evidence-based
-readability analysis.
+readability analysis, plus capability-aware project artwork.
 
 **Version:** 1.0.0
 
@@ -39,8 +39,13 @@ to private mail or organization systems.
 Corpus preparation preserves authored punctuation and records exclusions,
 record separators, scorer versions and sample-size limits.
 
-## Example requests
+### project-header-artwork
 
+Provider-neutral project banners with an approved minimal brief, inspected
+image bytes and dimensions, preserved raster sources, safe project links, and
+explicit Generated, PromptOnly, Blocked, or Unchanged outcomes.
+
+## Example requests
 ```text
 Turn this protocol design into an RFC-style specification.
 Review these requirements for correct MUST, SHOULD, and MAY usage.

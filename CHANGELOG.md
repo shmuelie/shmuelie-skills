@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **shmuelie-devenv:** new `windows-self-hosted-runner` skill for clean-image
+  bootstrap, service identity, compatible toolchains, scoped SDK installs,
+  short-lived credentials, readiness evidence, and resource-owned recovery.
 - **shmuelie-dotnet:** new `msix-servicing` skill covering deployment hooks,
   registered full-trust servicing, activation boundaries, idempotent migrations,
   and qualified update-task verification with foreground recovery.

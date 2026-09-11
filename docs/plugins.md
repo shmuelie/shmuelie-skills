@@ -24,7 +24,7 @@ Operate and understand Copilot CLI itself. **5 skills.**
 ## shmuelie-devenv
 
 Build reliable developer shells, profiles, deployment scripts, and local
-integrations. **7 skills.**
+integrations. **8 skills.**
 
 | Skill | Use it for |
 |---|---|
@@ -35,6 +35,7 @@ integrations. **7 skills.**
 | [powershell-profile](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/powershell-profile/SKILL.md) | Profiles, PSReadLine, prompts, and terminal recovery |
 | [powershell-scripting](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/powershell-scripting/SKILL.md) | Safe destructive and bulk cmdlets |
 | [shell-wsl](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/shell-wsl/SKILL.md) | Reliable shell scripts, WSL, SSH deployment, and Cargo |
+| [windows-self-hosted-runner](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/windows-self-hosted-runner/SKILL.md) | Clean Windows runner bootstrap, service identity, SDK access, and readiness |
 
 ## shmuelie-authoring
 

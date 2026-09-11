@@ -7,6 +7,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-11
+
 ### Added
 - Structured event schemas, retry/activity relationships, explicit missing
   values, partial outcomes, and field-level diagnostic inspection guidance,

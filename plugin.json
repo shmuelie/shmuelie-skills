@@ -1,7 +1,7 @@
 {
   "name": "shmuelie-skills",
   "description": "Custom Copilot CLI skills for software development, Copilot workflows, PowerShell profiles, plugin authoring, technical writing, Windows applications, embedded systems, and infrastructure",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "author": {
     "name": "Shmueli Englard",
     "url": "https://github.com/shmuelie"

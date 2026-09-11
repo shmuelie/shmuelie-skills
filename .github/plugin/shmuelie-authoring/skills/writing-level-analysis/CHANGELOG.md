@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-11
+
 ### Fixed
 - Preserved authored punctuation during corpus preparation, documented record
   separators and scorer context, and added a synthetic example distinguishing

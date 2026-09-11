@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- **shmuelie-devenv:** new `threat-model-files` skill covering read-only `.tm7`
+  serialization, nested properties, diagram-scoped references, STRIDE/triage
+  summaries, and explicitly synthetic parsing fixtures.
+
 ## [2.6.0] - 2026-09-11
 
 The aggregate release includes `shmuelie-dotnet` 1.2.0. Other focused plugin

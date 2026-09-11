@@ -24,7 +24,7 @@ Operate and understand Copilot CLI itself. **5 skills.**
 ## shmuelie-devenv
 
 Build reliable developer shells, profiles, deployment scripts, and local
-integrations. **8 skills.**
+integrations and inspect threat-model files read-only. **9 skills.**
 
 | Skill | Use it for |
 |---|---|
@@ -36,6 +36,7 @@ integrations. **8 skills.**
 | [powershell-scripting](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/powershell-scripting/SKILL.md) | Safe destructive and bulk cmdlets |
 | [shell-wsl](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/shell-wsl/SKILL.md) | Reliable shell scripts, WSL, SSH deployment, and Cargo |
 | [windows-self-hosted-runner](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/windows-self-hosted-runner/SKILL.md) | Clean Windows runner bootstrap, service identity, SDK access, and readiness |
+| [threat-model-files](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/threat-model-files/SKILL.md) | Read-only tm7 dictionaries, diagrams, threat triage, and unresolved references |
 
 ## shmuelie-authoring
 

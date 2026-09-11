@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+- Launch-boundary guidance distinguishing shell command resolution, native
+  process creation, command shims, launcher/child exit behavior, and isolated
+  toolchain environments.
+
 ### Fixed
 - Replaced per-startup CLI version probes for completion-cache validation with
   application discovery, executable/cache timestamps, and a configurable maximum

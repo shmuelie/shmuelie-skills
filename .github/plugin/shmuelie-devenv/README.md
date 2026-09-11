@@ -42,6 +42,8 @@ expensive ones), versioned side-by-side module deployment, and terminal-mode
 recovery after a crashed TUI.
 Completion-cache guidance avoids per-startup version probes by checking the
 resolved executable, cache timestamps, and a configurable maximum age.
+Launch guidance distinguishes shell resolution, native executables, shims,
+child-process lifetime, and fresh toolchain environments.
 
 ### powershell-scripting
 
@@ -64,6 +66,7 @@ Reliable shell scripting and WSL: `exit` vs `return`, quoting, `mkdir -p`,
 `set -euo pipefail`, WSL systemd detection, APT troubleshooting, one-connection
 `tar`-over-SSH deployment, version-aware updaters, output quieting, embedded
 device deployment, Cargo.lock reproducibility, and Rust/Cargo clippy patterns.
+Includes tmux server, session, and child-process environment boundaries.
 
 ## Example requests
 

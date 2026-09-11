@@ -21,6 +21,12 @@ copilot plugin uninstall shmuelie-dotnet
 
 ## Skills
 
+### openapi-client-generation
+
+Reproducible Kiota client generation with pinned inputs/tooling, preserved
+specification enrichment, endpoint ownership, and fake-transport tests.
+Trimming and AOT claims are qualified by the tested runtime combination.
+
 ### event-contracts
 
 Typed diagnostic event schemas, missing-value handling, retry/activity

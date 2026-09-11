@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ThreatModel xmlns="http://schemas.microsoft.com/sdl/2014/12/ThreatModel" FixtureProfile="Synthetic-TM7-1">
+  <Version>4.1</Version>
+  <DrawingSurfaceList>
+    <DrawingSurfaceModel>
+      <Guid>diagram-a</Guid><Header>Fictional request</Header>
+      <Borders>
+        <KeyValueOfguidanyType><Key>client</Key><Value><Properties><anyType><Name>Name</Name><Value>Fictional client</Value></anyType></Properties></Value></KeyValueOfguidanyType>
+        <KeyValueOfguidanyType><Key>service</Key><Value><Properties /></Value></KeyValueOfguidanyType>
+      </Borders>
+      <Lines>
+        <KeyValueOfguidanyType><Key>request</Key><Value><SourceGuid>client</SourceGuid><TargetGuid>service</TargetGuid><Properties><anyType><Name>Name</Name><Value>Fictional request flow</Value></anyType></Properties></Value></KeyValueOfguidanyType>
+        <KeyValueOfguidanyType><Key>broken</Key><Value><SourceGuid>client</SourceGuid><TargetGuid>absent</TargetGuid><Properties /></Value></KeyValueOfguidanyType>
+      </Lines>
+    </DrawingSurfaceModel>
+    <DrawingSurfaceModel>
+      <Guid>diagram-b</Guid><Header>Fictional archive</Header>
+      <Borders>
+        <KeyValueOfguidanyType><Key>service</Key><Value><Properties><anyType><Name>Name</Name><Value>Different diagram service</Value></anyType></Properties></Value></KeyValueOfguidanyType>
+      </Borders>
+      <Lines />
+    </DrawingSurfaceModel>
+  </DrawingSurfaceList>
+  <ThreatInstances>
+    <KeyValueOfstringThreat><Key>threat-1</Key><Value><Properties>
+      <anyType><Name>Title</Name><Value>Fictional spoofed request</Value></anyType>
+      <anyType><Name>Category</Name><Value>Spoofing</Value></anyType>
+      <anyType><Name>State</Name><Value>NotStarted</Value></anyType>
+      <anyType><Name>DiagramId</Name><Value>diagram-a</Value></anyType>
+      <anyType><Name>FlowId</Name><Value>request</Value></anyType>
+    </Properties></Value></KeyValueOfstringThreat>
+    <KeyValueOfstringThreat><Key>threat-2</Key><Value><Properties>
+      <anyType><Name>Title</Name><Value>Fictional unresolved threat</Value></anyType>
+      <anyType><Name>Category</Name><Value>Tampering</Value></anyType>
+      <anyType><Name>DiagramId</Name><Value>diagram-b</Value></anyType>
+      <anyType><Name>FlowId</Name><Value>request</Value></anyType>
+    </Properties></Value></KeyValueOfstringThreat>
+  </ThreatInstances>
+</ThreatModel>

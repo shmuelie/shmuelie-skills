@@ -1,8 +1,8 @@
 # shmuelie-devenv
 
 Developer-environment engineering: safe PowerShell automation, reliable shell
-and WSL workflows, deployment scripts, interactive profiles, and local .NET MCP
-servers.
+and WSL workflows, deployment scripts, interactive profiles, local .NET MCP
+servers, and read-only threat-model file analysis.
 
 **Version:** 1.3.0
 
@@ -79,6 +79,12 @@ Reliable shell scripting and WSL: `exit` vs `return`, quoting, `mkdir -p`,
 `tar`-over-SSH deployment, version-aware updaters, output quieting, embedded
 device deployment, Cargo.lock reproducibility, and Rust/Cargo clippy patterns.
 Includes tmux server, session, and child-process environment boundaries.
+
+### threat-model-files
+
+Read-only `.tm7` serialization and namespace inspection, nested properties,
+diagram-scoped relationships, STRIDE/triage reporting, and explicit unknowns.
+Includes a reduced synthetic fixture and a profile-gated parsing example.
 
 ### windows-self-hosted-runner
 

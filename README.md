@@ -20,7 +20,7 @@ copilot plugin install shmuelie-dotnet@shmuelie-skills
 | Plugin | Focus |
 |---|---|
 | [`shmuelie-copilot`](docs/plugins.md#shmuelie-copilot) | Copilot sessions, reports, playbooks, and plugin authoring |
-| [`shmuelie-devenv`](docs/plugins.md#shmuelie-devenv) | PowerShell, shell, deployment, profiles, CI runners/templates, and local MCP servers |
+| [`shmuelie-devenv`](docs/plugins.md#shmuelie-devenv) | PowerShell, shell, deployment, profiles, CI, local MCP servers, and threat-model files |
 | [`shmuelie-authoring`](docs/plugins.md#shmuelie-authoring) | RFC-style specifications, readability, project proposals, and artwork |
 | [`shmuelie-dotnet`](docs/plugins.md#shmuelie-dotnet) | .NET, API clients, interop, diagnostics, Roslyn, WinUI 3, MSIX, and application assets |
 | [`shmuelie-systems`](docs/plugins.md#shmuelie-systems) | Embedded C++, homelab infrastructure, and AI accelerators |

@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **shmuelie-devenv:** added ownership-preserving configuration maintenance
+  guidance with relative-link inspection, isolated writer probes, preserved
+  backups, explicit drift-conflict review, and broken-link recovery.
 - **shmuelie-devenv:** documented executable, shell-shim, launcher, and child
   environment boundaries, including fresh toolchain shells and scoped tmux
   environment forwarding.

@@ -44,6 +44,8 @@ Completion-cache guidance avoids per-startup version probes by checking the
 resolved executable, cache timestamps, and a configurable maximum age.
 Launch guidance distinguishes shell resolution, native executables, shims,
 child-process lifetime, and fresh toolchain environments.
+Managed-configuration guidance preserves link ownership and backups, isolates
+writer probes, and stops for explicit review of configuration drift.
 
 ### powershell-scripting
 

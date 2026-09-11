@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ## [Unreleased]
 
 ### Added
+- Ownership-preserving configuration guidance covering link/relative-target
+  inspection, isolated writer probes, non-overwriting backups, explicit drift
+  review, and broken-link recovery without discarding unresolved settings.
 - Launch-boundary guidance distinguishing shell command resolution, native
   process creation, command shims, launcher/child exit behavior, and isolated
   toolchain environments.

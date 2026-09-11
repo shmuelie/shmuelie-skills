@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-11
+
 ### Added
 - Packaging and bundling troubleshooting covering compatible VS MSBuild,
   single-architecture restore scope, publish-property conflicts, native tool

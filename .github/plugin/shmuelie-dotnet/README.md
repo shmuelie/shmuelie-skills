@@ -3,7 +3,7 @@
 .NET and Windows application engineering: repository setup, managed/native
 interop, Roslyn generators, WinUI 3, MSIX distribution, and visual assets.
 
-**Version:** 1.0.0
+**Version:** 1.1.0
 
 ## Install
 

@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **shmuelie-dotnet:** new `msix-servicing` skill covering deployment hooks,
+  registered full-trust servicing, activation boundaries, idempotent migrations,
+  and qualified update-task verification with foreground recovery.
 - **shmuelie-devenv:** new `azure-pipelines-powershell` skill covering evaluation
   phases, safe value binding, explicit publication gates, project-owned package
   versions, and small no-network transformation examples.

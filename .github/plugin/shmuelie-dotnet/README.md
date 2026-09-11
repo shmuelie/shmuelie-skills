@@ -69,6 +69,12 @@ injection patterns.
 Includes packaging failure diagnostics for VS MSBuild, RID/restore scope,
 trimming/AOT configuration, recursive bundle inputs, and older-platform payloads.
 
+### msix-servicing
+
+MSIX install/update deployment tasks and full-trust `ServicingComplete`
+registration, with activation boundaries, idempotent migrations, foreground
+recovery, and qualified loose-registration verification.
+
 ## Example requests
 
 ```text

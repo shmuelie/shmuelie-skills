@@ -191,18 +191,79 @@ When working on PowerShell profile scripts, custom cmdlets, or terminal customiz
   `Get-Command -Module * | Where-Object Name -like '*keyword*'`.
 
 ### Caching CLI-Generated Completions
-- CLI tools that emit shell completion scripts (`uv generate-shell-completion powershell`, `dotnet-suggest list`) spawn a process on every profile load (~200-800ms each).
-- **Cache to `%TEMP%`** with a version-gated sidecar file:
-  ```powershell
-  $cache = Join-Path $env:TEMP 'PowerShellProfileCache' 'uv-completion.ps1'
-  $versionFile = Join-Path $env:TEMP 'PowerShellProfileCache' 'uv-completion.version'
-  $current = (uv --version 2>$null)
-  if (-not (Test-Path $cache) -or (Get-Content $versionFile -Raw)?.Trim() -ne $current) {
-      # Regenerate
-  }
-  . $cache
-  ```
-- Regenerate only when `--version` output changes. Cache files are ephemeral (`%TEMP%`) and not tracked in the repo.
+- Cache generated completion scripts, but **do not run `<tool> --version` on
+  every profile load to validate the cache**. That still pays for a process
+  launch per tool on every new shell; antivirus scanning and cold-start work
+  can make even a version probe expensive and variable.
+- Resolve the application with `Get-Command -CommandType Application`, not an
+  invocation. If the optional tool is absent, skip its completion registration
+  explicitly rather than attempting a failing probe or loading its old cache.
+- Refresh when the cache is missing, older than the resolved executable, or past
+  a configurable maximum age. Use UTC timestamps. A maximum age is a safety net
+  for preserved executable timestamps or completion lists affected by other
+  installed tools, not proof that timestamps detect every upgrade.
+
+This PowerShell 7 example computes the **freshness decision only**; it does not
+run a generator or load a script:
+
+```powershell
+$tool = Get-Command uv -CommandType Application -ErrorAction Ignore |
+    Select-Object -First 1
+$needsRefresh = $false
+if ($null -eq $tool) {
+    Write-Verbose 'uv is unavailable; skip completion registration.'
+}
+else {
+    $cacheBase = [Environment]::GetFolderPath('LocalApplicationData')
+    if ([string]::IsNullOrWhiteSpace($cacheBase)) {
+        throw 'Choose a writable, user-owned cache directory for this platform.'
+    }
+    $cachePath = Join-Path $cacheBase 'ExampleProfileCache' 'uv-completion.ps1'
+    $exe = Get-Item -LiteralPath $tool.Source -ErrorAction Stop
+    $cacheItem = $null
+    if (Test-Path -LiteralPath $cachePath -PathType Leaf -ErrorAction Stop) {
+        $cacheItem = Get-Item -LiteralPath $cachePath -ErrorAction Stop
+    }
+    $now = [DateTime]::UtcNow
+    $maxAge = [TimeSpan]::FromDays(7)
+    $needsRefresh = (
+        $null -eq $cacheItem -or
+        $cacheItem.LastWriteTimeUtc -lt $exe.LastWriteTimeUtc -or
+        ($now - $cacheItem.LastWriteTimeUtc) -ge $maxAge -or
+        $cacheItem.LastWriteTimeUtc -gt $now
+    )
+}
+```
+
+- When the tool is present and refresh is needed, invoke its documented
+  completion generator once. Check its exit code and validate the complete
+  output before replacing a known-good cache. Do not dot-source a missing,
+  partial, failed, or untrusted result. Keep script caches in a user-owned
+  directory; never execute content from a location writable by other users.
+- If PATH can select different installations or a shim can point to a different
+  executable, record and compare the resolved source identity as well.
+  Timestamp checks on an unchanged launcher do not prove its target is unchanged.
+- Lazy or background regeneration can keep startup responsive, but is optional:
+  coordinate writers and publish a complete snapshot safely. Report generation
+  failures; do not silently treat them as successful refreshes. A valid,
+  policy-permitted previous cache may remain usable while refreshing.
+- Measure cache-hit and cache-miss startup separately. The expected steady-state
+  improvement is removal of generator/version-probe process launches, not a
+  universal millisecond guarantee.
+
+| Case | Expected behavior |
+|---|---|
+| Tool absent | Skip its completion registration; launch nothing. |
+| Cache missing | Generate once when the tool is available. |
+| Executable newer than cache | Regenerate from the selected executable. |
+| Cache within maximum age and not older than executable | Reuse it without launching the tool. |
+| Cache expired, or timestamp unexpectedly in the future | Refresh; investigate clock/metadata anomalies when relevant. |
+| Generator fails | Surface the failure; never publish or load its partial output. |
+
+See [Get-Command](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-command)
+and [Get-Item](https://learn.microsoft.com/powershell/module/microsoft.powershell.management/get-item)
+for command discovery and filesystem metadata.
+
 - For `Update-FormatData`, batch all format files into one call instead of N individual calls: `Update-FormatData -AppendPath @(Get-ChildItem *.format.ps1xml).FullName`.
 
 ## Subdirectory Module Pattern

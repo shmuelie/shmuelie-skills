@@ -80,6 +80,12 @@ Reliable shell scripting and WSL: `exit` vs `return`, quoting, `mkdir -p`,
 device deployment, Cargo.lock reproducibility, and Rust/Cargo clippy patterns.
 Includes tmux server, session, and child-process environment boundaries.
 
+### windows-self-hosted-runner
+
+Clean-image Windows runner bootstrap, workload-compatible toolchains, actual
+service identity, job-scoped SDK permissions, readiness evidence, short-lived
+credentials, and created-resource-only recovery.
+
 ## Example requests
 
 ```text

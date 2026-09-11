@@ -28,6 +28,8 @@ Generate a teaching guide for how you drive the agent — plan→implement, comm
 granularity, ask-before-act, terse corrections, PR lifecycle, and verification —
 with copyable real prompts mined from session history. It is the narrative
 sibling of `copilot-usage-report`: lessons and style rather than metrics.
+Includes bounded, notification-aware supervision of delegated work: define
+scope and evidence, assess milestones, and respond to blockers or drift.
 
 ### copilot-session-management
 

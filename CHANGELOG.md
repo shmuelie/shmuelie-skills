@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **shmuelie-devenv:** added lifetime-qualified cache identity and atomic
+  snapshot guidance with a disposable, coordinated multi-process lab and
+  explicit failure, abandonment, and delivery-acknowledgment boundaries.
 - **shmuelie-devenv:** added ownership-preserving configuration maintenance
   guidance with relative-link inspection, isolated writer probes, preserved
   backups, explicit drift-conflict review, and broken-link recovery.

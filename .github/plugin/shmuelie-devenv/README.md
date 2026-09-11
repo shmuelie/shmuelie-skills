@@ -46,6 +46,8 @@ Launch guidance distinguishes shell resolution, native executables, shims,
 child-process lifetime, and fresh toolchain environments.
 Managed-configuration guidance preserves link ownership and backups, isolates
 writer probes, and stops for explicit review of configuration drift.
+Shared-cache guidance separates freshness, owner lifetime, atomic snapshot
+publication, and acknowledged delivery, with a disposable coordination lab.
 
 ### powershell-scripting
 

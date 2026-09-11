@@ -21,6 +21,12 @@ copilot plugin uninstall shmuelie-dotnet
 
 ## Skills
 
+### event-contracts
+
+Typed diagnostic event schemas, missing-value handling, retry/activity
+correlation, and field-level inspection with a synthetic EventSource contract
+example and explicit ETW/EventPipe/sink boundaries.
+
 ### csharp-interop
 
 COM and P/Invoke interop: CsWin32 setup and `[GeneratedComInterface]` COM

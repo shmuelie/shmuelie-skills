@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- **shmuelie-dotnet:** new `event-contracts` skill for typed diagnostic dimensions,
+  missing values, activity/retry relationships, partial results, and decoded
+  event inspection, with a synthetic EventSource contract example.
+
 ## [2.5.0] - 2026-09-11
 
 The aggregate release includes `shmuelie-authoring` 1.1.0. Other focused

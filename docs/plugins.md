@@ -50,11 +50,12 @@ Produce specifications and proposals, measure readability, and create project ar
 
 ## shmuelie-dotnet
 
-Develop, package, and distribute modern .NET and Windows applications. **7 skills.**
+Develop, package, and diagnose modern .NET and Windows applications. **8 skills.**
 
 | Skill | Use it for |
 |---|---|
 | [csharp-interop](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/csharp-interop/SKILL.md) | COM, P/Invoke, Native AOT, and native hosting |
+| [event-contracts](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/event-contracts/SKILL.md) | Typed diagnostic fields, retry/activity correlation, and decoded-event inspection |
 | [dotnet-project-init](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/dotnet-project-init/SKILL.md) | Repository, solution, test, packaging, and CI setup |
 | [icon-assets](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/icon-assets/SKILL.md) | Application, MSIX, NuGet, and web icon assets |
 | [msix-store-submission](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/msix-store-submission/SKILL.md) | MSIX packaging and Microsoft Store submission |

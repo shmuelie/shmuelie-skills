@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-11
+
 ### Added
 - tmux server-vs-pane environment guidance: scope temporary variables to the
   created child, avoid leaking one-off values through global server state, and

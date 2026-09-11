@@ -32,7 +32,7 @@ troubleshooting.
 
 | Plugins | Skills | Aggregate installs |
 |---:|---:|---:|
-| 6 | 28 | 1 |
+| 6 | 29 | 1 |
 
 ## Focused plugins
 

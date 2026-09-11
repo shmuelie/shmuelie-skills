@@ -103,6 +103,9 @@ should teach delegation as a contract, not as "fire and forget."
   notifications, unread agent output, or an explicitly supported delayed check-in
   when the task genuinely needs one. Do **not** recommend tight polling,
   repeated agent discovery, or duplicate investigation just to "make sure."
+- Honor the runtime's read contract. If it requires a completion notification
+  before consuming final output, wait for that notification; a scheduled
+  check-in does not override the requirement.
 - Running status or elapsed time alone does **not** prove healthy progress, and
   silence alone does **not** prove a stall.
 - A queued follow-up is **not** an immediate progress report. If live progress
@@ -142,22 +145,19 @@ subagent habits land: how to set the contract, which progress signals are
 trustworthy, and how to react safely to success, blockers, drift, or unavailable
 live progress.
 
-Use concrete scenarios inside this lesson, each with the safe supervisory
-response:
+Use concrete scenarios inside this lesson, each with an observable report and
+a safe supervisory response. For example, consider this **fictional assignment**:
+add missing-field, empty-input, and malformed-value cases in `tests/parser/`;
+change no production code or configuration; return the case names, changed
+paths, and output from the existing test command. These illustrations are not
+quotes from the user's history and must never be presented as mined prompts.
 
-- **Successful:** the delegate returns the requested evidence and meets the
-  stated completion criteria. Safe response: accept the handoff only after
-  comparing it to the original contract.
-- **Blocked:** the delegate names a real blocker plus what was completed and the
-  next step. Safe response: unblock it, narrow the scope, or escalate the
-  decision; do not restart the same investigation elsewhere.
-- **Drifting:** the delegate reports work outside the agreed scope or misses the
-  expected evidence. Safe response: redirect the same agent back to the bounded
-  objective and restate the non-goals.
-- **Unavailable live progress:** the runtime offers only eventual completion
-  notification. Safe response: acknowledge that live progress is unavailable,
-  rely on supported notifications or task-appropriate delayed check-ins, and do
-  not infer health from elapsed time alone.
+| Scenario | Observable report | Safe supervisory response |
+|---|---|---|
+| Successful | All three named cases are added; the handoff lists only `tests/parser/` files and includes successful test output. | Compare the diff, cases, and results to the original contract before accepting completion; stop obsolete monitoring. |
+| Blocked | The missing-field case is written, but the declared test runner is unavailable; no test results exist. The delegate proposes restoring the project's declared dependencies. | Resolve the environment blocker within existing authorization or ask the user; retain the completed work and explicitly report tests as not run. Do not spawn a duplicate implementation or invent results. |
+| Drifting | The delegate reports replacing the production parser and changing shared configuration instead of adding tests. | Redirect the same agent to the three test cases and original file boundary. Preserve unrelated user work and escalate any claim that a production change is necessary. |
+| Unavailable live progress | The runtime exposes only an eventual completion notification. A follow-up asking for case names is queued, with no reply yet. | State that progress is unknown, continue independent work, and await the supported notification. Do not treat the queued message as a checkpoint or infer health or a stall from time alone. |
 
 ## Writing Guidance
 

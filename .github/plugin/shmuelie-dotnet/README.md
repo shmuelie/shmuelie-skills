@@ -66,6 +66,8 @@ WinUI 3 applications: data binding pitfalls (`{x:Bind}` vs `{Binding}` vs
 `[Bindable]`), MSIX packaging (`EnableMsixTooling`, manifest requirements,
 loose-file registration), WinAppSDK test project architecture, and dependency
 injection patterns.
+Includes packaging failure diagnostics for VS MSBuild, RID/restore scope,
+trimming/AOT configuration, recursive bundle inputs, and older-platform payloads.
 
 ## Example requests
 

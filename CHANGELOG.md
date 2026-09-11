@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- **shmuelie-dotnet:** added scoped MSIX packaging and bundling diagnostics for
+  build-engine selection, RID/restore scope, trimming/AOT properties, native
+  tool discovery, duplicate bundle payloads, and older-platform extensions.
+
 ## [2.3.0] - 2026-09-11
 
 The aggregate release includes `shmuelie-devenv` 1.2.0. Other focused plugin

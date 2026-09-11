@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+- Packaging and bundling troubleshooting covering compatible VS MSBuild,
+  single-architecture restore scope, publish-property conflicts, native tool
+  discovery, recursive bundle inputs, and older-platform `.appx` payload names.
+
 ## 2026-03-21
 
 ### Added

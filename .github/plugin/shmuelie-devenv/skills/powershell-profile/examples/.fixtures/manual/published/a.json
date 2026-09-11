@@ -1,9 +1,0 @@
-{
-  "IdentityKey": "scope=synthetic-status;pid=9001;started=2026-09-10T19:00:00.0000000Z;session=session-concurrent",
-  "PayloadJson": "{\"Writer\":\"writer-1\",\"Attempt\":1}",
-  "Payload": {
-    "Writer": "writer-1",
-    "Attempt": 1
-  },
-  "PublishedAtUtc": "2026-09-11T00:46:37.4933927Z"
-}

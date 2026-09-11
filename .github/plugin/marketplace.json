@@ -12,7 +12,7 @@
     {
       "name": "shmuelie-skills",
       "description": "Aggregate plugin containing all public Shmuelie skills",
-      "version": "2.3.0",
+      "version": "2.4.0",
       "source": "."
     },
     {
@@ -24,7 +24,7 @@
     {
       "name": "shmuelie-devenv",
       "description": "PowerShell, shell, deployment, profile, and local .NET MCP server engineering",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "source": ".github/plugin/shmuelie-devenv"
     },
     {
@@ -36,7 +36,7 @@
     {
       "name": "shmuelie-dotnet",
       "description": ".NET, C# interop, Roslyn, WinUI 3, MSIX, and application assets",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "source": ".github/plugin/shmuelie-dotnet"
     },
     {

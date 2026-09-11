@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-11
+
 ### Added
 - Initial guidance for Azure Pipelines expression phases, safe PowerShell value
   binding, explicit publication gates, project-owned package versions, package

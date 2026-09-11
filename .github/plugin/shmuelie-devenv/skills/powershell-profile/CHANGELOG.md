@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 ## [Unreleased]
 
 ### Added
+- Lifetime-qualified shared cache identities, lock-scoped read/compare/write,
+  and atomic snapshot publication guidance, with a disposable lab covering
+  restart, PID reuse, concurrent writers, timeout, abandonment, and cleanup.
 - Ownership-preserving configuration guidance covering link/relative-target
   inspection, isolated writer probes, non-overwriting backups, explicit drift
   review, and broken-link recovery without discarding unresolved settings.

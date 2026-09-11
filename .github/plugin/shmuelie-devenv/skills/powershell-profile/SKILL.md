@@ -339,6 +339,58 @@ for command discovery and filesystem metadata.
 
 - For `Update-FormatData`, batch all format files into one call instead of N individual calls: `Update-FormatData -AppendPath @(Get-ChildItem *.format.ps1xml).FullName`.
 
+### Lifetime-Qualified Cross-Process Cache Identity and Atomic Snapshot Publication
+
+Keep completion **freshness** separate from the identity and delivery guarantees
+of a shared snapshot. A reused session ID can point at an old cache and suppress
+the first update after a server restart.
+
+- Identify the lifetime of the **shared owner/server**, not each reporting
+  client's PID: combine its PID, UTC start time, and logical session ID where
+  applicable. Include the relevant user/machine namespace. All cooperating
+  writers must agree on that identity; missing start-time evidence is not a
+  reason to fall back silently to a reused PID alone.
+- Serialize the tuple unambiguously with a defined field order and encoding,
+  then derive both the file key and cross-process lock from the same hash.
+  Validate exact, case-sensitive identity after reads and before cache hits.
+- Lock the entire read/compare/write sequence. Write complete encoded data to a
+  temporary file in the destination directory, flush, and use same-filesystem
+  replace/rename semantics supported by that filesystem. This is atomic
+  publication, not a guarantee of crash durability or network-filesystem
+  behavior. Never treat a cross-filesystem move as an atomic replacement.
+- A lock timeout proves only that the acquisition deadline expired. Report it;
+  do not treat it as a cache hit. An abandoned mutex grants ownership to the
+  waiter but makes protected state suspect: reread and validate it. If the last
+  handle closed when the owner died, reopening the name may create a new mutex
+  with no abandonment signal. Recovery cannot depend solely on that signal.
+- Local snapshot publication is not acknowledgment that a native dispatch
+  succeeded. Track attempts separately from acknowledged delivery; avoid
+  suppressing retries or recording success merely because a process started.
+
+| Scenario | Expected outcome |
+|---|---|
+| Server restarts or a PID/session ID is reused | Start time changes the shared identity; the first update is not suppressed by an old cache. |
+| Concurrent writers | The second writer rereads the first complete snapshot after acquiring the same lock. |
+| Writer stops before replacement | The last published snapshot remains intact; a later owner validates before republishing. |
+| Acquisition deadline expires | Explicit timeout, not a success-shaped result; retry only under the caller's policy. |
+| Local write succeeds but external dispatch fails | Preserve the distinction and report the actual delivery failure. |
+
+The [disposable cache lab](examples/Invoke-CacheIdentityExample.ps1) exercises
+these local coordination boundaries with synthetic identities, owned temporary
+children, and bounded handshakes. Run it with PowerShell 7 on a local filesystem
+supporting the documented mutex/replace APIs; it deliberately terminates an
+owned child to demonstrate abandonment while an observer handle remains open.
+It is not a production cache library or an external-delivery test:
+
+```powershell
+pwsh -NoProfile -File ./examples/Invoke-CacheIdentityExample.ps1 -FixtureParent 'C:\Temp\Cache Lab'
+```
+
+Resolve the example path relative to this installed skill directory. The
+caller-selected parent is preserved; only a newly allocated, ownership-marked
+child is cleaned up. Unconfirmed child termination retains the fixture and
+reports cleanup errors instead of deleting data still in use.
+
 ## Subdirectory Module Pattern
 - Large helper scripts (700+ lines) should be split into focused subdirectories: `Scripts/CopilotHelpers/`, `Scripts/GitHelpers/`, `Scripts/NodeHelpers/`.
 - Each subdirectory has an `_init.ps1` entry point that dot-sources the individual files and registers argument completers.

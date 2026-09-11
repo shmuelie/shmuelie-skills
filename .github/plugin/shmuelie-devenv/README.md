@@ -40,6 +40,8 @@ PowerShell profile engineering: profile architecture, PSReadLine configuration,
 prompt customization, argument completers, PSReadLine predictors (and gating
 expensive ones), versioned side-by-side module deployment, and terminal-mode
 recovery after a crashed TUI.
+Completion-cache guidance avoids per-startup version probes by checking the
+resolved executable, cache timestamps, and a configurable maximum age.
 
 ### powershell-scripting
 

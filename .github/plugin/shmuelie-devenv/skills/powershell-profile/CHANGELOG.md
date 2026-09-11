@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Fixed
+- Replaced per-startup CLI version probes for completion-cache validation with
+  application discovery, executable/cache timestamps, and a configurable maximum
+  age. Added missing-tool, generator-failure, source-identity, and safe-cache
+  guidance plus explicit cache-hit and cache-miss expectations.
+
 ## 2026-08-03
 
 ### Added

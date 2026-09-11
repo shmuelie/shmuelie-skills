@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- **shmuelie-devenv:** replaced per-startup completion-cache version probes with
+  no-spawn application discovery and metadata-based freshness checks, including
+  cache age limits, missing tools, and safe regeneration.
+
 ## [2.2.0] - 2026-09-10
 
 The aggregate release includes `shmuelie-copilot` 1.2.0 and

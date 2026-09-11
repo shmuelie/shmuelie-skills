@@ -39,18 +39,48 @@ When working on PowerShell profile scripts, custom cmdlets, or terminal customiz
 - `about_Command_Precedence` matters here: a bare command name can resolve to an alias, function, or cmdlet before an external application. An interactive shell shortcut that works at the prompt is not automatically suitable as the target of `Start-Process`, a terminal launcher, or any other host that needs a concrete child process.
 - Use `Get-Command <name> -All` to inspect everything with that name, and `Get-Command <name> -CommandType Application -All` when you specifically need launchable applications. `ApplicationInfo.Source` gives the path that PowerShell would start.
 - Fail loudly when discovery does not produce exactly the boundary you need. If no application is found, throw with the searched name. If multiple applications are found, surface the candidate paths and pick one deterministically (explicit path, documented preference, or user-configured location) instead of assuming `PATH` order is stable across shells and machines.
-- Preserve argument boundaries with arrays and the call operator:
+- The examples below deliberately select the first discovered application in
+  the current environment. That is an explicit example policy, not a promise
+  that the same version wins on every machine. Never expand `.Source` from
+  multiple `ApplicationInfo` objects and pass the resulting array as one
+  executable name.
+- For a native executable, use separate arguments and the call operator, and
+  check the result. Verify the application's parser and your PowerShell
+  version's native-argument behavior when embedded quotes or empty arguments
+  matter:
   ```powershell
-  $git = (Get-Command git -CommandType Application).Source
+  $git = (Get-Command git -CommandType Application -All -ErrorAction Stop |
+      Select-Object -First 1).Source
   & $git '-C' 'C:\Work With Spaces' 'status' '--short'
+  if ($LASTEXITCODE -ne 0) { throw "git failed with exit code $LASTEXITCODE." }
   ```
   Do not build one string such as `"$git -C C:\Work With Spaces status --short"` and hope a later layer reparses it the same way.
-- A `.cmd` or `.bat` shim is a valid application boundary only when you intentionally want that shell contract. Treat it as a launcher entrypoint, not the underlying tool: it may depend on `cmd.exe` parsing, PATHEXT lookup, or adjacent files. If a tool only exposes `tool.cmd`, either call the documented real executable or invoke the shim through its owning shell and keep quoting at that one boundary:
+- An `Application` lookup can still return a `.cmd` or `.bat` shim, not a native
+  executable. It may depend on `cmd.exe` parsing, PATHEXT lookup, or adjacent
+  files. A host requiring a native executable should reject that boundary
+  rather than silently substitute shell execution:
   ```powershell
-  $shim = (Get-Command tool -CommandType Application).Source
-  & $env:ComSpec '/c' $shim '--input' 'C:\Path With Spaces\input.txt'
+  $application = Get-Command tool -CommandType Application -All -ErrorAction Stop |
+      Select-Object -First 1
+  if ([IO.Path]::GetExtension($application.Source) -in '.cmd', '.bat') {
+      throw 'Configure the real executable or a separately reviewed shell launcher.'
+  }
   ```
-- Prefer direct invocation (`& $exe @args`) when you need synchronous execution, stderr in the current host, and a visible native exit code. Use `Start-Process` only when you actually need a separate process or window; then pass an exact `-FilePath`, keep `-ArgumentList` explicit, and use `-Wait -PassThru` when the caller must observe failure.
+- If the documented entry point really is a shim, use an explicit,
+  shell-specific launcher whose quoting and accepted input are tested. An
+  argument array passed to `cmd /c` is **not** a general escaping solution:
+  spaced shim paths can be reparsed incorrectly, and metacharacters such as
+  `&`, `|`, `%`, or `!` can change meaning. Prefer the real executable for
+  dynamic arguments; reject unsupported inputs rather than invent a generic
+  escaping recipe or interpolate them into a command string.
+- Prefer direct invocation (`& $exe @args`) for synchronous execution in the
+  current host. `Start-Process -ArgumentList` joins its array into **one string**,
+  so its elements are not preserved as an argv array; provide quoting for the
+  target parser or use an appropriate process API with a real argument-list
+  contract. For `Start-Process`, use an exact `-FilePath`, `-Wait -PassThru` when
+  needed, and inspect the returned process's `ExitCode`, not `$LASTEXITCODE`.
+  See [Start-Process](https://learn.microsoft.com/powershell/module/microsoft.powershell.management/start-process#-argumentlist)
+  and [command precedence](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_command_precedence).
 
 ### Terminal Host, Launcher, and Child-Shell Boundaries
 - Distinguish the layers: current PowerShell session -> optional launcher (`wt`, `cmd /c start`, another host) -> child shell -> tool. Each layer has its own parsing rules, startup behavior, and exit behavior.
@@ -60,11 +90,21 @@ When working on PowerShell profile scripts, custom cmdlets, or terminal customiz
 
 ### Toolchain Environments Are Fresh-Shell Boundaries
 - Compiler and SDK setup is process-local: `PATH`, `INCLUDE`, `LIB`, prompt state, loaded modules, and toolchain marker variables all live in the current shell process. Once a shell has loaded one developer environment, trying to "switch" it in place risks mixed state from both toolchains.
-- Prefer one fresh shell per toolchain version, architecture, or environment flavor. Launch the child shell with the toolchain setup it needs, do the work there, and let normal process exit discard the temporary state.
-- Generic pattern:
+- Prefer one fresh shell per toolchain version, architecture, or environment
+  flavor. **A new process still inherits the parent's environment by default.**
+  Start from a known-clean parent environment or configure the intended child's
+  environment explicitly using a supported launcher API. Do not mutate shared
+  parent/server state to prepare that child. Also control profile startup:
+  `-NoProfile` skips profile scripts but does not reset inherited `PATH`, `LIB`,
+  or `INCLUDE`. Apply the chosen toolchain setup only in the intended child.
+- This valid, non-interactive example demonstrates a child-only setting, not
+  a real SDK setup command. Use the vendor's setup routine in the actual child;
+  add `-NoExit` only when an interactive shell should remain open:
   ```powershell
-  $pwsh = (Get-Command pwsh -CommandType Application).Source
-  & $pwsh '-NoExit' '-Command' '$env:TOOLCHAIN_ROOT="C:\Sdk A"; & { <toolchain setup>; <build command> }'
+  $pwsh = (Get-Command pwsh -CommandType Application -All -ErrorAction Stop |
+      Select-Object -First 1).Source
+  & $pwsh '-NoProfile' '-Command' '$env:TOOLCHAIN_ROOT="C:\Sdk A"; Write-Output $env:TOOLCHAIN_ROOT'
+  if ($LASTEXITCODE -ne 0) { throw "Child shell failed with exit code $LASTEXITCODE." }
   ```
   Keep the parent shell clean, and do not try to "undo" the first toolchain with manual environment-variable surgery after the fact.
 

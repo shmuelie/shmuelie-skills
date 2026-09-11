@@ -1,7 +1,8 @@
 # shmuelie-dotnet
 
 .NET and Windows application engineering: repository setup, managed/native
-interop, Roslyn generators, WinUI 3, MSIX distribution, and visual assets.
+interop, Roslyn generators, WinUI 3, MSIX distribution, visual assets, and
+LINQPad/DuckDB data analysis.
 
 **Version:** 1.2.0
 
@@ -20,6 +21,12 @@ copilot plugin uninstall shmuelie-dotnet
 ```
 
 ## Skills
+
+### linqpad-duckdb
+
+Pinned DuckDB.NET/native setup, LINQPad query configuration, local synthetic
+Parquet/Delta fixtures, optional Azure credential chains and ABFSS addressing,
+logical column mapping, and scan-cost limits.
 
 ### openapi-client-generation
 

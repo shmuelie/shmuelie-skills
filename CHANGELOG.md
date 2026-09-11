@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **shmuelie-dotnet:** new `linqpad-duckdb` skill with pinned synthetic
+  Parquet/Delta examples, logical/physical schema mapping, optional Azure
+  credential chains, and scan-cost guidance.
 - **shmuelie-devenv:** new `threat-model-files` skill covering read-only `.tm7`
   serialization, nested properties, diagram-scoped references, STRIDE/triage
   summaries, and explicitly synthetic parsing fixtures.

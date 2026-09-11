@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.2.0] - 2026-09-10
+
+The aggregate release includes `shmuelie-copilot` 1.2.0 and
+`shmuelie-devenv` 1.1.0. Other focused plugin versions are unchanged.
+
 ### Added
 - **shmuelie-copilot:** expanded session-repair guidance with request/result
   pairing, session-relative ordering, cross-reference integrity, and fictional
@@ -21,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
   pushed at once" gotcha, and first-come module-name reservation.
 
 ### Fixed
+- Updated the documentation catalog to include `powershell-gallery-publishing`,
+  with six devenv skills and 23 skills overall.
 - **shmuelie-copilot:** distinguished chronological session reports from derived
   final-state PR descriptions, with a synthetic example preserving delivered
   behavior, relevant evidence, risks, limitations, and future work.
@@ -256,3 +263,8 @@ and the six focused plugins debut at 1.0.0.
   - **homelab-infra** — Proxmox GPU passthrough, HA dashboards, Jellyfin plugins, ComfyUI nodes
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
+
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v2.2.0...HEAD
+[2.2.0]: https://github.com/shmuelie/shmuelie-skills/compare/v2.1.0...v2.2.0
+[2.1.0]: https://github.com/shmuelie/shmuelie-skills/compare/v2.0.0...v2.1.0
+[2.0.0]: https://github.com/shmuelie/shmuelie-skills/releases/tag/v2.0.0

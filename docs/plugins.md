@@ -24,12 +24,13 @@ Operate and understand Copilot CLI itself. **5 skills.**
 ## shmuelie-devenv
 
 Build reliable developer shells, profiles, deployment scripts, and local
-integrations. **5 skills.**
+integrations. **6 skills.**
 
 | Skill | Use it for |
 |---|---|
 | [deploy-scripts](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/deploy-scripts/SKILL.md) | Build discovery and multi-platform deployment |
 | [local-mcp-server-development](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/local-mcp-server-development/SKILL.md) | Local .NET MCP servers for desktop automation |
+| [powershell-gallery-publishing](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/powershell-gallery-publishing/SKILL.md) | Tag-triggered PowerShell Gallery publishing and module releases |
 | [powershell-profile](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/powershell-profile/SKILL.md) | Profiles, PSReadLine, prompts, and terminal recovery |
 | [powershell-scripting](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/powershell-scripting/SKILL.md) | Safe destructive and bulk cmdlets |
 | [shell-wsl](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-devenv/skills/shell-wsl/SKILL.md) | Reliable shell scripts, WSL, SSH deployment, and Cargo |

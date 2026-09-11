@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-10
+
 ### Added
 - Expanded safe session repair guidance with request/result pairing, session-
   relative event ordering, minimal in-place edits, cross-reference validation,

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.5.0] - 2026-09-11
+
+The aggregate release includes `shmuelie-authoring` 1.1.0. Other focused
+plugin versions and catalog metadata are unchanged.
+
 ### Added
 - **shmuelie-authoring:** new `project-proposal` workflow for classified,
   non-overwriting offline proposal packages with compact/split layouts,
@@ -320,7 +325,8 @@ and the six focused plugins debut at 1.0.0.
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v2.4.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v2.5.0...HEAD
+[2.5.0]: https://github.com/shmuelie/shmuelie-skills/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/shmuelie/shmuelie-skills/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/shmuelie/shmuelie-skills/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/shmuelie/shmuelie-skills/compare/v2.1.0...v2.2.0

@@ -3,7 +3,7 @@
 Technical authoring: rigorous RFC-style specifications and evidence-based
 readability analysis, offline project proposals, and capability-aware artwork.
 
-**Version:** 1.0.0
+**Version:** 1.1.0
 
 ## Install
 

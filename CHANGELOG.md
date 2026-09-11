@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+- **shmuelie-authoring:** preserved authored punctuation in readability corpora,
+  with explicit separators, scorer context, sample sizes and a synthetic
+  demonstration of preprocessing-driven grade changes.
+
 ## [2.4.0] - 2026-09-11
 
 The aggregate release includes `shmuelie-devenv` 1.3.0 and `shmuelie-dotnet`

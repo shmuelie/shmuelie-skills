@@ -36,6 +36,8 @@ grade level plus corroborating indices (Flesch Reading Ease, Gunning Fog,
 Coleman-Liau, ARI). It reports per-source results, recomputes combined metrics
 from the full cleaned corpus, states the library used, and never assumes access
 to private mail or organization systems.
+Corpus preparation preserves authored punctuation and records exclusions,
+record separators, scorer versions and sample-size limits.
 
 ## Example requests
 

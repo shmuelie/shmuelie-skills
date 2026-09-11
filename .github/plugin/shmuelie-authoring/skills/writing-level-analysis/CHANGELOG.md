@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Fixed
+- Preserved authored punctuation during corpus preparation, documented record
+  separators and scorer context, and added a synthetic example distinguishing
+  segmentation-driven score changes from changes in writing quality.
+
 ## 2026-08-03
 
 ### Added

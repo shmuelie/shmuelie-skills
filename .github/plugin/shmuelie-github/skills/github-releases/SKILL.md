@@ -43,12 +43,22 @@ Use an explicit asset list instead of a broad wildcard.
 ```powershell
 # Only for an approved draft-creation plan and already verified tag:
 gh release create $tag --repo $repo --verify-tag --draft --title $tag --notes-file .\release-notes.md
+if ($LASTEXITCODE -ne 0) { throw 'Draft creation failed; reconcile existing release state before any upload.' }
+$json = gh release view $tag --repo $repo --json tagName,isDraft,url
+if ($LASTEXITCODE -ne 0) { throw 'Cannot verify the newly created draft.' }
+$draft = $json | ConvertFrom-Json
+if ($draft.tagName -cne $tag -or $draft.isDraft -ne $true) { throw 'The intended release is not a draft; stop for reconciliation.' }
 gh release upload $tag .\artifacts\widgets.zip .\artifacts\SHA256SUMS --repo $repo
+if ($LASTEXITCODE -ne 0) { throw 'Asset upload failed; preserve the draft and inspect partial effects.' }
 gh release view $tag --repo $repo --json tagName,isDraft,isPrerelease,assets,body,url
+if ($LASTEXITCODE -ne 0) { throw 'Unable to verify staged release assets.' }
 ```
 
 Verify downloaded asset bytes/checksums where required; matching names and sizes
-alone are not content identity. Resolve the remote tag again before finalizing.
+alone are not content identity. Recheck draft identity/state immediately before
+each subsequent write and stop for reconciliation if another actor published or
+replaced it. Read-then-write is not atomic; coordinate concurrent release actors
+and do not claim these checks eliminate races. Resolve the remote tag again before finalizing.
 
 ## Publish and handle conflicts
 
@@ -83,6 +93,7 @@ belongs to its ecosystem skill; this skill has no mandatory dependency on it.
 | Tag absent; user asked for release notes | Draft notes and explain blocker | Let gh create a tag on main |
 | Correct tag name now points at another commit | Stop and reconfirm source | Publish stale artifacts |
 | Two uploads succeed and the third fails | Retain draft and report partial upload | Publish anyway or clobber all assets |
+| Draft creation fails because a release appeared concurrently | Stop immediately and reconcile; no upload | Fall through to upload into the existing published release |
 | Published immutable release lacks an asset | Report limitation and seek recovery decision | Delete/recreate release or move tag |
 | Prerelease is numerically newer than stable | Explicit prerelease, latest disabled | Mark it latest stable |
 | Old stable backport is published later | Preserve intended latest stable | Choose latest solely by date |

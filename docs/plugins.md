@@ -7,7 +7,18 @@ title: Plugins
 # Plugins
 
 Each skill belongs to one focused plugin. The aggregate root plugin loads all
-seven directories without duplicating skill ownership.
+eight directories without duplicating skill ownership.
+
+## shmuelie-nuget
+
+Create, package, validate, and release .NET libraries. **4 skills.**
+
+| Skill | Use it for |
+| --- | --- |
+| [dotnet-library-projects](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-nuget/skills/dotnet-library-projects/SKILL.md) | Library/API/framework decisions and a canonical example |
+| [nuget-package-authoring](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-nuget/skills/nuget-package-authoring/SKILL.md) | Package metadata, assets, dependencies, Source Link, and symbols |
+| [dotnet-library-ci](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-nuget/skills/dotnet-library-ci/SKILL.md) | Read-only CI and isolated packed-library consumption |
+| [nuget-release](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-nuget/skills/nuget-release/SKILL.md) | SemVer/changelog, trusted publishing, release assets, and recovery |
 
 ## shmuelie-github
 
@@ -72,7 +83,7 @@ data with LINQPad/DuckDB. **10 skills.**
 | [linqpad-duckdb](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/linqpad-duckdb/SKILL.md) | Synthetic Parquet/Delta queries, optional Azure credentials, logical schemas, and scan costs |
 | [event-contracts](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/event-contracts/SKILL.md) | Typed diagnostic fields, retry/activity correlation, and decoded-event inspection |
 | [openapi-client-generation](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/openapi-client-generation/SKILL.md) | Reproducible HTTP clients, endpoint ownership, and fake-transport validation |
-| [dotnet-project-init](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/dotnet-project-init/SKILL.md) | Repository, solution, test, packaging, and CI setup |
+| [dotnet-project-init](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/dotnet-project-init/SKILL.md) | General repository, solution, application, test, and CI setup |
 | [icon-assets](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/icon-assets/SKILL.md) | Application, MSIX, NuGet, and web icon assets |
 | [msix-store-submission](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/msix-store-submission/SKILL.md) | MSIX packaging and Microsoft Store submission |
 | [msix-servicing](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/msix-servicing/SKILL.md) | Deployment hooks, full-trust servicing, migrations, and update probes |

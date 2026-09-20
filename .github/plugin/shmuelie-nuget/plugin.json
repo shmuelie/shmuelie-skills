@@ -1,0 +1,10 @@
+{
+  "name": "shmuelie-nuget",
+  "description": "Creating .NET libraries, authoring NuGet packages, validating CI, and publishing versioned releases.",
+  "readme": "./README.md",
+  "version": "0.1.0",
+  "author": { "name": "Shmueli Englard", "url": "https://github.com/shmuelie" },
+  "license": "MIT",
+  "keywords": ["dotnet", "nuget", "libraries", "ci", "semver", "releases"],
+  "skills": ["./skills/"]
+}

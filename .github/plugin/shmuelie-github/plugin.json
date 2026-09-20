@@ -2,7 +2,7 @@
   "name": "shmuelie-github",
   "description": "GitHub issue triage, design preparation, pull requests, repository administration, and releases.",
   "readme": "./README.md",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": { "name": "Shmueli Englard", "url": "https://github.com/shmuelie" },
   "license": "MIT",
   "keywords": ["github", "issues", "triage", "pull-requests", "releases"],

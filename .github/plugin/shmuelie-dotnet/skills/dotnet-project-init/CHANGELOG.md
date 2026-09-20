@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-20
+
 ### Changed
 - Keep general .NET setup and a short versioning reminder here; give the
   `shmuelie-nuget` plugin ownership of detailed library packaging and release recipes.

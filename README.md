@@ -19,6 +19,7 @@ copilot plugin install shmuelie-dotnet@shmuelie-skills
 
 | Plugin | Focus |
 |---|---|
+| [`shmuelie-nuget`](docs/plugins.md#shmuelie-nuget) | .NET libraries, NuGet packages, CI, and versioned releases |
 | [`shmuelie-copilot`](docs/plugins.md#shmuelie-copilot) | Copilot sessions, reports, playbooks, and plugin authoring |
 | [`shmuelie-devenv`](docs/plugins.md#shmuelie-devenv) | PowerShell, shell, deployment, profiles, CI, local MCP servers, and threat-model files |
 | [`shmuelie-authoring`](docs/plugins.md#shmuelie-authoring) | RFC-style specifications, readability, project proposals, and artwork |

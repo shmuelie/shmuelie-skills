@@ -40,6 +40,12 @@
       "source": ".github/plugin/shmuelie-dotnet"
     },
     {
+      "name": "shmuelie-nuget",
+      "description": ".NET libraries, NuGet package authoring, CI, and versioned release publishing",
+      "version": "0.1.0",
+      "source": ".github/plugin/shmuelie-nuget"
+    },
+    {
       "name": "shmuelie-systems",
       "description": "Embedded C++, homelab infrastructure, and Qualcomm Cloud AI 100 development",
       "version": "1.0.0",

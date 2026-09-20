@@ -1,0 +1,89 @@
+name: Library release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+concurrency:
+  group: library-publication
+  cancel-in-progress: false
+env:
+  PACKAGE_PROJECT: ${{ vars.PACKAGE_PROJECT }}
+  TEST_PROJECT: ${{ vars.TEST_PROJECT }}
+  CONSUMER_PROJECT: ${{ vars.CONSUMER_PROJECT }}
+  RELEASE_REPOSITORY: ${{ vars.RELEASE_REPOSITORY }}
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: 10.0.401
+      - name: Check trusted source and build exact artifacts
+        shell: bash
+        env:
+          RELEASE_BRANCH: ${{ vars.RELEASE_BRANCH || github.event.repository.default_branch }}
+          NUGET_PACKAGES: ${{ runner.temp }}/release-build-packages
+        run: |
+          set -euo pipefail
+          : "${RELEASE_REPOSITORY:?Configure RELEASE_REPOSITORY}"
+          : "${PACKAGE_PROJECT:?Configure PACKAGE_PROJECT}"
+          : "${TEST_PROJECT:?Configure TEST_PROJECT}"
+          : "${CONSUMER_PROJECT:?Configure CONSUMER_PROJECT}"
+          test "$RELEASE_REPOSITORY" = "$GITHUB_REPOSITORY"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git check-ref-format --branch "$RELEASE_BRANCH"
+          git merge-base --is-ancestor "$GITHUB_SHA" "origin/$RELEASE_BRANCH"
+          dotnet test "$TEST_PROJECT" --configuration Release
+          dotnet pack "$PACKAGE_PROJECT" --configuration Release --output artifacts \
+            -p:ContinuousIntegrationBuild=true "-p:RepositoryCommit=$GITHUB_SHA"
+          dotnet restore "$CONSUMER_PROJECT" --source "$GITHUB_WORKSPACE/artifacts" --packages "$RUNNER_TEMP/release-consumer"
+          dotnet run --project "$CONSUMER_PROJECT" --configuration Release --no-restore
+      - name: Validate versions, changelog, packages, and provenance
+        shell: pwsh
+        run: |
+          ./eng/package/Test-LibraryPackage.ps1 -ArtifactDirectory ./artifacts -PolicyPath ./package-policy.json -Commit $env:GITHUB_SHA
+          ./eng/release/New-ReleasePlan.ps1 -Project $env:PACKAGE_PROJECT `
+            -ChangelogPath ./CHANGELOG.md -ArtifactDirectory ./artifacts `
+            -Repository $env:RELEASE_REPOSITORY -EventName $env:GITHUB_EVENT_NAME `
+            -Ref $env:GITHUB_REF -Commit $env:GITHUB_SHA
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: validated-release
+          path: artifacts/*
+          if-no-files-found: error
+          retention-days: 30
+  publish:
+    needs: validate
+    runs-on: ubuntu-latest
+    environment: nuget
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5
+        with:
+          dotnet-version: 10.0.401
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: validated-release
+          path: artifacts
+      - name: Obtain a short-lived publishing key after validation
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1
+        id: login
+        with:
+          user: ${{ secrets.NUGET_USER }}
+      - name: Stage, verify, push, and finalize
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUGET_API_KEY: ${{ steps.login.outputs.NUGET_API_KEY }}
+        run: ./eng/release/Publish-Release.ps1 -ArtifactDirectory ./artifacts -Confirm:$false

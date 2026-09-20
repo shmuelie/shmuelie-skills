@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- `shmuelie-nuget` with four library/package/CI/release skills, a pinned canonical
+  example, credential-free release decision tests, and copyable tag-publishing
+  templates (#48). Existing versions are unchanged; no release is cut.
+
+### Changed
+- Keep general .NET setup in `dotnet-project-init`; move detailed library
+  packaging and release guidance into the new focused plugin.
+
 ## [2.7.0] - 2026-09-11
 
 The aggregate release includes `shmuelie-devenv` 1.4.0 and `shmuelie-dotnet`

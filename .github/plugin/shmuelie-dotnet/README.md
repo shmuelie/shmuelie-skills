@@ -54,9 +54,9 @@ parsing, IPC message patterns, and plugin path security.
 
 Modern .NET repository setup: `Directory.Build.props` centralized configuration,
 `global.json` test-runner setup for .NET 10+, `.sln`→`.slnx` migration, mixed
-C#/C++ toolset modernization, NuGet `ExcludeAssets` patterns, GitHub Actions CI
-for .NET and MSIX, `copilot-instructions.md` templates, and Keep a Changelog /
-Semantic Versioning conventions.
+C#/C++ toolset modernization, GitHub Actions CI for .NET and MSIX, project
+instructions, and general versioning reminders. Detailed library packaging and
+publication now belong to the independently installable `shmuelie-nuget` plugin.
 
 ### icon-assets
 

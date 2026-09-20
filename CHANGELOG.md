@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- `shmuelie-github` focused plugin with five skills for issue triage, design
+  preparation, PRs, label/milestone administration, and GitHub releases (#47).
+  Includes explicit approval boundaries and credential-free scenario walkthroughs.
+  Existing plugin and catalog versions are unchanged; no release is cut.
+
 ## [2.7.0] - 2026-09-11
 
 The aggregate release includes `shmuelie-devenv` 1.4.0 and `shmuelie-dotnet`

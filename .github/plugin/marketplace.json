@@ -22,6 +22,12 @@
       "source": ".github/plugin/shmuelie-copilot"
     },
     {
+      "name": "shmuelie-github",
+      "description": "GitHub issue triage, design preparation, pull requests, labels, milestones, and releases",
+      "version": "0.1.0",
+      "source": ".github/plugin/shmuelie-github"
+    },
+    {
       "name": "shmuelie-devenv",
       "description": "PowerShell, shell, deployment, profile, and local .NET MCP server engineering",
       "version": "1.4.0",

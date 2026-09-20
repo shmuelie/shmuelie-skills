@@ -59,7 +59,8 @@ allowed, not that dependency inspection is skipped.
 
 The policy enforces a GitHub repository/commit, README, chosen license,
 author/description, framework assembly set, XML documentation, matching portable
-symbols, and Source Link. It targets pure-managed `lib/<tfm>` packages. It does
+symbols, and Source Link coverage for every non-embedded source document at the
+reviewed commit. It targets pure-managed `lib/<tfm>` packages. It does
 not silently accept extra native, reference, or analyzer assembly layouts;
 adapt and review the inspector for specialized package types.
 

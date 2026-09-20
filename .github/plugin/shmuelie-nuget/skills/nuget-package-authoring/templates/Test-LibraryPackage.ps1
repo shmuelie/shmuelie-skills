@@ -57,6 +57,9 @@ try {
         if (@($zip.Entries | Group-Object FullName -CaseSensitive | Where-Object Count -gt 1).Count) {
             throw 'Duplicate package entries are not allowed.'
         }
+        if (@($zip.Entries | Where-Object {
+            $_.FullName.Replace('\', '/') -match '^(runtimes|native|ref|analyzers|build|buildTransitive|buildMultiTargeting|content|contentFiles|tools)/'
+        }).Count) { throw 'Unsupported package layout: the policy permits ordinary pure-managed library assets only.' }
     }
     $nuspecs = @($package.Entries | Where-Object FullName -like '*.nuspec')
     if ($nuspecs.Count -ne 1) { throw 'Expected one package nuspec.' }
@@ -144,6 +147,31 @@ try {
                         $prefix = "https://raw.githubusercontent.com/$($policy.repository)/$Commit/"
                         if ($urls.Count -eq 0 -or @($urls | Where-Object { $_ -isnot [string] -or -not $_.StartsWith($prefix, [StringComparison]::Ordinal) }).Count) {
                             throw 'Source Link does not identify the reviewed source commit.'
+                        }
+                        $mappings = @($link.documents.PSObject.Properties)
+                        foreach ($mapping in $mappings) {
+                            $keyStars = @($mapping.Name.ToCharArray() | Where-Object { $_ -eq '*' }).Count
+                            $urlStars = @($mapping.Value.ToCharArray() | Where-Object { $_ -eq '*' }).Count
+                            if ($keyStars -gt 1 -or $keyStars -ne $urlStars -or
+                                ($keyStars -eq 1 -and (-not $mapping.Name.EndsWith('*') -or -not $mapping.Value.EndsWith('*')))) {
+                                throw 'Unsupported Source Link mapping pattern.'
+                            }
+                        }
+                        foreach ($documentHandle in $reader.Documents) {
+                            $embedded = $false
+                            foreach ($customHandle in $reader.GetCustomDebugInformation([Reflection.Metadata.EntityHandle]$documentHandle)) {
+                                $custom = $reader.GetCustomDebugInformation($customHandle)
+                                if ($reader.GetGuid($custom.Kind) -eq [guid]'0E8A571B-6926-466E-B4AD-8AB04611F5FE') { $embedded = $true }
+                            }
+                            if ($embedded) { continue }
+                            $document = $reader.GetDocument($documentHandle)
+                            $name = $reader.GetString($document.Name)
+                            $covered = @($mappings | Where-Object {
+                                if ($_.Name.EndsWith('*')) {
+                                    $name.StartsWith($_.Name.Substring(0, $_.Name.Length - 1), [StringComparison]::Ordinal)
+                                } else { $name -ceq $_.Name }
+                            }).Count -gt 0
+                            if (-not $covered) { throw "Source Link does not cover non-embedded document: $name" }
                         }
                         $found = $true
                     }

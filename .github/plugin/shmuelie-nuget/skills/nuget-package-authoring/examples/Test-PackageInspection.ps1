@@ -37,7 +37,11 @@ $cases = @(
     @{ Name = 'MissingXmlDocs'; Delete = 'lib/net10.0/Fixture.Library.xml'; Error = 'Required XML entry is missing' },
     @{ Name = 'MissingAssembly'; Delete = 'lib/net10.0/Fixture.Library.dll'; Error = 'Required package asset is missing' },
     @{ Name = 'MissingSymbols'; Symbols = $true; Delete = 'lib/net10.0/Fixture.Library.pdb'; Error = 'Required package asset is missing' },
-    @{ Name = 'MissingSourceLink'; Symbols = $true; RemoveSourceLink = $true; Error = 'Portable PDB has no Source Link record' }
+    @{ Name = 'MissingSourceLink'; Symbols = $true; RemoveSourceLink = $true; Error = 'Portable PDB has no Source Link record' },
+    @{ Name = 'UnmappedSourceLink'; Symbols = $true; UnmappedSourceLink = $true; Error = 'Source Link does not cover non-embedded document' },
+    @{ Name = 'UnexpectedNativeAsset'; AddEntry = 'runtimes/linux-x64/native/libUnexpected.so'; Error = 'Unsupported package layout' },
+    @{ Name = 'UnexpectedNativeDylib'; AddEntry = 'runtimes/osx-arm64/native/libUnexpected.dylib'; Error = 'Unsupported package layout' },
+    @{ Name = 'UnexpectedBuildTarget'; AddEntry = 'build/Unexpected.targets'; Error = 'Unsupported package layout' }
 )
 try {
     foreach ($case in $cases) {
@@ -61,22 +65,29 @@ try {
                 try { $writer.Write($xml.OuterXml) } finally { $writer.Dispose() }
             } elseif ($case.ContainsKey('Delete')) {
                 $zip.GetEntry($case.Delete).Delete()
+            } elseif ($case.ContainsKey('AddEntry')) {
+                $writer = [IO.StreamWriter]::new($zip.CreateEntry($case.AddEntry).Open())
+                try { $writer.Write('Undeclared asset') } finally { $writer.Dispose() }
             } else {
                 $entry = $zip.GetEntry('lib/net10.0/Fixture.Library.pdb')
                 $memory = [IO.MemoryStream]::new()
                 $stream = $entry.Open()
                 try { $stream.CopyTo($memory); $bytes = $memory.ToArray() }
                 finally { $stream.Dispose(); $memory.Dispose() }
-                $needle = ([guid]'CC110556-A091-4D38-9FEC-25AB9A351A6A').ToByteArray()
+                $needle = if ($case.ContainsKey('UnmappedSourceLink')) {
+                    [Text.Encoding]::UTF8.GetBytes('"documents":{"/_/*"')
+                } else { ([guid]'CC110556-A091-4D38-9FEC-25AB9A351A6A').ToByteArray() }
                 $found = $false
                 for ($i = 0; $i -le $bytes.Length - $needle.Length; $i++) {
-                    if ([Linq.Enumerable]::SequenceEqual([byte[]]$bytes[$i..($i + 15)], $needle)) {
-                        $bytes[$i] = $bytes[$i] -bxor 1
+                    if ([Linq.Enumerable]::SequenceEqual([byte[]]$bytes[$i..($i + $needle.Length - 1)], [byte[]]$needle)) {
+                        if ($case.ContainsKey('UnmappedSourceLink')) {
+                            $bytes[$i + $needle.Length - 4] = [byte][char]'x'
+                        } else { $bytes[$i] = $bytes[$i] -bxor 1 }
                         $found = $true
                         break
                     }
                 }
-                if (-not $found) { throw 'Test fixture has no Source Link GUID to remove.' }
+                if (-not $found) { throw 'Test fixture has no expected Source Link bytes to mutate.' }
                 $entry.Delete()
                 $stream = $zip.CreateEntry('lib/net10.0/Fixture.Library.pdb').Open()
                 try { $stream.Write($bytes, 0, $bytes.Length) } finally { $stream.Dispose() }

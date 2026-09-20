@@ -4,6 +4,8 @@ Following [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-09-20
+
 ### Added
 - Project-owned SemVer, changelog/tag/package validation, draft-first release
   template, trusted publishing, fake-transport decision tests, and explicit recovery.

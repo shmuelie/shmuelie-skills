@@ -3,11 +3,11 @@
 Create, package, validate, and release .NET libraries. Includes four skills,
 copyable GitHub Actions workflows, and one deliberately non-publishing example.
 
-**Version:** 0.1.0
+**Version:** 1.0.0
 
 ## Install
 
-Once published:
+Install the focused plugin:
 
 ```text
 copilot plugin marketplace add shmuelie/shmuelie-skills

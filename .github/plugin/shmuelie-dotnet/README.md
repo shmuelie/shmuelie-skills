@@ -4,7 +4,7 @@
 interop, Roslyn generators, WinUI 3, MSIX distribution, visual assets, and
 LINQPad/DuckDB data analysis.
 
-**Version:** 1.3.0
+**Version:** 1.3.1
 
 ## Install
 

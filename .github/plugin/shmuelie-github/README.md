@@ -4,11 +4,11 @@ GitHub and repository management, from initial issue triage to approved changes
 and releases. These skills guide an agent; they are not an automation service
 or a replacement for code review.
 
-**Version:** 0.1.0
+**Version:** 1.0.0
 
 ## Install
 
-Once this plugin is published:
+Install the focused plugin:
 
 ```text
 copilot plugin marketplace add shmuelie/shmuelie-skills

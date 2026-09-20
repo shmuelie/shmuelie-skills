@@ -32,13 +32,14 @@ troubleshooting.
 
 | Plugins | Skills | Aggregate installs |
 |---:|---:|---:|
-| 7 | 36 | 1 |
+| 8 | 41 | 1 |
 
 ## Focused plugins
 
 | Plugin | Skills | Best for |
 |---|---:|---|
 | [`shmuelie-nuget`](plugins.md#shmuelie-nuget) | 4 | Library projects, NuGet authoring, CI, and releases |
+| [`shmuelie-github`](plugins.md#shmuelie-github) | 5 | Issue/PR workflows, design readiness, repository administration, and releases |
 | [`shmuelie-copilot`](plugins.md#shmuelie-copilot) | 5 | Copilot sessions, reports, playbooks, and plugin authoring |
 | [`shmuelie-devenv`](plugins.md#shmuelie-devenv) | 9 | PowerShell, shell, deployment, CI, local MCP servers, and threat-model files |
 | [`shmuelie-authoring`](plugins.md#shmuelie-authoring) | 4 | RFC-style specifications, readability, project proposals, and artwork |
@@ -46,7 +47,7 @@ troubleshooting.
 | [`shmuelie-systems`](plugins.md#shmuelie-systems) | 3 | Embedded C++, homelab infrastructure, and AI accelerators |
 | [`shmuelie-typescript`](plugins.md#shmuelie-typescript) | 1 | Reliable TypeScript and Node.js command-line applications |
 
-The aggregate `shmuelie-skills` plugin references all seven focused skill
+The aggregate `shmuelie-skills` plugin references all eight focused skill
 directories. Each skill has exactly one focused owning plugin.
 
 ## How skills activate

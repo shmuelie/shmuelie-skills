@@ -19,6 +19,7 @@
   ],
   "skills": [
     ".github/plugin/shmuelie-nuget/skills/",
+    ".github/plugin/shmuelie-github/skills/",
     ".github/plugin/shmuelie-copilot/skills/",
     ".github/plugin/shmuelie-devenv/skills/",
     ".github/plugin/shmuelie-authoring/skills/",

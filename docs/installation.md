@@ -26,6 +26,7 @@ copilot plugin marketplace browse shmuelie-skills
 copilot plugin install shmuelie-dotnet@shmuelie-skills
 copilot plugin install shmuelie-devenv@shmuelie-skills
 copilot plugin install shmuelie-nuget@shmuelie-skills
+copilot plugin install shmuelie-github@shmuelie-skills
 ```
 
 ## Direct subdirectory installation

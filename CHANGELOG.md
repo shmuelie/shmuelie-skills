@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `shmuelie-nuget` with four library/package/CI/release skills, a pinned canonical
   example, credential-free release decision tests, and copyable tag-publishing
   templates (#48). Existing versions are unchanged; no release is cut.
+- `shmuelie-github` focused plugin with five skills for issue triage, design
+  preparation, PRs, label/milestone administration, and GitHub releases (#47).
+  Includes explicit approval boundaries and credential-free scenario walkthroughs.
+  Existing plugin and catalog versions are unchanged; no release is cut.
 
 ### Changed
 - Keep general .NET setup in `dotnet-project-init`; move detailed library

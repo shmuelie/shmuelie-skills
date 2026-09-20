@@ -7,7 +7,7 @@ title: Plugins
 # Plugins
 
 Each skill belongs to one focused plugin. The aggregate root plugin loads all
-seven directories without duplicating skill ownership.
+eight directories without duplicating skill ownership.
 
 ## shmuelie-nuget
 
@@ -19,6 +19,18 @@ Create, package, validate, and release .NET libraries. **4 skills.**
 | [nuget-package-authoring](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-nuget/skills/nuget-package-authoring/SKILL.md) | Package metadata, assets, dependencies, Source Link, and symbols |
 | [dotnet-library-ci](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-nuget/skills/dotnet-library-ci/SKILL.md) | Read-only CI and isolated packed-library consumption |
 | [nuget-release](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-nuget/skills/nuget-release/SKILL.md) | SemVer/changelog, trusted publishing, release assets, and recovery |
+
+## shmuelie-github
+
+Manage GitHub work with repository-specific approval boundaries. **5 skills.**
+
+| Skill | Use it for |
+| --- | --- |
+| [github-issue-triage](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-github/skills/github-issue-triage/SKILL.md) | Evidence-based issue classification and routine labels/comments |
+| [prepare-issue](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-github/skills/prepare-issue/SKILL.md) | Design questions, approval, and implementation readiness |
+| [github-pull-requests](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-github/skills/github-pull-requests/SKILL.md) | PR creation, review coordination, and authorized merge/closure |
+| [github-repository-management](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-github/skills/github-repository-management/SKILL.md) | Approved label/milestone definitions and bulk administration |
+| [github-releases](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-github/skills/github-releases/SKILL.md) | Verified tags, staged assets, publication, and explicit recovery |
 
 ## shmuelie-copilot
 

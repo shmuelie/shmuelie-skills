@@ -83,7 +83,9 @@ VM testing.
 Roslyn incremental source generators: `IIncrementalGenerator` pipeline design,
 equatable pipeline models with `EquatableArray<T>`, `ForAttributeWithMetadataName`,
 testing with `CSharpGeneratorDriver`, analyzer diagnostic patterns, NuGet
-packaging layout, nested-type handling, and common pitfalls.
+packaging layout, nested-type handling, and common pitfalls. Includes a
+synthetic Windows Message Compiler `.mc` AdditionalFiles scenario with
+language/include options, full-code HResult preservation, and compilation tests.
 
 ### winui3-msix
 

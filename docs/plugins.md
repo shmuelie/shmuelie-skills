@@ -34,7 +34,7 @@ Manage GitHub work with repository-specific approval boundaries. **5 skills.**
 
 ## shmuelie-copilot
 
-Operate and understand Copilot CLI itself. **5 skills.**
+Operate and understand Copilot CLI itself. **6 skills.**
 
 | Skill | Use it for |
 |---|---|
@@ -43,6 +43,7 @@ Operate and understand Copilot CLI itself. **5 skills.**
 | [copilot-session-report](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-copilot/skills/copilot-session-report/SKILL.md) | Document one completed session |
 | [copilot-usage-report](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-copilot/skills/copilot-usage-report/SKILL.md) | Analyze usage patterns |
 | [plugin-authoring](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-copilot/skills/plugin-authoring/SKILL.md) | Publish plugins and marketplaces |
+| [scripted-batch-execution](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-copilot/skills/scripted-batch-execution/SKILL.md) | Batch known lengthy work into one observable script with bounded output |
 
 ## shmuelie-devenv
 
@@ -88,7 +89,7 @@ data with LINQPad/DuckDB. **11 skills.**
 | [icon-assets](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/icon-assets/SKILL.md) | Application, MSIX, NuGet, and web icon assets |
 | [msix-store-submission](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/msix-store-submission/SKILL.md) | MSIX packaging and Microsoft Store submission |
 | [msix-servicing](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/msix-servicing/SKILL.md) | Deployment hooks, full-trust servicing, migrations, and update probes |
-| [roslyn-sourcegen](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/roslyn-sourcegen/SKILL.md) | Incremental generators and analyzers |
+| [roslyn-sourcegen](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/roslyn-sourcegen/SKILL.md) | Incremental generators, analyzers, and synthetic `.mc` catalog generation |
 | [winui3-msix](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/winui3-msix/SKILL.md) | WinUI 3 binding, packaging, testing, and DI |
 
 ## shmuelie-systems

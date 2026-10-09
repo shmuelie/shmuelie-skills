@@ -21,7 +21,7 @@ copilot plugin install shmuelie-dotnet@shmuelie-skills
 |---|---|
 | [`shmuelie-nuget`](docs/plugins.md#shmuelie-nuget) | .NET libraries, NuGet packages, CI, and versioned releases |
 | [`shmuelie-github`](docs/plugins.md#shmuelie-github) | GitHub issues, design preparation, PRs, labels, milestones, and releases |
-| [`shmuelie-copilot`](docs/plugins.md#shmuelie-copilot) | Copilot sessions, reports, playbooks, and plugin authoring |
+| [`shmuelie-copilot`](docs/plugins.md#shmuelie-copilot) | Copilot sessions, reports, playbooks, scripted batch execution, and plugin authoring |
 | [`shmuelie-devenv`](docs/plugins.md#shmuelie-devenv) | PowerShell, shell, deployment, profiles, CI, local MCP servers, and threat-model files |
 | [`shmuelie-authoring`](docs/plugins.md#shmuelie-authoring) | RFC-style specifications, readability, project proposals, and artwork |
 | [`shmuelie-dotnet`](docs/plugins.md#shmuelie-dotnet) | Shared .NET APIs, API clients, interop, diagnostics, DuckDB, Roslyn, WinUI 3, MSIX, and assets |

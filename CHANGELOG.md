@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - **shmuelie-copilot:** documented version-qualified passive UI-server
   observation, resume hazards, pending-request gaps, authorization checks,
   connection cleanup, and a synthetic pending-form test (#53).
+- **shmuelie-copilot:** new `scripted-batch-execution` skill for batching
+  predictable, lengthy shell work into a temporary script while preserving
+  progress, failures, bounded diagnostics, and cleanup (#54).
+- **shmuelie-dotnet:** synthetic `.mc` AdditionalFiles guidance for Roslyn
+  generators, including MC parsing, language/include selection, source
+  diagnostics, 32-bit exception HResults, and generator-driver tests (#52).
 
 ## [2.8.0] - 2026-09-20
 

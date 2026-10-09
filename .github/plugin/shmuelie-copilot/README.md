@@ -67,6 +67,13 @@ the public GitHub Copilot CLI: `plugin.json` and `marketplace.json` structure,
 self-contained plugin sources, `SKILL.md` and prompt-template conventions,
 in-repository discovery, versioning, and a validation checklist.
 
+### scripted-batch-execution
+
+Batch known, lengthy shell steps into one temporary script rather than sending
+every command and its verbose output through the conversation. Covers when to
+keep interactive steps separate, explicit failure propagation, concise progress,
+bounded diagnostics, and cleanup, with PowerShell and Bash examples.
+
 ## Example requests
 
 ```text
@@ -75,6 +82,7 @@ Analyze how I have been using Copilot CLI over the last month.
 Create a playbook that teaches my prompting style.
 Diagnose why this session no longer resumes.
 Package these skills as a Copilot CLI marketplace.
+Run these known tests through one script and report only stage results.
 ```
 
 ## Requirements

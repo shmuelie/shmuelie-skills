@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- **shmuelie-copilot:** documented version-qualified passive UI-server
+  observation, resume hazards, pending-request gaps, authorization checks,
+  connection cleanup, and a synthetic pending-form test (#53).
+
 ## [2.8.0] - 2026-09-20
 
 The aggregate release introduces `shmuelie-github` 1.0.0 and `shmuelie-nuget`

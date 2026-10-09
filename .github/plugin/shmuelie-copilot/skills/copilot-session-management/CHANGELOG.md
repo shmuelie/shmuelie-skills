@@ -8,6 +8,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+- Version-qualified, read-only UI-server observation guidance distinguishing
+  event-log reads from SDK resume/ownership, with connection cleanup,
+  replay/pending-request limits, access-control verification, a fictional
+  pending-form check, and a conservative fallback (#53).
+
 ## 2026-09-10
 
 ### Added

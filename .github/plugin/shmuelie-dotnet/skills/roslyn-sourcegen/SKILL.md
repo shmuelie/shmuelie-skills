@@ -142,8 +142,9 @@ La ressource %1!s! est prête.
 
 Parse `SeverityNames`, `FacilityNames`, and `LanguageNames` tables before
 resolving messages. `MessageIdTypedef` and `OutputBase` affect MC header output,
-not the numeric code. If the tables are absent, MC's first-message defaults
-are `Severity=Success` (0), `Facility=Application` (0xFFF), and
+not the numeric code. Per the [Microsoft MC message definitions][mc-syntax],
+if the tables are absent, MC's first-message defaults are
+`Severity=Success` (0), `Facility=Application` (0xFFF), and
 `Language=English`; omitted severity/facility on later messages inherit the
 last specified values, **not** `Error`. `MessageId=+n` adds to the previous ID
 *for the effective facility*; empty `MessageId=` advances by one for that
@@ -155,6 +156,8 @@ Keep the entire 32-bit value as `uint` until emitting the exception's signed
 or use checked `Convert.ToInt32(uint)`:
 
 ```csharp
+namespace Demo.Messages;
+
 public partial class DemoMissingException : System.Exception
 {
     public const uint MessageCode = 0xC3450011u;
@@ -166,9 +169,12 @@ public partial class DemoMissingException : System.Exception
 }
 ```
 
-The generated type must remain `partial` so a consumer can extend it without
-modifying generated code. Define a deterministic symbolic-name → type-name
-rule (here `DEMO_MISSING` → `DemoMissingException`) and diagnose invalid C#
+In this illustrative contract, generate all exception types in
+`Demo.Messages`, matching the consumer partial declaration and reflection
+lookups in the tests below. The generated type must remain `partial` so a
+consumer can extend it without modifying generated code. Define a deterministic
+symbolic-name → type-name rule (here `DEMO_MISSING` → `DemoMissingException`)
+and diagnose invalid C#
 identifiers, duplicate effective codes, and resulting type-name collisions
 across all `.mc` inputs. Each `Language=name` starts text terminated by a line
 containing only `.`; another language block can follow for the same message.
@@ -265,6 +271,31 @@ public class McGeneratorTests
     }
 
     [TestMethod]
+    public void EmptyMessageIdAdvancesWithinFacility()
+    {
+        var input = CSharpCompilation.Create(
+            "SyntheticMcReady",
+            references: Net80.References.All,
+            options: new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary));
+        GeneratorDriver driver = CSharpGeneratorDriver.Create(
+            generators: new[] { new McExceptionGenerator().AsSourceGenerator() },
+            additionalTexts: new AdditionalText[] { new MemoryMc("Messages/Sample.mc", McText) },
+            optionsProvider: new McOptions(include: "DEMO_READY"));
+        driver = driver.RunGeneratorsAndUpdateCompilation(
+            input, out var output, out var generatorDiagnostics);
+        Assert.IsFalse(generatorDiagnostics.Any(d => d.Severity == DiagnosticSeverity.Error),
+            string.Join("\n", generatorDiagnostics));
+        using var dll = new MemoryStream();
+        var emit = output.Emit(dll);
+        Assert.IsTrue(emit.Success, string.Join("\n", emit.Diagnostics));
+        var type = Assembly.Load(dll.ToArray()).GetType(
+            "Demo.Messages.DemoReadyException", true)!;
+        var ready = (Exception)Activator.CreateInstance(type, "book")!;
+        Assert.AreEqual("Resource book is ready.", ready.Message);
+        Assert.AreEqual(0x03450012, ready.HResult); // Success inherits Demo facility, ID 0x12
+    }
+
+    [TestMethod]
     public void MultilingualCatalogWithoutSelectionHasSourceDiagnostic()
     {
         var input = CSharpCompilation.Create(
@@ -317,11 +348,13 @@ public class McGeneratorTests
 ```
 
 `MCGEN001` above is an illustrative diagnostic ID for ambiguous language;
-replace it with the ID in the implementation. Add driver cases for
-`MessageId=` and `MessageId=+n` with facility changes,
-first-message defaults (`MessageId=0x1` without severity/facility resolves to
+replace it with the ID in the implementation. The first test exercises
+`MessageId=+1` (`0xC3450011`); the second exercises empty `MessageId=` after
+it (`0x03450012`). **Additional cases to implement** include changing
+facilities between relative/automatic IDs, first-message defaults
+(`MessageId=0x1` without severity/facility resolves to
 `0x0FFF0001`, not an error code), explicit French selection, no language on
-multilingual input (diagnostic), malformed/unterminated blocks, unsupported
+multilingual input (shown above), malformed/unterminated blocks, unsupported
 `%1!d!`, and collisions across files. Assert each diagnostic's ID, severity,
 `.mc` path, and line span; assert that invalid inputs do not emit broken C#.
 For each valid variant, compile the updated output, instantiate the selected

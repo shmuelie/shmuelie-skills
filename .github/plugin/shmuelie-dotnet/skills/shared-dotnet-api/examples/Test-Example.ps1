@@ -122,7 +122,7 @@ try {
 
     $badPath = Join-Path $scratch 'missing\items.json'
     $failed = Invoke-ExampleCli @('add', '--file', $badPath, '--name', 'x')
-    Assert ($failed.Code -eq 1 -and $failed.Err -ceq 'Store operation failed.' `
+    Assert ($failed.Code -eq 1 -and $failed.Err -ceq 'Store I/O failed.' `
         -and -not $failed.Out) 'CLI store error exit 1 without partial stdout or path leak'
     try {
         $null = Add-SyntheticItem -Path $badPath -Name x
@@ -135,7 +135,8 @@ try {
     $corrupt = Join-Path $scratch 'corrupt.json'
     Set-Content $corrupt 'not-json'
     $readError = Invoke-ExampleCli @('list', '--file', $corrupt, '--json')
-    Assert ($readError.Code -eq 1 -and -not $readError.Out) 'CLI corrupt store exit 1'
+    Assert ($readError.Code -eq 1 -and $readError.Err -ceq 'Invalid item store data.' `
+        -and -not $readError.Out) 'CLI corrupt store exit 1'
     try {
         $null = Get-SyntheticItem -Path $corrupt
         throw 'Expected terminating read error.'
@@ -148,6 +149,23 @@ try {
     $cancel = [System.Threading.CancellationTokenSource]::new()
     try {
         $cancel.Cancel()
+        try {
+            $null = Get-SyntheticItem -Path $file -CancellationToken $cancel.Token
+            throw 'Expected read cancellation.'
+        }
+        catch [System.OperationCanceledException] {
+            Assert ($_.Exception.CancellationToken.IsCancellationRequested) `
+                'cmdlet read propagates injected cancellation'
+        }
+        try {
+            $null = Add-SyntheticItem -Path $file -Name cancelled -CancellationToken $cancel.Token
+            throw 'Expected mutation cancellation.'
+        }
+        catch [System.OperationCanceledException] {
+            Assert ($_.Exception.CancellationToken.IsCancellationRequested -and
+                (@(Get-SyntheticItem -Path $file | Where-Object Name -eq 'cancelled')).Count -eq 0) `
+                'cmdlet mutation cancellation makes no write'
+        }
         $output = [System.IO.StringWriter]::new()
         $cancelError = [System.IO.StringWriter]::new()
         try {
@@ -165,6 +183,8 @@ try {
     Write-Host "Passed: $checks assertions (core, cmdlets, CLI)."
 }
 finally {
-    Remove-Module Synthetic.PowerShell -ErrorAction SilentlyContinue
-    Remove-Item -LiteralPath $scratch -Recurse -Force -ErrorAction SilentlyContinue
+    if (Get-Module Synthetic.PowerShell) { Remove-Module Synthetic.PowerShell }
+    if (Test-Path -LiteralPath $scratch) {
+        Remove-Item -LiteralPath $scratch -Recurse -Force
+    }
 }

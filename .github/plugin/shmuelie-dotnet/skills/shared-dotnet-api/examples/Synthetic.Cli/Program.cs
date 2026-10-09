@@ -86,9 +86,24 @@ public static class Cli
             error.WriteLine("Item already exists.");
             return 3;
         }
-        catch (Exception)
+        catch (IOException)
         {
-            error.WriteLine("Store operation failed.");
+            error.WriteLine("Store I/O failed.");
+            return 1;
+        }
+        catch (UnauthorizedAccessException)
+        {
+            error.WriteLine("Store access denied.");
+            return 1;
+        }
+        catch (JsonException)
+        {
+            error.WriteLine("Invalid item store data.");
+            return 1;
+        }
+        catch (InvalidDataException)
+        {
+            error.WriteLine("Invalid item store data.");
             return 1;
         }
     }

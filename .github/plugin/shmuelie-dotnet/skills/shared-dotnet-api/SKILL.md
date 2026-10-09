@@ -80,11 +80,12 @@ The test uses a uniquely named scratch child of `examples` and removes it in
 direct core operations, the PowerShell module, real CLI processes, and injected
 CLI cancellation. It verifies normalization/conflict parity, pipeline binding
 for both cmdlets, typed output, `-WhatIf` without writes, human and JSON output,
-exit codes, non-terminating versus terminating cmdlet errors, and cancellation
-without stdout or mutation. This is a self-contained PowerShell test runner,
+exit codes, non-terminating versus terminating cmdlet errors, and injected
+cancellation in both adapters without stdout or mutation. This is a
+self-contained PowerShell test runner,
 **not** a `dotnet test` test project. Actual terminal Ctrl+C delivery is not
-simulated; `RunAsync` receives a pre-cancelled token to prove the adapter's
-exit/error mapping.
+simulated; `RunAsync` and the script cmdlets receive pre-cancelled tokens to
+prove each adapter's error mapping and lack of side effects.
 
 This file store has no multi-writer locking or cross-process transaction. It
 uses a sibling pending file and rename for individual writes, but do not use it

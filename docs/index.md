@@ -32,7 +32,7 @@ troubleshooting.
 
 | Plugins | Skills | Aggregate installs |
 |---:|---:|---:|
-| 8 | 42 | 1 |
+| 8 | 43 | 1 |
 
 ## Focused plugins
 
@@ -40,7 +40,7 @@ troubleshooting.
 |---|---:|---|
 | [`shmuelie-nuget`](plugins.md#shmuelie-nuget) | 4 | Library projects, NuGet authoring, CI, and releases |
 | [`shmuelie-github`](plugins.md#shmuelie-github) | 5 | Issue/PR workflows, design readiness, repository administration, and releases |
-| [`shmuelie-copilot`](plugins.md#shmuelie-copilot) | 5 | Copilot sessions, reports, playbooks, and plugin authoring |
+| [`shmuelie-copilot`](plugins.md#shmuelie-copilot) | 6 | Copilot sessions, reports, playbooks, scripted batch execution, and plugin authoring |
 | [`shmuelie-devenv`](plugins.md#shmuelie-devenv) | 9 | PowerShell, shell, deployment, CI, local MCP servers, and threat-model files |
 | [`shmuelie-authoring`](plugins.md#shmuelie-authoring) | 4 | RFC-style specifications, readability, project proposals, and artwork |
 | [`shmuelie-dotnet`](plugins.md#shmuelie-dotnet) | 11 | Shared .NET APIs, API clients, interop, diagnostics, DuckDB, WinUI 3, MSIX, and assets |

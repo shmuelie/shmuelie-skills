@@ -6,18 +6,25 @@ function Get-SyntheticItem {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
-        [string] $Path
+        [string] $Path,
+        [System.Threading.CancellationToken] $CancellationToken =
+            [System.Threading.CancellationToken]::None
     )
     process {
         $service = [Synthetic.Core.ItemService]::new(
             [Synthetic.Core.JsonFileItemStore]::new($Path))
-        $task = $service.ListAsync([System.Threading.CancellationToken]::None)
+        $task = $service.ListAsync($CancellationToken)
         try {
             $null = ([System.IAsyncResult]$task).AsyncWaitHandle.WaitOne()
+            if ($task.IsCanceled) {
+                throw [System.OperationCanceledException]::new('Item read cancelled.', $CancellationToken)
+            }
             $failure = if ($task.IsFaulted) { $task.Exception.GetBaseException() }
-            if ($failure -is [System.IO.IOException]) {
+            if ($failure -is [System.IO.IOException] -or
+                $failure -is [System.UnauthorizedAccessException]) {
                 $category = [System.Management.Automation.ErrorCategory]::ReadError
-            } elseif ($failure -is [System.Text.Json.JsonException]) {
+            } elseif ($failure -is [System.Text.Json.JsonException] -or
+                      $failure -is [System.IO.InvalidDataException]) {
                 $category = [System.Management.Automation.ErrorCategory]::InvalidData
             } elseif ($failure) { throw $failure }
             if ($failure) {
@@ -37,15 +44,20 @@ function Add-SyntheticItem {
         [Parameter(Mandatory, ValueFromPipeline)]
         [string] $Name,
         [Parameter(Mandatory)]
-        [string] $Path
+        [string] $Path,
+        [System.Threading.CancellationToken] $CancellationToken =
+            [System.Threading.CancellationToken]::None
     )
     process {
         if (-not $PSCmdlet.ShouldProcess($Name, 'Add synthetic item')) { return }
         $service = [Synthetic.Core.ItemService]::new(
             [Synthetic.Core.JsonFileItemStore]::new($Path))
-        $task = $service.AddAsync($Name, [System.Threading.CancellationToken]::None)
+        $task = $service.AddAsync($Name, $CancellationToken)
         try {
             $null = ([System.IAsyncResult]$task).AsyncWaitHandle.WaitOne()
+            if ($task.IsCanceled) {
+                throw [System.OperationCanceledException]::new('Item mutation cancelled.', $CancellationToken)
+            }
             $failure = if ($task.IsFaulted) { $task.Exception.GetBaseException() }
             if ($failure -is [System.ArgumentException]) {
                 $PSCmdlet.WriteError([System.Management.Automation.ErrorRecord]::new(
@@ -56,8 +68,11 @@ function Add-SyntheticItem {
                     $failure, 'ItemAlreadyExists',
                     [System.Management.Automation.ErrorCategory]::ResourceExists, $Name))
             } elseif ($failure -is [System.IO.IOException] -or
-                      $failure -is [System.Text.Json.JsonException]) {
-                $category = if ($failure -is [System.IO.IOException]) {
+                      $failure -is [System.UnauthorizedAccessException] -or
+                      $failure -is [System.Text.Json.JsonException] -or
+                      $failure -is [System.IO.InvalidDataException]) {
+                $category = if ($failure -is [System.IO.IOException] -or
+                                $failure -is [System.UnauthorizedAccessException]) {
                     [System.Management.Automation.ErrorCategory]::WriteError
                 } else { [System.Management.Automation.ErrorCategory]::InvalidData }
                 $PSCmdlet.ThrowTerminatingError([System.Management.Automation.ErrorRecord]::new(

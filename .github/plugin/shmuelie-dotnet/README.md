@@ -1,6 +1,6 @@
 # shmuelie-dotnet
 
-.NET and Windows application engineering: repository setup, managed/native
+.NET and Windows application engineering: shared APIs, repository setup, managed/native
 interop, Roslyn generators, WinUI 3, MSIX distribution, visual assets, and
 LINQPad/DuckDB data analysis.
 
@@ -21,6 +21,12 @@ copilot plugin uninstall shmuelie-dotnet
 ```
 
 ## Skills
+
+### shared-dotnet-api
+
+Host-independent typed operations with thin PowerShell and CLI adapters.
+Includes a dependency-free synthetic read/mutation example with executable
+cross-host tests for binding, `-WhatIf`, output, cancellation, and errors.
 
 ### linqpad-duckdb
 
@@ -99,6 +105,7 @@ recovery, and qualified loose-registration verification.
 ## Example requests
 
 ```text
+Share one typed .NET API between a PowerShell module and a CLI.
 Set up this repository with Directory.Build.props and a .slnx solution.
 Generate a COM interface with CsWin32 and GeneratedComInterface.
 Fix this incremental generator so caching works correctly.

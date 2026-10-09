@@ -76,10 +76,11 @@ Produce specifications and proposals, measure readability, and create project ar
 ## shmuelie-dotnet
 
 Develop, package, and diagnose modern .NET and Windows applications, and analyze
-data with LINQPad/DuckDB. **10 skills.**
+data with LINQPad/DuckDB. **11 skills.**
 
 | Skill | Use it for |
 |---|---|
+| [shared-dotnet-api](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/shared-dotnet-api/SKILL.md) | Shared typed .NET operations with thin PowerShell and CLI adapters and executable cross-host tests |
 | [csharp-interop](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/csharp-interop/SKILL.md) | COM, P/Invoke, Native AOT, and native hosting |
 | [linqpad-duckdb](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/linqpad-duckdb/SKILL.md) | Synthetic Parquet/Delta queries, optional Azure credentials, logical schemas, and scan costs |
 | [event-contracts](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/event-contracts/SKILL.md) | Typed diagnostic fields, retry/activity correlation, and decoded-event inspection |

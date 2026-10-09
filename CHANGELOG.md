@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+- **shmuelie-dotnet:** new `shared-dotnet-api` skill for a typed core shared by
+  PowerShell cmdlets and a CLI, with a runnable synthetic read/mutation fixture
+  and cross-host binding, safety, output, cancellation, and error tests (#56).
 - **shmuelie-copilot:** documented version-qualified passive UI-server
   observation, resume hazards, pending-request gaps, authorization checks,
   connection cleanup, and a synthetic pending-form test (#53).

@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+- **shmuelie-dotnet:** synthetic `.mc` AdditionalFiles guidance for Roslyn
+  generators, including MC parsing, language/include selection, source
+  diagnostics, 32-bit exception HResults, and generator-driver tests (#52).
+
 ## [2.8.0] - 2026-09-20
 
 The aggregate release introduces `shmuelie-github` 1.0.0 and `shmuelie-nuget`

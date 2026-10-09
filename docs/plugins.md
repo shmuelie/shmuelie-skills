@@ -87,7 +87,7 @@ data with LINQPad/DuckDB. **10 skills.**
 | [icon-assets](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/icon-assets/SKILL.md) | Application, MSIX, NuGet, and web icon assets |
 | [msix-store-submission](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/msix-store-submission/SKILL.md) | MSIX packaging and Microsoft Store submission |
 | [msix-servicing](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/msix-servicing/SKILL.md) | Deployment hooks, full-trust servicing, migrations, and update probes |
-| [roslyn-sourcegen](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/roslyn-sourcegen/SKILL.md) | Incremental generators and analyzers |
+| [roslyn-sourcegen](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/roslyn-sourcegen/SKILL.md) | Incremental generators, analyzers, and synthetic `.mc` catalog generation |
 | [winui3-msix](https://github.com/shmuelie/shmuelie-skills/blob/main/.github/plugin/shmuelie-dotnet/skills/winui3-msix/SKILL.md) | WinUI 3 binding, packaging, testing, and DI |
 
 ## shmuelie-systems

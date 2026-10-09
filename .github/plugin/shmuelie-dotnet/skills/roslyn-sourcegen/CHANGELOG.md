@@ -8,6 +8,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+### Added
+- Synthetic Windows Message Compiler `.mc` AdditionalFiles example covering
+  effective message codes, language/inclusion options, diagnostics, partial
+  exception types, and generator-driver compilation/behavior tests (#52).
+
 ## 2026-03-24
 
 ### Added

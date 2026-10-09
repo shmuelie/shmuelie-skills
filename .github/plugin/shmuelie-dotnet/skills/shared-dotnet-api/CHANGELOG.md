@@ -7,6 +7,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-10-09
+
 ### Added
 - Host-independent typed core and thin PowerShell/CLI adapter guidance, with
   a synthetic executable read/mutation example and cross-host assertions.

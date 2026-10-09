@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-10-09
+
 ### Added
 - Version-qualified, read-only UI-server observation guidance distinguishing
   event-log reads from SDK resume/ownership, with connection cleanup,

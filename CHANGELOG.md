@@ -7,16 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.9.0] - 2026-10-09
+
+The aggregate release includes `shmuelie-copilot` 1.3.0 and `shmuelie-dotnet`
+1.4.0. Other focused plugin versions and catalog metadata (2.1.0) are
+unchanged because the set of plugins did not change. The catalog contains
+43 skills across eight focused plugins.
+
 ### Added
 - **shmuelie-dotnet:** new `shared-dotnet-api` skill for a typed core shared by
   PowerShell cmdlets and a CLI, with a runnable synthetic read/mutation fixture
   and cross-host binding, safety, output, cancellation, and error tests (#56).
-- **shmuelie-copilot:** documented version-qualified passive UI-server
-  observation, resume hazards, pending-request gaps, authorization checks,
-  connection cleanup, and a synthetic pending-form test (#53).
 - **shmuelie-copilot:** new `scripted-batch-execution` skill for batching
   predictable, lengthy shell work into a temporary script while preserving
   progress, failures, bounded diagnostics, and cleanup (#54).
+
+### Changed
+- **shmuelie-copilot:** documented version-qualified passive UI-server
+  observation, resume hazards, pending-request gaps, authorization checks,
+  connection cleanup, and a synthetic pending-form test (#53).
 - **shmuelie-dotnet:** synthetic `.mc` AdditionalFiles guidance for Roslyn
   generators, including MC parsing, language/include selection, source
   diagnostics, 32-bit exception HResults, and generator-driver tests (#52).
@@ -384,7 +393,8 @@ and the six focused plugins debut at 1.0.0.
 - `plugin.json` manifest for `copilot plugin install`
 - `.github/plugin/marketplace.json` for marketplace discovery
 
-[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v2.8.0...HEAD
+[Unreleased]: https://github.com/shmuelie/shmuelie-skills/compare/v2.9.0...HEAD
+[2.9.0]: https://github.com/shmuelie/shmuelie-skills/compare/v2.8.0...v2.9.0
 [2.8.0]: https://github.com/shmuelie/shmuelie-skills/compare/v2.7.0...v2.8.0
 [2.7.0]: https://github.com/shmuelie/shmuelie-skills/compare/v2.6.0...v2.7.0
 [2.6.0]: https://github.com/shmuelie/shmuelie-skills/compare/v2.5.0...v2.6.0

@@ -8,6 +8,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/).
 
 ## [Unreleased]
 
+## 2026-10-09
+
 ### Added
 - Guidance for batching known shell steps into one temporary script with
   observable progress, failure propagation, bounded diagnostics, and safe
